@@ -19,69 +19,37 @@
             <h1>Communiqués de presse</h1>
         </div>
     </section>
-    <section class="prs-container">
-        <!-- A faire en PHP plus tard -->
-        <div class="pr-container">
-            <div class="top-content">
-                <div class="publisher">
-                    <h3>Delphine LETORT</h3>
-                    <span class="role president"></span>
-                </div>
-                <div class="timedate">
-                    <span>19/09/2025</span>
-                    <span>&#x2022</span>
-                    <span>19h45</span>
-                </div>
-            </div>
-            <div class="content">
-                Lorem ipsum dolor sit amet. A consectetur placeat vel perspiciatis quibusdam vel iste voluptatum ex dicta ipsam qui doloremque eligendi ea deserunt laboriosam. Quo quasi officiis et odio architecto et velit voluptas et corrupti doloremque ab iste esse et earum veniam et expedita laborum.
-                <br><br>
-                Ab accusamus voluptatem et reprehenderit dolor et enim commodi ut internos recusandae nam nobis velit. Hic ducimus nisi et internos quia et aperiam aperiam est dolores omnis. Eum itaque libero cum consequuntur dolore et mollitia saepe ut voluptatem dicta ea ipsa galisum sed voluptates voluptatibus.
-                <br><br>
-                Et vero nesciunt aut voluptates maiores et vitae quas ut vero iusto sed corrupti itaque ut dolore quibusdam aut porro eveniet. Rem rerum odit quo rerum consectetur et architecto provident aut voluptatem incidunt et debitis voluptatum est omnis eligendi. Non odit magnam rem quis quis ut corporis facilis non officiis blanditiis.
-            </div>
+    <div class="main">
+        <div class="ariane-link">
+            <a href="/" class="link">Accueil</a>
+            <span class="material-symbols-outlined">arrow_forward_ios</span>
+            <a href="/products/" class="link">Communiqués de presse</a>
         </div>
-        <div class="pr-container">
-            <div class="top-content">
-                <div class="publisher">
-                    <h3>Olivier ROULIN</h3>
-                    <span class="role chef-dep"></span>
+        <?php
+        include(dirname(__FILE__, 2) . '/assets/src/conn.php');
+
+        $stmt = $pdo->prepare("SELECT c.titre_communique, c.contenu, c.cat_communique, c.date_publication, u.prenom_utilisateur, u.nom_utilisateur, u.id_role FROM communique c JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur ORDER BY c.date_publication ASC");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        foreach ($results as $result): ?>
+            <div class="pr-container">
+                <div class="top-content">
+                    <div class="publisher">
+                        <h3><?= htmlspecialchars($result["prenom_utilisateur"]) . " " . htmlspecialchars($result["nom_utilisateur"]) ?></h3>
+                        <span class="role r<?= htmlspecialchars($result["id_role"]) ?>"></span>
+                    </div>
+                    <div class="timedate">
+                        <span><?= htmlspecialchars(date_format(date_create($result["date_publication"]), "d/m/Y")) ?></span>
+                        <span>&#x2022</span>
+                        <span><?= htmlspecialchars(date_format(date_create($result["date_publication"]), "H:i")) ?></span>
+                    </div>
                 </div>
-                <div class="timedate">
-                    <span>16/09/2025</span>
-                    <span>&#x2022</span>
-                    <span>10h23</span>
-                </div>
-            </div>
-            <div class="content">
-                Lorem ipsum dolor sit amet. A consectetur placeat vel perspiciatis quibusdam vel iste voluptatum ex dicta ipsam qui doloremque eligendi ea deserunt laboriosam. Quo quasi officiis et odio architecto et velit voluptas et corrupti doloremque ab iste esse et earum veniam et expedita laborum.
-                <br><br>
-                Ab accusamus voluptatem et reprehenderit dolor et enim commodi ut internos recusandae nam nobis velit. Hic ducimus nisi et internos quia et aperiam aperiam est dolores omnis. Eum itaque libero cum consequuntur dolore et mollitia saepe ut voluptatem dicta ea ipsa galisum sed voluptates voluptatibus.
-                <br><br>
-                Et vero nesciunt aut voluptates maiores et vitae quas ut vero iusto sed corrupti itaque ut dolore quibusdam aut porro eveniet. Rem rerum odit quo rerum consectetur et architecto provident aut voluptatem incidunt et debitis voluptatum est omnis eligendi. Non odit magnam rem quis quis ut corporis facilis non officiis blanditiis.
-            </div>
-        </div>
-        <div class="pr-container">
-            <div class="top-content">
-                <div class="publisher">
-                    <h3>Muriel LEPRETTE</h3>
-                    <span class="role resp-service"></span>
-                </div>
-                <div class="timedate">
-                    <span>05/09/2025</span>
-                    <span>&#x2022</span>
-                    <span>16h36</span>
+                <div class="content">
+                    <?= strip_tags($result["contenu"], "<br>") ?>
                 </div>
             </div>
-            <div class="content">
-                Lorem ipsum dolor sit amet. A consectetur placeat vel perspiciatis quibusdam vel iste voluptatum ex dicta ipsam qui doloremque eligendi ea deserunt laboriosam. Quo quasi officiis et odio architecto et velit voluptas et corrupti doloremque ab iste esse et earum veniam et expedita laborum.
-                <br><br>
-                Ab accusamus voluptatem et reprehenderit dolor et enim commodi ut internos recusandae nam nobis velit. Hic ducimus nisi et internos quia et aperiam aperiam est dolores omnis. Eum itaque libero cum consequuntur dolore et mollitia saepe ut voluptatem dicta ea ipsa galisum sed voluptates voluptatibus.
-                <br><br>
-                Et vero nesciunt aut voluptates maiores et vitae quas ut vero iusto sed corrupti itaque ut dolore quibusdam aut porro eveniet. Rem rerum odit quo rerum consectetur et architecto provident aut voluptatem incidunt et debitis voluptatum est omnis eligendi. Non odit magnam rem quis quis ut corporis facilis non officiis blanditiis.
-            </div>
-        </div>
-    </section>
+        <?php endforeach; ?>
+    </div>
     <?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
 </body>
 

@@ -94,12 +94,12 @@
             </div>
         </div>
         <div class="carrousel-controller">
-            <a href="" class="button">
+            <a href="#" class="button">
                 <span class="material-symbols-outlined">
                     arrow_back
                 </span>
             </a>
-            <a href="" class="button">
+            <a href="#" class="button">
                 <span class="material-symbols-outlined">
                     arrow_forward
                 </span>
@@ -108,7 +108,6 @@
     </section>
     <section class="press-releases">
         <h2>Communiqués de la direction de l’Université</h2>
-        <!-- A faire en php -->
         <?php
         include(dirname(__FILE__, 3) . '/assets/src/conn.php');
 
@@ -123,13 +122,13 @@
                     <span class="role r<?= htmlspecialchars($result["id_role"]) ?>"></span>
                 </div>
                 <div class="timedate">
-                    <span><?= htmlspecialchars(date_format(date_create($result["date_publication"]),"d/m/Y")) ?></span>
+                    <span><?= htmlspecialchars(date_format(date_create($result["date_publication"]), "d/m/Y")) ?></span>
                     <span>&#x2022</span>
-                    <span><?= htmlspecialchars(date_format(date_create($result["date_publication"]),"Hi")) ?></span>
+                    <span><?= htmlspecialchars(date_format(date_create($result["date_publication"]), "H:i")) ?></span>
                 </div>
             </div>
             <div class="content">
-                <?= htmlspecialchars($result["contenu"]) ?>
+                <?= strip_tags($result["contenu"], "<br>") ?>
             </div>
         </div>
         <a href="/press-releases/" class="button">Voir plus de communiqués</a>
