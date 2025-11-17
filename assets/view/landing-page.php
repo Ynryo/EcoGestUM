@@ -109,24 +109,27 @@
     <section class="press-releases">
         <h2>Communiqués de la direction de l’Université</h2>
         <!-- A faire en php -->
+        <?php
+        include(dirname(__FILE__, 3) . '/assets/src/conn.php');
+
+        $stmt = $pdo->prepare("SELECT c.titre_communique, c.contenu, c.cat_communique, c.date_publication, u.prenom_utilisateur, u.nom_utilisateur, u.id_role FROM communique c JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur ORDER BY c.date_publication ASC LIMIT 1");
+        $stmt->execute();
+        $result = $stmt->fetch(PDO::FETCH_ASSOC);
+        ?>
         <div class="pr-container alone">
             <div class="top-content">
                 <div class="publisher">
-                    <h3>Delphine LETORT</h3>
-                    <span class="role president"></span>
+                    <h3><?= htmlspecialchars($result["prenom_utilisateur"]) . " " . htmlspecialchars($result["nom_utilisateur"]) ?></h3>
+                    <span class="role r<?= htmlspecialchars($result["id_role"]) ?>"></span>
                 </div>
                 <div class="timedate">
-                    <span>19/09/2025</span>
+                    <span><?= htmlspecialchars(date_format(date_create($result["date_publication"]),"d/m/Y")) ?></span>
                     <span>&#x2022</span>
-                    <span>19h45</span>
+                    <span><?= htmlspecialchars(date_format(date_create($result["date_publication"]),"Hi")) ?></span>
                 </div>
             </div>
             <div class="content">
-                Lorem ipsum dolor sit amet. A consectetur placeat vel perspiciatis quibusdam vel iste voluptatum ex dicta ipsam qui doloremque eligendi ea deserunt laboriosam. Quo quasi officiis et odio architecto et velit voluptas et corrupti doloremque ab iste esse et earum veniam et expedita laborum.
-                <br><br>
-                Ab accusamus voluptatem et reprehenderit dolor et enim commodi ut internos recusandae nam nobis velit. Hic ducimus nisi et internos quia et aperiam aperiam est dolores omnis. Eum itaque libero cum consequuntur dolore et mollitia saepe ut voluptatem dicta ea ipsa galisum sed voluptates voluptatibus.
-                <br><br>
-                Et vero nesciunt aut voluptates maiores et vitae quas ut vero iusto sed corrupti itaque ut dolore quibusdam aut porro eveniet. Rem rerum odit quo rerum consectetur et architecto provident aut voluptatem incidunt et debitis voluptatum est omnis eligendi. Non odit magnam rem quis quis ut corporis facilis non officiis blanditiis.
+                <?= htmlspecialchars($result["contenu"]) ?>
             </div>
         </div>
         <a href="/press-releases/" class="button">Voir plus de communiqués</a>

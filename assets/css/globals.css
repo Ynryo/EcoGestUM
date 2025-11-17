@@ -232,49 +232,49 @@ a {
     border-radius: 10px;
 }
 
-.role.president::before {
+.role.r1::before {
     content: "Présidence de l'université";
     background-color: #D4451B40;
     color: #D4451B;
 }
 
-.role.admin::before {
+.role.r5::before {
     content: "Administrateur";
     background-color: #201CA640;
     color: #201CA6;
 }
 
-.role.resp-service::before {
+.role.r4::before {
     content: "Responsable de service";
     background-color: #1CB49B40;
     color: #1CB49B;
 }
 
-.role.chef-dep::before {
+.role.r3::before {
     content: "Chef de département";
     background-color: #F7C00B40;
     color: #F7C00B;
 }
 
-.role.teacher::before {
+.role.r7::before {
     content: "Enseignant";
     background-color: #CE0E6A40;
     color: #CE0E6A;
 }
 
-.role.bde::before {
+.role.r6::before {
     content: "Bureau des étudiants";
     background-color: #1A912240;
     color: #1A9122;
 }
 
-.role.student::before {
+.role.r8::before {
     content: "Étudiant";
     background-color: #9122B540;
     color: #9122B5;
 }
 
-.role.dir-compo::before {
+.role.r2::before {
     content: "Directeur de composante";
     background-color: #FF000440;
     color: #FF0004;
