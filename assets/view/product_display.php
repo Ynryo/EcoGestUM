@@ -46,23 +46,25 @@ if ($objet == null) {
             $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $_GET["p"] . '_*';
             $files = glob($pattern);
             ?>
-            <div class="product-img grid<?= count($files) ?>">
-                <?php
-                $finfo = finfo_open(FILEINFO_MIME_TYPE);
-                foreach ($files as $file):
-                    if (finfo_file($finfo, $file) === 'image/png' || finfo_file($finfo, $file) === 'image/jpeg' || finfo_file($finfo, $file) === 'image/webp'):
-                        $img = str_replace($_SERVER["DOCUMENT_ROOT"], "", $file); ?>
-                        <img src="<?= htmlspecialchars($img) ?>" alt="">
-                <?php endif;
-                endforeach;
-                finfo_close($finfo);
-                ?>
+            <div class="row">
+                <div class="product-img grid<?= count($files) ?>">
+                    <?php
+                    $finfo = finfo_open(FILEINFO_MIME_TYPE);
+                    foreach ($files as $file):
+                        if (finfo_file($finfo, $file) === 'image/png' || finfo_file($finfo, $file) === 'image/jpeg' || finfo_file($finfo, $file) === 'image/webp'):
+                            $img = str_replace($_SERVER["DOCUMENT_ROOT"], "", $file); ?>
+                            <img src="<?= htmlspecialchars($img) ?>" alt="">
+                    <?php endif;
+                    endforeach;
+                    finfo_close($finfo);
+                    ?>
+                </div>
+                <a href="#" class="link love" id="love-button">
+                    <span class="material-symbols-outlined">
+                        favorite
+                    </span>
+                </a>
             </div>
-            <a href="" class="link love">
-                <span class="material-symbols-outlined">
-                    favorite
-                </span>
-            </a>
             <div class="column">
                 <h3><?= htmlspecialchars($objet["nom_objet"]) ?></h3>
                 <h4 class="poppins"><?= htmlspecialchars($objet["size"]) ?> | <?= htmlspecialchars($objet["etat"]) ?></h4>
@@ -83,6 +85,7 @@ if ($objet == null) {
         </div>
     </section>
     <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
+    <script src="/assets/js/love-button.js"></script>
 </body>
 
 </html>
