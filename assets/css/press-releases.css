@@ -11,6 +11,7 @@
     flex-direction: column;
     gap: 20px;
     padding: 30px;
+    width: 100%;
 }
 
 .pr-container.alone {
