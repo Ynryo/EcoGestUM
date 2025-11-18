@@ -33,6 +33,7 @@
                     if (password_verify($password, $user['mdp_univ'])) {
                         $_SESSION['user_id'] = $user['id_utilisateur'];
                         $_SESSION["user_name"] = $user["prenom_utilisateur"];
+                        $_SESSION["id_role"] = $user["id_role"];
                         header("Location: /");
                     } else {
                         echo "<p class=\"error\">Mot de passe invalide.</p>";
