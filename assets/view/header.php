@@ -19,6 +19,7 @@
         </form>
         <img src="/assets/img/profile_pictures/1.jpg" alt="" style="border-radius: 50%" id="profile-button">
         <div class="modal" id="profile-modal" style="display: none">
+            <a href="/profile/" class="link">Profil</a>
             <a href="/profile/loved/" class="link">Coups de coeur</a>
             <a href="/logout/" class="link">Se déconnecter</a>
         </div>
