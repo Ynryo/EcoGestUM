@@ -1,7 +1,7 @@
 <?php
 include(dirname(__FILE__, 3) . '/assets/src/conn.php');
 
-$stmt = $pdo->prepare("SELECT id_objet, nom_objet, desc_objet FROM objet ORDER BY date_ajout ASC LIMIT 10");
+$stmt = $pdo->prepare("SELECT id_objet, nom_objet, desc_objet, titre_categorie FROM objet JOIN categorie on categorie.id_categorie = objet.id_categorie ORDER BY date_ajout ASC LIMIT 10");
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
@@ -50,7 +50,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
                         <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
                         <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
-                        <!-- <p>(<?= htmlspecialchars($product["titre_categorie"]); ?>)</p> -->
+                        <p>(<?= htmlspecialchars($product["titre_categorie"]); ?>)</p>
                     </a>
                 <?php endforeach; ?>
             </div>

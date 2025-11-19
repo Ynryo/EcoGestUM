@@ -45,12 +45,12 @@
             ?>
             <form action="" method="POST">
                 <div class="input-group">
-                    <label for="identifiant">Nom d'utilisateur</label>
-                    <input type="text" id="identifiant" name="identifiant" required>
+                    <input type="text" id="identifiant" name="identifiant" class="input-text" required>
+                    <label class="label-text" for="identifiant">Identifiant: *</label>
                 </div>
                 <div class="input-group">
-                    <label for="password">Mot de passe</label>
-                    <input type="password" id="password" name="password" required>
+                    <input type="password" id="password" name="password" class="input-text" required>
+                    <label class="label-text" for="password">Mot de passe: *</label>
                 </div>
                 <button class="button blue">Connexion</button>
                 <a href="/signup/" class="button blue secondary">1ère connexion</a>
