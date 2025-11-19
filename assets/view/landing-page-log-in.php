@@ -22,7 +22,6 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 <body>
     <?php
     include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
-
     <section class="main">
         <h2>Bonjour <?= htmlspecialchars($_SESSION["user_name"]) ?> !</h2>
 

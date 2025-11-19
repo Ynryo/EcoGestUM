@@ -25,7 +25,7 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
             <span class="material-symbols-outlined">arrow_forward_ios</span>
-            <a href="/products/" class="link">Profil</a>
+            Profil
         </div>
         <div>
             <img src="/assets/img/profile_pictures/1.jpg" alt="Photo de profil de l'utilisateur">
@@ -35,7 +35,6 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
                 <a href="mailto:<?= htmlspecialchars($results["mail_univ"]) ?>" class="link">Email : <?= htmlspecialchars($results["mail_univ"]) ?></a>
             </div>
         </div>
-        <!-- page changer mdp -->
         <div class="nav-container">
             <a href="/panel/" class="content">
                 <h4>Panneau de gestion</h4>

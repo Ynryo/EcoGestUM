@@ -32,7 +32,7 @@ if ($objet == null) {
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
             <span class="material-symbols-outlined">arrow_forward_ios</span>
-            <a href="/products/" class="link">Produits</a>
+            Produits
 
             <?php if (isset($_GET["p"])): ?>
                 <span class="material-symbols-outlined">arrow_forward_ios</span>
