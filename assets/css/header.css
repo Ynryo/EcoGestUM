@@ -14,9 +14,16 @@ header img {
     height: 40px;
 }
 
+header .nav-header {
+    display: flex;
+    flex-direction: row;
+    gap: 30px;
+    align-items: center;
+}
+
 header .modal {
     position: absolute;
-    right: 10px;
+    right: 20px;
     top: 86.2px;
     padding: 20px;
     border-radius: 10px;

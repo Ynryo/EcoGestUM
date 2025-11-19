@@ -3,7 +3,7 @@
 <html lang="fr">
 
 <head>
-    <title>EcoGestUM - Communiqués</title>
+    <title>EcoGestUM - Événements</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" fetchpriority="high" as="image" href="/assets/img/lmu-logo-for-titles.png" type="image/png">
@@ -23,7 +23,7 @@
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
             <span class="material-symbols-outlined">arrow_forward_ios</span>
-            <a href="/products/" class="link">Événements</a>
+            Événements
         </div>
         <?php
         include(dirname(__FILE__, 2) . '/assets/src/conn.php');
