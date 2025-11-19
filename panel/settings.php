@@ -1,7 +1,7 @@
 <?php
 include_once __DIR__ . '/assets/src/conn.php';
 if ($role_id !== 2) {
-    header('Location: ?view=accueil'); 
+    header('Location: ?view=settings'); 
     exit;
 }
 ?>
