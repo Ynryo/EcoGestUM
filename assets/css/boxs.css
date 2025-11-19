@@ -1,15 +1,28 @@
 /* CARDS */
+.cards-container-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px
+}
+
 .cards-container {
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: nowrap;
     gap: 20px;
     overflow: auto;
     padding-bottom: 10px;
     cursor: grab;
     scroll-behavior: smooth;
     user-select: none;
+}
+
+.cards-container.wrap {
+    flex-wrap: wrap;
 }
 
 .cards-container::-webkit-scrollbar {
@@ -19,9 +32,6 @@
 div:has(.cards-container) {
     width: 100%;
 }
-
-
-/* CARD */
 
 .card {
     display: flex;
@@ -88,6 +98,7 @@ div:has(.cards-container) {
     gap: 10px;
 }
 
+/* NAV */
 .nav-container .content {
     border-radius: 10px;
     border: 1px solid #00000017;
@@ -97,6 +108,7 @@ div:has(.cards-container) {
     transition: all 200ms; 
     cursor: pointer;
     overflow: hidden;
+    position: relative;
 }
 
 .nav-container .content:hover {
@@ -109,7 +121,7 @@ div:has(.cards-container) {
     width: 100%;
     font-size: 128px;
     color: #00000017;
-    position: relative;
-    bottom: 0;
+    position: absolute;
+    bottom: -20px;
     right: -20px;
 }
