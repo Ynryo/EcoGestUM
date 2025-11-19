@@ -1,4 +1,4 @@
-<?php include(dirname(__FILE__, 2) . '/assets/src/files_header.php') ?>
+<?php //include(dirname(__FILE__, 2) . '/assets/src/files_header.php') ?>
 <!DOCTYPE html>
 <html lang="fr">
 
