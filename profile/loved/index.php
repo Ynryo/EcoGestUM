@@ -31,7 +31,9 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <div>
-            <h3>Coups de cœur</h3>
+            <div class="cards-container-title">
+                <h3>Coups de cœur</h3>
+            </div>
             <div class="cards-container wrap">
                 <?php foreach ($results as $product):
                     $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
@@ -41,8 +43,8 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
                     </a>
                 <?php endforeach; ?>
+            </div>
         </div>
-
     </section>
     <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
 </body>

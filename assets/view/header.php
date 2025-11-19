@@ -20,6 +20,7 @@
         <div class="modal" id="profile-modal" style="display: none">
             <a href="/profile/" class="link">Profil</a>
             <a href="/event/" class="link">Événements</a>
+            <a href="/press-releases/" class="link">Communiqués de presse</a>
             <!-- <a href="/messages/" class="link">Messages</a> -->
             <?php if (str_contains(json_encode([1, 2, 3, 4, 5, 6]), $_SESSION["id_role"])): ?>
                 <a href="/panel/" class="link">Panel de gestion</a>
@@ -30,6 +31,7 @@
     <?php else: ?>
         <div class="nav-header">
             <a href="/event/" class="link">Événements</a>
+            <a href="/press-releases/" class="link">Communiqués de presse</a>
             <a href="/login/" class="button">Se connecter</a>
         </div>
     <?php endif; ?>

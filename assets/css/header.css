@@ -12,6 +12,7 @@ header {
 
 header img {
     height: 40px;
+    cursor: pointer;
 }
 
 header .nav-header {

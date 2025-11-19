@@ -10,7 +10,7 @@
 .cards-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
     flex-wrap: nowrap;
     gap: 20px;
@@ -27,6 +27,7 @@
 
 div:has(.cards-container) {
     width: 100%;
+    overflow-x: scroll;
 }
 
 .card {
@@ -36,8 +37,13 @@ div:has(.cards-container) {
     border-radius: 10px;
     width: 310px;
     padding: 5px;
-    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.17);
-    margin: 10px auto 0 auto;
+    border: 1px solid #00000017;
+    transition: all 200ms; 
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: #00000017;
 }
 
 .card.little {
