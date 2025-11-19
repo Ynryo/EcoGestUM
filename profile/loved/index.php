@@ -2,9 +2,10 @@
 include(dirname(__FILE__, 3) . '/assets/src/files_header.php');
 include(dirname(__FILE__, 3) . '/assets/src/conn.php');
 
-$stmt = $pdo->prepare("SELECT u.nom_utilisateur, u.prenom_utilisateur, u.mail_univ, r.id_role FROM utilisateur u JOIN role r on u.id_role = r.id_role;");
+$stmt = $pdo->prepare("SELECT * FROM aimer a JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur JOIN objet o ON o.id_objet = a.id_objet WHERE u.id_utilisateur = :u;");
+$stmt->bindParam(':u', $_SESSION["user_id"]);
 $stmt->execute();
-$results = $stmt->fetch(PDO::FETCH_ASSOC);
+$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -27,6 +28,19 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
             <a href="/profile/" class="link">Profil</a>
             <span class="material-symbols-outlined">arrow_forward_ios</span>
             Coups de coeur
+        </div>
+
+        <div>
+            <h3>Coups de cœur</h3>
+            <div class="cards-container wrap">
+                <?php foreach ($results as $product):
+                    $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
+                    $files = glob($pattern); ?>
+                    <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
+                        <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
+                        <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
+                    </a>
+                <?php endforeach; ?>
         </div>
 
     </section>

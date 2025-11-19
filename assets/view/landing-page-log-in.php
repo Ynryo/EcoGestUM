@@ -33,7 +33,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         </div>
 
         <div>
-            <div class="row">
+            <div class="cards-container-title">
                 <h3>Coups de cœur</h3>
                 <a href="/profile/loved/" class="link icon">
                     voir plus
@@ -49,7 +49,6 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
                         <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
                         <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
-                        <!-- <p>(<?= htmlspecialchars($product["titre_categorie"]); ?>)</p> -->
                     </a>
                 <?php endforeach; ?>
             </div>
