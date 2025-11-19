@@ -80,3 +80,36 @@ div:has(.cards-container) {
     gap: 10px;
     width: 100%;
 }
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+.nav-container .content {
+    border-radius: 10px;
+    border: 1px solid #00000017;
+    padding: 10px;
+    width: 200px;
+    height: 150px;
+    transition: all 200ms; 
+    cursor: pointer;
+    overflow: hidden;
+}
+
+.nav-container .content:hover {
+    background-color: #00000017;
+}
+
+.nav-container .content .material-symbols-outlined {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 128px;
+    color: #00000017;
+    position: relative;
+    bottom: 0;
+    right: -20px;
+}
