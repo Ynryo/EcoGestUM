@@ -26,4 +26,4 @@ if ($role_id !== 2) {
             <button class="button blue">Envoyer</button>
         </section>
 
-        <hr>
+        <hr>d
