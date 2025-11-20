@@ -1,0 +1,27 @@
+body.inventory {
+    padding: 20px;
+}
+
+.table-fixed {
+    table-layout: fixed;
+    word-wrap: break-word;
+}
+
+.th1 {
+    width: 35%;
+}
+.th2 {
+    width: 8%;
+}
+.th3 {
+    width: 15%;
+}
+.th4 {
+    width: 15%;
+}
+.th5 {
+    width: 12%;
+}
+.th6 {
+    width: 15%;
+}
