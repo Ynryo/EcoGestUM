@@ -1,4 +1,7 @@
-<?php include(dirname(__FILE__, 2) . '/assets/src/files_header.php'); ?>
+<?php
+include(dirname(__FILE__, 2) . '/assets/src/files_header.php');
+include(dirname(__FILE__, 2) . '/assets/src/conn.php');
+?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -33,12 +36,14 @@
 
             <h4>Choissiez une catégorie</h4>
             <select name="categorie" id="categorie">
-                <option value="1">Maison & Jardin</option>
-                <option value="2">Mode & Accessoires</option>
-                <option value="3">High-Tech & Loisirs</option>
-                <option value="4">Beauté & Soins Personnels</option>
-                <option value="5">Alimentation & Boissons</option>
-                <option value="6">Véhicules & Transports</option>
+                <?php
+                $stmt = $pdo->prepare("SELECT * FROM categorie");
+                $stmt->execute();
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $result): ?>
+                    <option value="<?= htmlspecialchars($result["id_categorie"]) ?>"><?= htmlspecialchars($result["titre_categorie"]) ?></option>
+                <?php endforeach; ?>
+                <option value="0">Autre</option>
             </select>
 
             <h4>Ajoutez des photos</h4>
@@ -64,12 +69,13 @@
 
             <h4>Localisation</h4>
             <select name="localisation" id="localisation">
-                <option value="1">Faculté de Droit, Sciences économiques & de Gestion</option>
-                <option value="2">Faculté des Lettres, Langues & Sciences humaines</option>
-                <option value="3">Faculté des Sciences et Techniques</option>
-                <option value="4">IUT du Mans</option>
-                <option value="5">IUT de Laval</option>
-                <option value="6">ENSIM</option>
+                <?php
+                $stmt = $pdo->prepare("SELECT * FROM composante");
+                $stmt->execute();
+                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+                foreach ($results as $result): ?>
+                    <option value="<?= htmlspecialchars($result["id_composante"]) ?>"><?= htmlspecialchars($result["nom_composante"]) ?></option>
+                <?php endforeach; ?>
             </select>
 
             <button class="button blue">Publier</button>
