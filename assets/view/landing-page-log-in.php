@@ -1,7 +1,8 @@
 <?php
 include(dirname(__FILE__, 3) . '/assets/src/conn.php');
 
-$stmt = $pdo->prepare("SELECT id_objet, nom_objet, desc_objet, titre_categorie FROM objet JOIN categorie on categorie.id_categorie = objet.id_categorie ORDER BY date_ajout ASC LIMIT 10");
+$stmt = $pdo->prepare("SELECT * FROM aimer a JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur JOIN objet o ON o.id_objet = a.id_objet WHERE u.id_utilisateur = :u ORDER BY o.date_ajout ASC LIMIT 10;");
+$stmt->bindParam(':u', $_SESSION["user_id"]);
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 ?>
