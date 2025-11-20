@@ -1,7 +1,7 @@
 .htaccess
 .env
 modifs_sql.txt
-/assets/src/conn.php
 /assets/src/login_process.php
+/encrypt.php
 
 /vendor/

@@ -1,15 +1,24 @@
 /* CARDS */
+.cards-container-title {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px
+}
+
 .cards-container {
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: flex-start;
     align-items: flex-start;
+    flex-wrap: nowrap;
     gap: 20px;
-    overflow: auto;
     padding-bottom: 10px;
-    cursor: grab;
-    scroll-behavior: smooth;
-    user-select: none;
+}
+
+.cards-container.wrap {
+    flex-wrap: wrap;
 }
 
 .cards-container::-webkit-scrollbar {
@@ -18,10 +27,15 @@
 
 div:has(.cards-container) {
     width: 100%;
+    overflow-x: scroll;
 }
 
-
-/* CARD */
+.cards-container-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 20px;
+    padding-bottom: 10px;
+}
 
 .card {
     display: flex;
@@ -30,11 +44,17 @@ div:has(.cards-container) {
     border-radius: 10px;
     width: 310px;
     padding: 5px;
-    box-shadow: 0 0 20px 3px rgba(0, 0, 0, 0.17);
+    border: 1px solid #00000017;
+    transition: all 200ms; 
+    cursor: pointer;
+}
+
+.card:hover {
+    background-color: #00000017;
 }
 
 .card.little {
-    width: 210px;
+    width: 280px;
 }
 
 .card img {
@@ -79,4 +99,39 @@ div:has(.cards-container) {
     justify-content: space-between;
     gap: 10px;
     width: 100%;
+}
+
+.nav-container {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: 10px;
+}
+
+/* NAV */
+.nav-container .content {
+    border-radius: 10px;
+    border: 1px solid #00000017;
+    padding: 10px;
+    width: 200px;
+    height: 150px;
+    transition: all 200ms; 
+    cursor: pointer;
+    overflow: hidden;
+    position: relative;
+}
+
+.nav-container .content:hover {
+    background-color: #00000017;
+}
+
+.nav-container .content .material-symbols-outlined {
+    display: flex;
+    justify-content: flex-end;
+    width: 100%;
+    font-size: 128px;
+    color: #00000017;
+    position: absolute;
+    bottom: -20px;
+    right: -20px;
 }

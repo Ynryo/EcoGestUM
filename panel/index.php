@@ -1,7 +1,6 @@
 <?php
-session_start();
-include(__DIR__ . '/assets/src/files_header.php'); 
-include_once __DIR__ . '/assets/src/conn.php';     
+include(dirname(__FILE__, 2) . '/assets/src/files_header.php');
+include_once dirname(__FILE__, 2) . '/assets/src/conn.php';   
 
 if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
     header('Location: /login/'); 
@@ -11,9 +10,8 @@ if (!isset($_SESSION['user_id']) || empty($_SESSION['user_id'])) {
 $user_id = $_SESSION['user_id'];
 $user_name = $_SESSION["user_name"] ?? "Utilisateur";
 
-$stmt_role = $pdo->prepare("SELECT role_utilisateur, id_role FROM UTILISATEUR WHERE id_utilisateur = :id");
-$stmt_role->bindParam(':id', $user_id);
-$stmt_role->execute();
+$stmt_role = $pdo->prepare("SELECT nom_role, UTILISATEUR.id_role FROM UTILISATEUR JOIN ROLE ON ROLE.id_role = UTILISATEUR.id_role WHERE id_utilisateur = ?");
+$stmt_role->execute([$user_id]);
 $user_data = $stmt_role->fetch(PDO::FETCH_ASSOC);
 
 $role_name = $user_data['role_utilisateur'] ?? 'Président de l\'université';
@@ -44,8 +42,8 @@ $demandes_publications = [
     <title>EcoGestUM - <?= ucfirst($view) ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include(__DIR__ . '/assets/src/assets.php') ?>
-    <link rel="stylesheet" href="/assets/css/dashboard.css"> 
+    <?php include dirname(__FILE__, 2) . '/assets/src/assets.php';    ?>
+    <link rel="stylesheet" href="/assets/css/session.css"> 
     <?php if ($view == 'statistiques'): ?>
         <script src="https://cdn.jsdelivr.net/npm/chart.js@4.4.1/dist/chart.umd.min.js"></script>
     <?php endif; ?>

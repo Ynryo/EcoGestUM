@@ -23,7 +23,7 @@
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
             <span class="material-symbols-outlined">arrow_forward_ios</span>
-            <a href="/products/" class="link">Communiqués de presse</a>
+            Communiqués de presse
         </div>
         <?php
         include(dirname(__FILE__, 2) . '/assets/src/conn.php');
