@@ -8,6 +8,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <?php include(dirname(__FILE__, 2) . '/assets/src/assets.php') ?>
     <link rel="stylesheet" href="/assets/css/session.css">
+    <link rel="stylesheet" href="/assets/css/inputs.css">
 </head>
 
 <body>
@@ -20,7 +21,7 @@
                 $username = $_POST['identifiant'];
                 $password = $_POST['password'];
 
-                $stmt = $pdo->prepare("SELECT id_utilisateur, mdp_univ, prenom_utilisateur FROM UTILISATEUR WHERE identifiant = :username");
+                $stmt = $pdo->prepare("SELECT id_utilisateur, mdp_univ, prenom_utilisateur, id_role FROM utilisateur WHERE identifiant = :username");
                 $stmt->bindParam(':username', $username);
                 try {
                     $stmt->execute();

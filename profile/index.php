@@ -37,12 +37,14 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
         <div class="nav-container">
-            <a href="/panel/" class="content">
-                <h4>Panneau de gestion</h4>
-                <span class="material-symbols-outlined">
-                    discover_tune
-                </span>
-            </a>
+            <?php if (in_array($_SESSION["id_role"], array(1, 2, 3, 4, 5, 6))): ?>
+                <a href="/panel/" class="content">
+                    <h4>Panneau de gestion</h4>
+                    <span class="material-symbols-outlined">
+                        discover_tune
+                    </span>
+                </a>
+            <?php endif; ?>
             <a href="https://activation.univ-lemans.fr/cgi-bin/activation/change-mdp.pl" class="content">
                 <h4>Modifier mot de passe</h4>
                 <span class="material-symbols-outlined">
