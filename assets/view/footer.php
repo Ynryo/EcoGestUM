@@ -2,7 +2,7 @@
     <div>
         <img src="/assets/img/lmu-logo-white.png" alt="Logo de Le Mans Université">
         <p>Avenue Olivier Messiaen 72085 Le Mans CEDEX 9</p>
-        <a href="tel:+33243833000" class="button">+33 2 43 83 30 00</a>
+        <a href="tel:+33 2 43 83 30 00" class="button">+33 2 43 83 30 00</a>
         <a href="https://www.univ-lemans.fr/fr/contact-1.html" class="button">Nous contacter</a>
         <a href="https://www.univ-lemans.fr/fr/pied-de-page/plans-des-campus.html" class="button">Plan des campus</a>
     </div>
