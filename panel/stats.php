@@ -1,9 +1,9 @@
 <?php
 include_once __DIR__ . '/assets/src/conn.php';
-$allowed_roles = [1, 3, 4, 5];
+$allowed_roles = [1, 2, 3, 4, 5];
 
 if (!in_array($role_id, $allowed_roles)) {
-    header('Location: ?view=accueil'); 
+    header('Location: ?view=stats'); 
     exit;
 }
 
