@@ -18,7 +18,7 @@
     include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
     <section class="main">
         <h2>Bonjour <?= htmlspecialchars($_SESSION["user_name"]) ?> !</h2>
-        <p>Votre role: <span class="role r<?= htmlspecialchars($results['id_role']) ?>"></p>
+        <p>Votre role: <span class="role r<?= htmlspecialchars($_SESSION["id_role"]) ?>"></span></p>
 
         <div class="invit-to-post">
             <div class="box blue">
