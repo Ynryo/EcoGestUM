@@ -1,10 +1,9 @@
 <?php
 include(dirname(__FILE__, 3) . '/assets/src/conn.php');
-
-$stmt = $pdo->prepare("SELECT * FROM aimer a JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur JOIN objet o ON o.id_objet = a.id_objet WHERE u.id_utilisateur = :u LIMIT 4;");
+$stmt = $pdo->prepare("SELECT u.nom_utilisateur, u.prenom_utilisateur, u.mail_univ, r.id_role FROM utilisateur u JOIN role r on u.id_role = r.id_role WHERE u.id_utilisateur = :u;");
 $stmt->bindParam(':u', $_SESSION["user_id"]);
 $stmt->execute();
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$results = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
 <!DOCTYPE html>
 <html lang="fr">
@@ -25,6 +24,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
     <section class="main">
         <h2>Bonjour <?= htmlspecialchars($_SESSION["user_name"]) ?> !</h2>
+        <p>Votre role: <span class="role r<?= htmlspecialchars($results['id_role']) ?>"></p>
 
         <div class="invit-to-post">
             <div class="box blue">
@@ -32,6 +32,13 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <a href="/donation-deposit/" class="button blue">Publier une annonce de don</a>
             </div>
         </div>
+
+        <?php
+            $stmt = $pdo->prepare("SELECT * FROM aimer a JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur JOIN objet o ON o.id_objet = a.id_objet WHERE u.id_utilisateur = :u LIMIT 4;");
+            $stmt->bindParam(':u', $_SESSION["user_id"]);
+            $stmt->execute();
+            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        ?>
 
         <div>
             <div class="cards-container-title">
