@@ -4,26 +4,24 @@ if (!isset($_SESSION['user'])) {
     header('Location: ?view=inventory');
     exit;
 }
-$allowed_roles = ['admin', 'inventory_manager', 'responsable']; // ajuster selon projet
-if (!in_array($_SESSION['role'] ?? '', $allowed_roles, true)) {
+$allowed_role_ids = [1, 2, 3, 4, 5]; 
+
+if (!in_array($_SESSION['role_id'] ?? 0, $allowed_role_ids, true)) {
     header('HTTP/1.1 403 Forbidden');
     echo 'Accès non autorisé';
     exit;
 }
-require_once __DIR__ . '/../includes/db.php'; // doit définir $pdo ou $conn
-$sql = "
-    SELECT
-      i.id,
-      i.name AS nom,
-      i.quantity AS quantite,
-      i.component AS composante,
-      c.name AS categorie,
-      i.cond AS etat,
-      i.status AS statut
-    FROM inventory i
-    LEFT JOIN categories c ON i.category_id = c.id
-    ORDER BY c.name, i.name
-";
+require_once __DIR__ . '/../includes/db.php';
+
+$sql_path = __DIR__ . '/../sae301.sql';
+if (!is_readable($sql_path)) {
+    die('Fichier SQL introuvable: ' . htmlspecialchars($sql_path));
+}
+$sql = file_get_contents($sql_path);
+if ($sql === false) {
+    die('Impossible de lire le fichier SQL.');
+}
+$sql = trim($sql);
 
 try {
     $stmt = $pdo->prepare($sql);
@@ -39,6 +37,7 @@ function labelEtat($etat) {
         case 'neuf': return '<span class="badge badge-success">Neuf</span>';
         case 'bon': return '<span class="badge badge-primary">Bon</span>';
         case 'mauvais': return '<span class="badge badge-warning">Mauvais</span>';
+        case 'hs':
         case 'hors service': return '<span class="badge badge-danger">Hors service</span>';
         default: return '<span class="badge badge-secondary">'.esc($etat).'</span>';
     }
@@ -46,9 +45,9 @@ function labelEtat($etat) {
 function labelStatut($s) {
     $st = strtolower($s ?? '');
     switch ($st) {
-        case 'disponible': return '<span class="badge badge-success">Disponible</span>';
-        case 'emprunte': return '<span class="badge badge-warning">Emprunté</span>';
-        case 'perdu': return '<span class="badge badge-danger">Perdu</span>';
+        case 'en attente': return '<span class="badge badge-warning">En attente</span>';
+        case 'en réutilisation': return '<span class="badge badge-success">En réutilisation</span>';
+        case 'en élimination': return '<span class="badge badge-danger">En élimination</span>';
         default: return '<span class="badge badge-secondary">'.esc($s).'</span>';
     }
 }
@@ -60,10 +59,7 @@ function labelStatut($s) {
   <title>Inventaire - EcoGestUM</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
-  <style>
-    body { padding: 20px; }
-    .table-fixed { table-layout: fixed; word-wrap: break-word; }
-  </style>
+  <link rel="stylesheet" href="../assets/css/panel-inventory.css">
 </head>
 <body>
 <?php
@@ -77,12 +73,12 @@ include __DIR__ . '/../includes/navbar.php';
     <table class="table table-striped table-bordered table-fixed">
       <thead class="thead-dark">
         <tr>
-          <th style="width:35%;">Nom</th>
-          <th style="width:8%;">Quantité</th>
-          <th style="width:15%;">Composante</th>
-          <th style="width:15%;">Catégorie</th>
-          <th style="width:12%;">État</th>
-          <th style="width:15%;">Statut</th>
+          <th1>Nom</th1>
+          <th2>Quantité</th2>
+          <th3>Composante</th3>
+          <th4>Catégorie</th4>
+          <th5>État</th5>
+          <th6>Statut</th6>
         </tr>
       </thead>
       <tbody>
@@ -93,7 +89,7 @@ include __DIR__ . '/../includes/navbar.php';
             <tr>
               <td><?php echo esc($it['nom']); ?></td>
               <td class="text-center"><?php echo esc($it['quantite']); ?></td>
-              <td><?php echo esc($it['composante']); ?></td>
+              <td><?php echo esc($it['composante'] ?? '—'); ?></td>
               <td><?php echo esc($it['categorie'] ?? '—'); ?></td>
               <td><?php echo labelEtat($it['etat']); ?></td>
               <td><?php echo labelStatut($it['statut']); ?></td>
