@@ -16,7 +16,7 @@
             </button>
             <input type="text" name="q" id="search" class="poppins" placeholder="Rechercher">
         </form>
-        <img src="/assets/img/profile_pictures/1.jpg" alt="" style="border-radius: 50%" id="profile-button">
+        <img src="/assets/img/profile_pictures/default_profile_icon.jpg" alt="" style="border-radius: 50%" id="profile-button">
         <div class="modal" id="profile-modal" style="display: none">
             <a href="/profile/" class="link">Profil</a>
             <a href="/event/" class="link">Événements</a>

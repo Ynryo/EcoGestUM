@@ -29,7 +29,7 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
             Profil
         </div>
         <div>
-            <img src="/assets/img/profile_pictures/1.jpg" alt="Photo de profil de l'utilisateur">
+            <img src="/assets/img/profile_pictures/default_profile_icon.jpg" alt="Photo de profil de l'utilisateur">
             <div>
                 <h1><?= htmlspecialchars($results["prenom_utilisateur"]) ?> <?= htmlspecialchars($results["nom_utilisateur"]) ?></h1>
                 <span class="role r<?= htmlspecialchars($results["id_role"]) ?>"></span>
