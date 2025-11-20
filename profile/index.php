@@ -2,7 +2,8 @@
 include(dirname(__FILE__, 2) . '/assets/src/files_header.php');
 include(dirname(__FILE__, 2) . '/assets/src/conn.php');
 
-$stmt = $pdo->prepare("SELECT u.nom_utilisateur, u.prenom_utilisateur, u.mail_univ, r.id_role FROM utilisateur u JOIN role r on u.id_role = r.id_role;");
+$stmt = $pdo->prepare("SELECT u.nom_utilisateur, u.prenom_utilisateur, u.mail_univ, r.id_role FROM utilisateur u JOIN role r on u.id_role = r.id_role WHERE u.id_utilisateur = :u;");
+$stmt->bindParam(':u', $_SESSION["user_id"]);
 $stmt->execute();
 $results = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
