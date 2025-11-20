@@ -84,7 +84,7 @@ $demandes_publications = [
 
         <main class="content-area">
             <?php
-            $view_file = __DIR__ . '/assets/views/' . $view . '.php';
+            $view_file = __DIR__ . '/assets/view/' . $view . '.php';
 
             if (file_exists($view_file)) {
                 include($view_file); 
