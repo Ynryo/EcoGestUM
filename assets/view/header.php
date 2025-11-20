@@ -22,9 +22,12 @@
             <a href="/profile/loved/" class="link">Coups de coeur</a>
             <a href="/event/" class="link">Événements</a>
             <a href="/press-releases/" class="link">Communiqués de presse</a>
-            <!-- <a href="/messages/" class="link">Messages</a> -->
-            <?php if (in_array($_SESSION["id_role"], array(1, 2, 3, 4, 5, 6))): ?>
+            <a href="/messaging/" class="link">Messages</a>
+            <?php if (in_array($_SESSION["id_role"], array(1, 2, 3, 4, 5))): ?>
                 <a href="/panel/" class="link">Panel de gestion</a>
+            <?php endif; ?>
+            <?php if ($_SESSION["id_role"] == 6): ?>
+                <a href="/inventory/" class="link">Inventaire</a>
             <?php endif; ?>
             <a href="/logout/" class="link">Se déconnecter</a>
         </div>

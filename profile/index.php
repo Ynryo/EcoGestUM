@@ -37,7 +37,7 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
             </div>
         </div>
         <div class="nav-container">
-            <?php if (in_array($_SESSION["id_role"], array(1, 2, 3, 4, 5, 6))): ?>
+            <?php if (in_array($_SESSION["id_role"], array(1, 2, 3, 4, 5))): ?>
                 <a href="/panel/" class="content">
                     <h4>Panneau de gestion</h4>
                     <span class="material-symbols-outlined">
@@ -57,6 +57,20 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
                     favorite
                 </span>
             </a>
+            <a href="/messaging/" class="content">
+                <h4>Messages</h4>
+                <span class="material-symbols-outlined">
+                    stacked_email
+                </span>
+            </a>
+            <?php if ($_SESSION["id_role"] == 6): ?>
+                <a href="/inventory/" class="content">
+                    <h4>Inventaire</h4>
+                    <span class="material-symbols-outlined">
+                        inventory_2
+                    </span>
+                </a>
+            <?php endif; ?>
         </div>
     </section>
     <?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
