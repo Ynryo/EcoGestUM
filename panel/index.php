@@ -59,7 +59,7 @@ $demandes_publications = [
             </div>
             <nav class="nav-menu">
                 
-            <?php if ($role_id == 1): // Rôle 1 : Menu Image 1 ?>
+            <?php if ($role_id == 1):?>
                 
                 <a href="?view=accueil" class="nav-item <?= ($view == 'accueil' ? 'active' : '') ?>"><i class="fas fa-home"></i> Accueil</a>
                 <a href="?view=statistiques" class="nav-item <?= ($view == 'statistiques' ? 'active' : '') ?>"><i class="fas fa-chart-bar"></i> Statistiques</a>
@@ -68,7 +68,7 @@ $demandes_publications = [
                 <a href="?view=odd" class="nav-item <?= ($view == 'odd' ? 'active' : '') ?>"><i class="fas fa-seedling"></i> 17 ODD</a>
                 <a href="?view=historique" class="nav-item <?= ($view == 'historique' ? 'active' : '') ?>"><i class="fas fa-history"></i> Historique</a>
 
-            <?php elseif ($role_id >= 2 && $role_id <= 6): // Rôles 2 à 6 : Menu Image 2 ?>
+            <?php elseif ($role_id >= 2 && $role_id <= 6):?>
 
                 <a href="?view=accueil" class="nav-item <?= ($view == 'accueil' ? 'active' : '') ?>"><i class="fas fa-home"></i> Accueil</a>
                 <a href="?view=statistiques" class="nav-item <?= ($view == 'statistiques' ? 'active' : '') ?>"><i class="fas fa-chart-bar"></i> Statistiques</a>
