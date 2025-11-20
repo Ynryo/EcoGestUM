@@ -1,11 +1,4 @@
-<?php
-include(dirname(__FILE__, 3) . '/assets/src/conn.php');
-
-$stmt = $pdo->prepare("SELECT * FROM aimer a JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur JOIN objet o ON o.id_objet = a.id_objet WHERE u.id_utilisateur = :u LIMIT 4;");
-$stmt->bindParam(':u', $_SESSION["user_id"]);
-$stmt->execute();
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-?>
+<?php include(dirname(__FILE__, 3) . '/assets/src/conn.php') ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -32,35 +25,40 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 <a href="/donation-deposit/" class="button blue">Publier une annonce de don</a>
             </div>
         </div>
-
-        <div>
-            <div class="cards-container-title">
-                <h3>Coups de cœur</h3>
-                <a href="/profile/loved/" class="link icon">
-                    voir plus
-                    <span class="material-symbols-outlined">
-                        arrow_right_alt
-                    </span>
-                </a>
-            </div>
-            <div class="cards-container">
-                <?php foreach ($results as $product):
-                    $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
-                    $files = glob($pattern); ?>
-                    <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
-                        <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
-                        <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
+        <?php
+        $stmt = $pdo->prepare("SELECT * FROM aimer a JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur JOIN objet o ON o.id_objet = a.id_objet WHERE u.id_utilisateur = :u LIMIT 4;");
+        $stmt->bindParam(':u', $_SESSION["user_id"]);
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        if (!empty($results)): ?>
+            <div>
+                <div class="cards-container-title">
+                    <h3>Coups de cœur</h3>
+                    <a href="/profile/loved/" class="link icon">
+                        voir plus
+                        <span class="material-symbols-outlined">
+                            arrow_right_alt
+                        </span>
                     </a>
-                <?php endforeach; ?>
+                </div>
+                <div class="cards-container">
+                    <?php foreach ($results as $product):
+                        $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
+                        $files = glob($pattern); ?>
+                        <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
+                            <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
+                            <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
             </div>
-        </div>
+        <?php endif; ?>
 
         <?php
-            $stmt = $pdo->prepare("SELECT * FROM objet LIMIT 8;");
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+        $stmt = $pdo->prepare("SELECT * FROM objet LIMIT 8;");
+        $stmt->execute();
+        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
-
         <div>
             <div class="cards-container-title">
                 <h3>Tous les produits</h3>

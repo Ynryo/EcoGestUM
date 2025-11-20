@@ -19,13 +19,13 @@
         <img src="/assets/img/profile_pictures/default_profile_icon.jpg" alt="" style="border-radius: 50%" id="profile-button">
         <div class="modal" id="profile-modal" style="display: none">
             <a href="/profile/" class="link">Profil</a>
+            <a href="/profile/loved/" class="link">Coups de coeur</a>
             <a href="/event/" class="link">Événements</a>
             <a href="/press-releases/" class="link">Communiqués de presse</a>
             <!-- <a href="/messages/" class="link">Messages</a> -->
             <?php if (str_contains(json_encode([1, 2, 3, 4, 5, 6]), $_SESSION["id_role"])): ?>
                 <a href="/panel/" class="link">Panel de gestion</a>
             <?php endif; ?>
-            <a href="/profile/loved/" class="link">Coups de coeur</a>
             <a href="/logout/" class="link">Se déconnecter</a>
         </div>
     <?php else: ?>
