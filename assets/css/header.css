@@ -33,6 +33,7 @@ header .modal {
     display: none;
     flex-direction: column;
     gap: 10px;
+    z-index: 5;
 }
 
 .main-title {

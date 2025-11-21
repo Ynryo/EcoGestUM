@@ -1,13 +1,15 @@
-form {
+header form {
   display: flex;
   flex-direction: row;
   justify-content: center;
   align-items: center;
   border-radius: 50px;
   border: 2px solid var(--medium);
+  gap: 0;
+  width: auto;
 }
 
-form button.icon {
+header form button.icon {
   background-color: transparent;
   border: 0;
   outline: 0;
@@ -16,7 +18,7 @@ form button.icon {
   color: var(--medium);
 }
 
-form input {
+header form input {
   border: 0;
   outline: 0;
   background-color: transparent;

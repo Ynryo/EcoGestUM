@@ -76,7 +76,7 @@ if ($objet == null) {
                 <p>Quantité : <?= htmlspecialchars($objet["quantity"]) ?></p>
                 <p>Localisation : <span class="composante c<?= htmlspecialchars($objet["id_composante"]) ?>"></span></p>
                 <hr>
-                <p><?= htmlspecialchars($objet["desc_objet"]) ?></p>
+                <p><?= htmlspecialchars($objet["desc_objet"]) ?><br>Brewen was here</p>
                 <hr>
                 <a href="/reserve/?p=<?= $_GET["p"] ?>" class="button blue full">Réserver</a>
                 <a href="/messages/?to=<!--publisher-->" class="button blue secondary full">Envoyer un message</a>

@@ -8,11 +8,11 @@
     </div>
     <div>
         <h4>Accès rapides</h4>
-        <a href="" class="link light">Tous nos sites web</a>
-        <a href="" class="link light">Espace presse</a>
-        <a href="" class="link light">Offres d'emploi</a>
-        <a href="" class="link light">Marchés publics</a>
-        <a href="" class="link light">Charte graphique</a>
+        <a href="https://www.univ-lemans.fr/fr/pied-de-page/acces-rapide/tous-nos-sites-web.html" class="link light">Tous nos sites web</a>
+        <a href="https://www.univ-lemans.fr/fr/pied-de-page/acces-rapide/espace-presse.html" class="link light">Espace presse</a>
+        <a href="https://www.univ-lemans.fr/fr/universite/recrutement.html" class="link light">Offres d'emploi</a>
+        <a href="https://www.univ-lemans.fr/fr/universite/entreprises/collaborer/marches-publics-de-le-mans-universite.html" class="link light">Marchés publics</a>
+        <a href="https://www.univ-lemans.fr/fr/pied-de-page/acces-rapide/charte-graphique.html" class="link light">Charte graphique</a>
     </div>
     <div>
         <h4>Restons connectés</h4>

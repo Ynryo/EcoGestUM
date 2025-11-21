@@ -34,16 +34,20 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
             <div class="cards-container-title">
                 <h3>Coups de cœur</h3>
             </div>
-            <div class="cards-container wrap">
-                <?php foreach ($results as $product):
-                    $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
-                    $files = glob($pattern); ?>
-                    <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
-                        <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
-                        <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
-                    </a>
-                <?php endforeach; ?>
-            </div>
+            <?php if (!empty($results)): ?>
+                <div class="cards-container wrap">
+                    <?php foreach ($results as $product):
+                        $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
+                        $files = glob($pattern); ?>
+                        <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
+                            <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
+                            <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
+                        </a>
+                    <?php endforeach; ?>
+                </div>
+            <?php else: ?>
+                <p>Vous n'avez pas de produits en favoris.</p>
+            <?php endif; ?>
         </div>
     </section>
     <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
