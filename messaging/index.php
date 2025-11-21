@@ -24,11 +24,10 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
                         break;
                     default:
                     // Erreur peut-être?
-        }
+                }
             }
+        }
     }
-}
-
 
 ?>
 <!DOCTYPE html>
@@ -53,7 +52,8 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
             $stmt->execute();
             $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-            foreach ($results as $result): ?>
+            if (!empty($results)) {
+                foreach ($results as $result): ?>
                 <div class="msg-container">
                     <div class="top-content">
                         <div class="publisher">
@@ -70,7 +70,9 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
                         <a class="button orange secondary" href="/messaging/?id=<?php echo $result["id_notification"] ?>&action=refuse">Refuser</a>
                     </div>
                 </div>
-            <?php endforeach; ?>
+            <?php endforeach; } else { ?>
+                <p>Aucun message trouvé.</p>
+            <?php } ?>
         </div>
     <?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
 </body>
