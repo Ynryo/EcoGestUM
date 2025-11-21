@@ -58,7 +58,6 @@ function labelStatut($s) {
   <meta charset="utf-8">
   <title>Inventaire - EcoGestUM</title>
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <link rel="stylesheet" href="../assets/css/bootstrap.min.css">
   <link rel="stylesheet" href="../assets/css/panel-inventory.css">
 </head>
 <body>
