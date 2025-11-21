@@ -3,7 +3,7 @@ include(dirname(__FILE__, 2) . '/assets/src/files_header.php');
 include(dirname(__FILE__, 2) . '/assets/src/conn.php');
 
 $stmt = $pdo->prepare("SELECT o.id_objet, o.nom_objet, o.desc_objet, c.titre_categorie FROM objet AS o JOIN categorie AS c ON o.id_categorie = c.id_categorie WHERE nom_objet LIKE CONCAT('%', :q, '%') OR desc_objet LIKE CONCAT('%', :q, '%')");
-$stmt->bindParam(':q', $_GET["q"]);
+$stmt->bindParam(':q', strip_tags($_GET["q"]));
 try {
     $stmt->execute();
 } catch (PDOException $e) {
