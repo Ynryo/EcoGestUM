@@ -57,6 +57,12 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
                     favorite
                 </span>
             </a>
+            <a href="/reservations/" class="content">
+                <h4>Réservations</h4>
+                <span class="material-symbols-outlined">
+                    lock_clock
+                </span>
+            </a>
             <a href="/messaging/" class="content">
                 <h4>Messages</h4>
                 <span class="material-symbols-outlined">
