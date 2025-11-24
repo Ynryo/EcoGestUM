@@ -27,11 +27,22 @@
     </section>
     <section class="keynums">
         <div class="blue-bg">
-            <h1>18.054</h1>
+            <?php
+            include(dirname(__FILE__, 3) . '/assets/src/conn.php');
+            $stmt = $pdo->prepare("SELECT sum(nb_recyclages) as 'nb_recyclages' FROM statistique;");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            ?>
+            <h1><?php echo $result['nb_recyclages'] ?></h1>
             <p>objets déjà recyclés</p>
         </div>
         <div class="red-bg">
-            <h1>1.569</h1>
+            <?php
+            $stmt = $pdo->prepare("SELECT count(id_objet) as 'nb_objet' FROM objet;");
+            $stmt->execute();
+            $result = $stmt->fetch(PDO::FETCH_ASSOC);
+            ?>
+            <h1><?php echo $result['nb_objet'] ?></h1>
             <p>objets disponibles actuellement</p>
         </div>
         <div class="green-bg">
