@@ -59,7 +59,7 @@ if ($objet == null) {
                     finfo_close($finfo);
                     ?>
                 </div>
-                <a href="#" class="link love" id="love-button">
+                <a class="link love" id="love-button">
                     <span class="material-symbols-outlined">
                         favorite
                     </span>

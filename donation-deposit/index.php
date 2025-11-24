@@ -24,14 +24,37 @@ include(dirname(__FILE__, 2) . '/assets/src/conn.php');
             <span class="material-symbols-outlined">arrow_forward_ios</span>
             Déposer une annonce de don
         </div>
-        <form action="" method="post">
+        <form action="/donation-deposit/validate/" method="post">
             <div class="input-group">
-                <input type="text" id="identifiant" name="identifiant" class="input-text" required>
-                <label class="label-text" for="identifiant">Nom de l'objet: *</label>
+                <input type="text" id="name_objet" name="name_objet" class="input-text" required>
+                <label class="label-text" for="name_objet">Nom de l'objet: *</label>
             </div>
             <div class="input-group">
                 <input type="text" id="desc" name="desc" class="input-text" required>
                 <label class="label-text" for="desc">Description: *</label>
+            </div>
+            <div class="input-group">
+                <input type="text" id="color" name="color" class="input-text" required>
+                <label class="label-text" for="color">Couleur: *</label>
+            </div>
+
+            <h4>Taille de l'objet</h4>
+            <select name="size" id="size">
+                <option value="0">Taille unique</option>
+                <option value="Enfant">Enfant</option>
+                <option value="XS">XS</option>
+                <option value="S">S</option>
+                <option value="M">M</option>
+                <option value="L">L</option>
+                <option value="XL">XL</option>
+                <option value="XXL">XXL</option>
+                <option value="3XL">3XL</option>
+                <option value="4XL">4XL</option>
+            </select>
+
+            <div class="input-group">
+                <input type="text" id="quantity" name="quantity" class="input-text" required>
+                <label class="label-text" for="quantity">Quantité: *</label>
             </div>
 
             <h4>Choissiez une catégorie</h4>
@@ -46,8 +69,9 @@ include(dirname(__FILE__, 2) . '/assets/src/conn.php');
                 <option value="0">Autre</option>
             </select>
 
+
             <h4>Ajoutez des photos</h4>
-            <input type="file" name="" id="">
+            <input type="file" name="images" id="img" accept="image/png, image/jpeg, image/webp" multiple required>
 
             <h4>Etat de l'objet</h4>
             <div class="radio">
