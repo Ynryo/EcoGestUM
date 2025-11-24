@@ -56,7 +56,7 @@
         <?php endif; ?>
 
         <?php
-        $stmt = $pdo->prepare("SELECT * FROM objet LIMIT 8;");
+        $stmt = $pdo->prepare("SELECT * FROM objet ORDER BY id_objet DESC LIMIT 8;");
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>

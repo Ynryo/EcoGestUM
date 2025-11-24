@@ -5,6 +5,7 @@ require_once dirname(__FILE__, 3) . '/assets/src/date.php';
 
 $stmt = $pdo->prepare("SELECT o.nom_objet, o.desc_objet, o.etat, o.color, o.size, o.quantity, o.date_ajout, o.statut, c.id_composante, c.coords_composante, cat.id_categorie, cat.titre_categorie FROM `objet` o JOIN agencer a ON o.id_objet = a.id_objet JOIN inventaire i ON a.id_inventaire = i.id_inventaire JOIN departement d ON d.id_inventaire = i.id_inventaire JOIN composante c on d.id_composante = c.id_composante JOIN categorie cat ON cat.id_categorie = o.id_categorie WHERE o.id_objet = :p;");
 $stmt->bindParam(':p', $_GET["p"]);
+
 $stmt->execute();
 $objet = $stmt->fetch(PDO::FETCH_ASSOC);
 

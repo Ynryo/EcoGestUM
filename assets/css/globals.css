@@ -11,6 +11,7 @@
     font-weight: 100;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/thin-italic.otf);
@@ -18,12 +19,14 @@
     font-style: italic;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/extralight.otf);
     font-weight: 200;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/extralight-italic.otf);
@@ -31,12 +34,14 @@
     font-style: italic;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/light.otf);
     font-weight: 300;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/light.otf);
@@ -44,12 +49,14 @@
     font-style: italic;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/regular.otf);
     font-weight: 400;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/regular-italic.otf);
@@ -57,12 +64,14 @@
     font-style: italic;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/medium.otf);
     font-weight: 500;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/medium-italic.otf);
@@ -70,12 +79,14 @@
     font-style: italic;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/bold.otf);
     font-weight: 600;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/bold-italic.otf);
@@ -83,12 +94,14 @@
     font-style: italic;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/extrabold.otf);
     font-weight: 800;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/extrabold-italic.otf);
@@ -96,12 +109,14 @@
     font-style: italic;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/black.otf);
     font-weight: 900;
     font-display: swap;
 }
+
 @font-face {
     font-family: Goia;
     src: url(/assets/fonts/goia-display/black-italic.otf);
@@ -117,6 +132,7 @@
     font-weight: 400;
     font-display: swap;
 }
+
 @font-face {
     font-family: Poppins;
     src: url(/assets/fonts/poppins/500.ttf);
@@ -333,9 +349,8 @@ a {
 }
 
 /* ERRORS */
-.error {
-    background-color: rgba(255, 0, 0, 0.40);
-    color: rgb(255, 0, 0);
+.error,
+.positive {
     font-family: Poppins, sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -343,6 +358,16 @@ a {
     border-radius: 10px;
     width: 100%;
     text-align: center;
+}
+
+.error {
+    background-color: rgba(255, 0, 0, 0.40);
+    color: rgb(255, 0, 0);
+}
+
+.positive {
+    background-color: rgba(0, 255, 0, 0.40);
+    color: rgb(0, 255, 0);
 }
 
 /* BOXS */
