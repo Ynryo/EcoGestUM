@@ -7,7 +7,7 @@ $dotenv = Dotenv::createImmutable(dirname(__FILE__, 3));
 $dotenv->load();
 
 try {
-    if ($_SERVER["HTTP_HOST"] == "127.0.0.1:8000") {
+    if ($_SERVER["HTTP_HOST"] == "127.0.0.1:8000" || $_SERVER["HTTP_HOST"] == "127.0.0.1:8001") {
         $pdo = new PDO(
             "mysql:host=" . $_ENV['DB_HOST'] . ";dbname=" . $_ENV['DB_DATABASE_LOCAL'] . ";charset=utf8mb4",
             $_ENV['DB_USERNAME_LOCAL'],
