@@ -45,6 +45,7 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
 
 <body>
     <?php include(dirname(__FILE__, 2) . '/assets/view/header.php') ?>
+
         <div class="main">
             <?php
             $stmt = $pdo->prepare("SELECT id_notification, titre_notification, date_envoi, id_emetteur, u1.nom_utilisateur as 'nom_emetteur', u1.prenom_utilisateur as 'prenom_emetteur', id_recepteur, u2.nom_utilisateur as 'nom_recepteur', u2.prenom_utilisateur as 'prenom_recepteur' FROM notification JOIN utilisateur u1 ON notification.id_emetteur = u1.id_utilisateur JOIN utilisateur u2 ON notification.id_recepteur = u2.id_utilisateur WHERE id_recepteur = :u;");
