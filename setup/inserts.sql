@@ -156,11 +156,6 @@ INSERT INTO NOTIFICATION (titre_notification, date_envoi, id_emetteur, id_recept
 ('Rappel événement : Journée de Ré-réemploi !', '2025-10-09', 1, 2),
 ('Lucas Bosco veut emprunter l''objet "Journal Le Monde".', '2025-10-11', 9, 7);
 
-INSERT INTO RECUPERER (id_recepteur, id_donneur, id_objet, date_ajout, date_fin) VALUES
-(9, 3, 4, '2025-10-22', NULL),
-(4, 2, 2, '2025-10-02', '2025-10-08'),
-(7, 6, 9, '2025-09-10', NULL);
-
 INSERT INTO AGENCER (id_objet, id_inventaire) VALUES
 (1, 2),
 (2, 3),

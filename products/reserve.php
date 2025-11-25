@@ -1,51 +1,75 @@
 <?php
 session_start();
 if (isset($_SESSION["user_id"])) {
-    //check if objects is not already reserved by curent user
-    include(dirname(__FILE__, 2) . '/assets/src/conn.php');
+    require_once(dirname(__FILE__, 2) . '/assets/src/conn.php');
+
+    //get id_donneur
     $p = strip_tags($_GET["p"]);
-    $stmt = $pdo->prepare("SELECT * FROM recuperer WHERE id_objet = :p;");
+    $stmt = $pdo->prepare("SELECT id_inventaire FROM agencer WHERE id_objet = :p;");
     $stmt->bindParam(":p", $p);
     $stmt->execute();
-    $reserved = $stmt->fetch(PDO::FETCH_ASSOC);
+    $result = $stmt->fetch(PDO::FETCH_ASSOC);
+    $donneur = $result["id_inventaire"];
 
-    if (!$reserved) {
-        //get id_donneur
-        $stmt = $pdo->prepare("SELECT id_inventaire FROM agencer WHERE id_objet = :p;");
-        $stmt->bindParam(":p", $p);
-        try {
+    var_dump($_GET["action"]);
+    switch ($_GET["action"]) {
+        case "new":
+            //check if objects is not already reserved by curent user
+            $stmt = $pdo->prepare("SELECT * FROM recuperer WHERE id_objet = :p AND id_donneur = :donneur;");
+            $stmt->bindParam(":p", $p);
+            $stmt->bindParam(":donneur", $donneur);
             $stmt->execute();
-        } catch (PDOException $e) {
-            die("<p class=\"error\">Erreur SQL : " . $e->getMessage() . "</p>");
-        }
-        $result = $stmt->fetch(PDO::FETCH_ASSOC);
-        $donneur = $result["id_inventaire"];
+            $reserved = $stmt->fetch(PDO::FETCH_ASSOC);
 
+            if (!$reserved) {
+                //add to user's resrvations
+                $date = date("Y-m-d");
+                $stmt = $pdo->prepare("INSERT INTO recuperer (id_donneur, id_recepteur, id_objet, date_ajout) VALUES (:id_donneur, :id_recepteur, :p, :date);");
+                $stmt->bindParam(":p", $p);
+                $stmt->bindParam(":id_donneur", $donneur);
+                $stmt->bindParam(":id_recepteur", $_SESSION["user_id"]);
+                $stmt->bindParam(":date", $date);
+                $stmt->execute();
 
-        //add to user's resrvations
-        $stmt = $pdo->prepare("INSERT INTO recuperer (id_donneur, id_recepteur, id_objet, date_ajout) VALUES (:id_donneur, :id_recepteur, :p, :date);");
-        $stmt->bindParam(":p", $p);
-        $stmt->bindParam(":id_donneur", $donneur);
-        $stmt->bindParam(":id_recepteur", $_SESSION["user_id"]);
-        $stmt->bindParam(":date", date("Y-m-d"));
-        try {
+                //change objet's statuts
+                $stmt = $pdo->prepare("UPDATE objet SET statut = 'Réservé' WHERE objet.id_objet = :p;");
+                $stmt->bindParam(":p", $p);
+                $stmt->execute();
+                header("Location: /reservations/");
+                echo "<p class=\"success\">Objet réservé avec succès</p>";
+            } else {
+                echo "<p class=\"error\">Objet déjà reservé</p>";
+            }
+            break;
+
+        case "cancel":
+            //check if objects is already reserved by curent user
+            $p = strip_tags($_GET["p"]);
+            $stmt = $pdo->prepare("SELECT * FROM recuperer WHERE id_objet = :p AND id_donneur = :donneur;");
+            $stmt->bindParam(":p", $p);
+            $stmt->bindParam(":donneur", $donneur);
             $stmt->execute();
-        } catch (PDOException $e) {
-            die("<p class=\"error\">Erreur SQL : " . $e->getMessage() . "</p>");
-        }
+            $reserved = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        //change objet's statuts
-        $stmt = $pdo->prepare("UPDATE `objet` SET `statut` = 'Réservé' WHERE `objet`.`id_objet` = :p;");
-        $stmt->bindParam(":p", $p);
-        try {
-            $stmt->execute();
-        } catch (PDOException $e) {
-            die("<p class=\"error\">Erreur SQL : " . $e->getMessage() . "</p>");
-        }
-        header("Location: /reservations/");
-        echo "<p class=\"success\">Objet réservé avec succès</p>";
-    } else {
-        echo "<p class=\"error\">Objet déjà reservé</p>";
+            if ($reserved) {
+                //remove from user reservations
+                $stmt = $pdo->prepare("DELETE FROM recuperer WHERE id_donneur = :donneur AND id_recepteur = :recepteur AND id_objet = :p");
+                $stmt->bindParam(":p", $p);
+                $stmt->bindParam(":donneur", $donneur);
+                $stmt->bindParam(":recepteur", $_SESSION["user_id"]);
+                $stmt->execute();
+
+                //change object status$
+                $stmt = $pdo->prepare("UPDATE objet SET statut = 'Disponible' WHERE objet.id_objet = :p;");
+                $stmt->bindParam(":p", $p);
+                $stmt->execute();
+                header("Location: /reservations/");
+                echo "<p class=\"success\">Réservation annulée avec succès</p>";
+            }
+            break;
+
+        default:
+            exit;
     }
 } else {
     echo "<p class=\"error\">Session not start</p>";
