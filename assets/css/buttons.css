@@ -26,7 +26,7 @@
 }
 
 .button.disabled {
-    background-color: var(--medium);
+    background-color: var(--medium) !important;
 }
 
 .button.secondary,

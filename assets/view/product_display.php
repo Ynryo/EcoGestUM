@@ -70,6 +70,7 @@ if ($objet == null) {
                 <h3><?= htmlspecialchars($objet["nom_objet"]) ?></h3>
                 <h4 class="poppins"><?= htmlspecialchars($objet["size"]) ?> | <?= htmlspecialchars($objet["etat"]) ?></h4>
                 <p>Ajouté il y a <?= getDuration($objet["date_ajout"]) ?></p>
+                <span class="statut-objet"><?= htmlspecialchars($objet["statut"]) ?></span>
                 <hr>
                 <p>Couleur : <?= htmlspecialchars($objet["color"]) ?></p>
                 <p>Etat : <?= htmlspecialchars($objet["etat"]) ?></p>
@@ -79,7 +80,7 @@ if ($objet == null) {
                 <hr>
                 <p><?= htmlspecialchars($objet["desc_objet"]) ?><br>Brewen was here</p>
                 <hr>
-                <a href="/reserve/?p=<?= $_GET["p"] ?>" class="button blue full">Réserver</a>
+                <a href="/products/reserve.php?p=<?= $_GET["p"] ?>" class="button blue full <?php if($objet["statut"]!="Disponible"){echo "disabled";} ?>">Réserver</a>
                 <a href="/messages/?to=<!--publisher-->" class="button blue secondary full">Envoyer un message</a>
                 <a href="https://www.google.fr/maps/@<?= htmlspecialchars($objet["coords_composante"]) ?>,555m" class="button blue secondary full">Voir sur la carte</a>
             </div>

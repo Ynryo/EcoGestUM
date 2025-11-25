@@ -3,9 +3,9 @@ include(dirname(__FILE__, 2) . '/assets/src/files_header.php');
 
 if (isset($_GET["q"])) {
     include(dirname(__FILE__, 2) . '/assets/src/conn.php');
-    
+
     $q = strip_tags($_GET["q"]);
-    $stmt = $pdo->prepare("SELECT o.id_objet, o.nom_objet, o.desc_objet, c.titre_categorie FROM objet AS o JOIN categorie AS c ON o.id_categorie = c.id_categorie WHERE nom_objet LIKE CONCAT('%', :q, '%') OR desc_objet LIKE CONCAT('%', :q, '%')");
+    $stmt = $pdo->prepare("SELECT o.id_objet, o.nom_objet, o.desc_objet, c.titre_categorie, o.statut FROM objet AS o JOIN categorie AS c ON o.id_categorie = c.id_categorie WHERE nom_objet LIKE CONCAT('%', :q, '%') OR desc_objet LIKE CONCAT('%', :q, '%')");
     $stmt->bindParam(':q', $q);
     try {
         $stmt->execute();
@@ -50,6 +50,7 @@ if (isset($_GET["q"])) {
                         <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
                         <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
                         <p>(<?= htmlspecialchars($product["titre_categorie"]); ?>)</p>
+                        <span class="statut-objet"><?= htmlspecialchars($product["statut"]); ?></span>
                     </a>
                 <?php endforeach; ?>
         </div>
