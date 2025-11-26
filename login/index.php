@@ -62,6 +62,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <button class="button blue">Connexion</button>
                 <a href="/signup/" class="button blue secondary">1ère connexion</a>
                 <a href="https://activation.univ-lemans.fr/cgi-bin/activation/mdp-perdu.pl" class="link blue">Mot de passe oublié ?</a>
+                <p>Pour des raisons de sécurité, veuillez vous <a href="https://cas.univ-lemans.fr/cas/logout" class="link blue">déconnecter</a> et fermer votre navigateur lorsque vous avez fini d’accéder aux services authentifiés.</p>
             </form>
         </div>
     </section>

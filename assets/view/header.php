@@ -25,7 +25,7 @@
             <a href="/press-releases/" class="link">Communiqués de presse</a>
             <a href="/messaging/" class="link">Messages</a>
             <?php if (in_array($_SESSION["id_role"], array(1, 2, 3, 4, 5))): ?>
-                <a href="/panel/" class="link">Panel de gestion</a>
+                <a href="/panel/" class="link">Panneau de Configuration</a>
             <?php endif; ?>
             <?php if ($_SESSION["id_role"] == 6): ?>
                 <a href="/inventory/" class="link">Inventaire</a>
