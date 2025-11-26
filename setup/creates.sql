@@ -44,7 +44,7 @@ CREATE TABLE INVENTAIRE (
 CREATE TABLE COMPOSANTE (
    id_composante INT AUTO_INCREMENT,
    nom_composante VARCHAR(255) NOT NULL,
-   coords_composante VARCHAR(255) NOT NULL,
+   coords_composante VARCHAR(255),
    ville VARCHAR(255) NOT NULL,
    PRIMARY KEY (id_composante)
 );

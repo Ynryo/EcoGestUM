@@ -39,7 +39,7 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="nav-container">
             <?php if (in_array($_SESSION["id_role"], array(1, 2, 3, 4, 5))): ?>
                 <a href="/panel/" class="content">
-                    <h4>Panneau de gestion</h4>
+                    <h4>Panneau de configuration</h4>
                     <span class="material-symbols-outlined">
                         discover_tune
                     </span>

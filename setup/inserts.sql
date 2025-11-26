@@ -132,17 +132,17 @@ INSERT INTO EVENEMENT (id_evenement, titre_evenement, desc_evenement, date_debut
 (9, 'Octobre Rose', 'C\'est la journée Rose.', '2025-12-01 08:00:00', '2025-12-01 12:00:00', 4),
 (10, 'Journée du Réemploi (ENSIM)', 'C\'est la journée du Réemploi !', '2025-10-23 08:00:00', '2025-10-23 18:00:00', 6);
 
-INSERT INTO OBJET (nom_objet, desc_objet, date_ajout, statut, id_categorie) VALUES
-('Bouteille Plastique', 'Bouteille d’eau 1.5L vide', '2025-10-20', 'Disponible', 2),
-('Journal Le Monde', 'Ancien numéro du quotidien', '2025-10-21', 'Disponible', 1),
-('Batterie AA', 'Pile usagée', '2025-10-22', 'Disponible', 4),
-('Écran PC 24"', 'Vieux écran de bureau, HS', '2025-10-22', 'Indisponible', 5),
-('Canette de Soda', 'Canette vide en aluminium', '2025-10-20', 'Disponible', 7),
-('Boîte à pizza', 'Carton de pizza, peu sale', '2025-10-21', 'Disponible', 1),
-('Bloc-notes', 'Cahier brouillon', '2025-10-22', 'Disponible', 1),
-('Pot de Yaourt en Verre', 'Vide', '2025-10-22', 'Disponible', 3),
-('Clavier USB', 'Clavier inutilisé', '2025-10-22', 'Indisponible', 5),
-('Déchets de repas', 'Épluchures de fruits, restes', '2025-10-22', 'En élimination', 6);
+INSERT INTO OBJET (nom_objet, desc_objet, quantity, date_ajout, statut, id_categorie) VALUES
+('Bouteille Plastique', 'Bouteille d’eau 1.5L vide', 1, '2025-10-20', 'Disponible', 2),
+('Journal Le Monde', 'Ancien numéro du quotidien', 1, '2025-10-21', 'Disponible', 1),
+('Batterie AA', 'Pile usagée', 1, '2025-10-22', 'Disponible', 4),
+('Écran PC 24"', 'Vieux écran de bureau, HS', 1, '2025-10-22', 'Indisponible', 5),
+('Canette de Soda', 'Canette vide en aluminium', 1, '2025-10-20', 'Disponible', 7),
+('Boîte à pizza', 'Carton de pizza, peu sale', 1, '2025-10-21', 'Disponible', 1),
+('Bloc-notes', 'Cahier brouillon', 1, '2025-10-22', 'Disponible', 1),
+('Pot de Yaourt en Verre', 'Vide', 1, '2025-10-22', 'Disponible', 3),
+('Clavier USB', 'Clavier inutilisé', 1, '2025-10-22', 'Indisponible', 5),
+('Déchets de repas', 'Épluchures de fruits, restes', 1, '2025-10-22', 'En élimination', 6);
 
 INSERT INTO NOTIFICATION (titre_notification, date_envoi, id_emetteur, id_recepteur) VALUES
 ('Éva Maël veut emprunter l''objet "Bouteille Plastique".', '2025-10-20', 10, 3),

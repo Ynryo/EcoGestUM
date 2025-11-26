@@ -209,6 +209,7 @@ li,
 span {
     font-family: Poppins, sans-serif;
     font-size: 14px;
+    display: inline;
 }
 
 a {

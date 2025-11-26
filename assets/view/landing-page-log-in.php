@@ -70,7 +70,7 @@
                     </span>
                 </a>
             </div>
-            <div class="cards-container-grid">
+            <div class="cards-container wrap">
                 <?php foreach ($results as $product):
                     $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
                     $files = glob($pattern); ?>

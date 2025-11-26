@@ -77,10 +77,9 @@ if ($objet == null) {
                 <p>Taille : <?= htmlspecialchars($objet["size"]) ?></p>
                 <p>Quantité : <?= htmlspecialchars($objet["quantity"]) ?></p>
                 <p>Localisation : <span class="composante c<?= htmlspecialchars($objet["id_composante"]) ?>"></span></p>
+                <p>Publié par : <a class="link" href="/inventory/people/?id=<?= htmlspecialchars($objet["id_inventaire"]) ?>"><?= htmlspecialchars($objet["nom_inventaire"]) ?></a></p>
                 <hr>
                 <p><?= htmlspecialchars($objet["desc_objet"]) ?><br>Brewen was here</p>
-                <hr>
-                <p>Publié par : <?= htmlspecialchars($objet["nom_inventaire"]) ?></p>
                 <hr>
                 <?php
                 if ($objet["statut"] == "Réservé") {
