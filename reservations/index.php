@@ -39,12 +39,14 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                     <?php foreach ($results as $product):
                         $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
                         $files = glob($pattern); ?>
-                        <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
-                            <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
-                            <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
-                            <span class="statut-objet"><?= htmlspecialchars($product["statut"]); ?></span>
-                            <a href="/products/reserve.php?p=<?= htmlspecialchars($product["id_objet"]) ?>&action=cancel" class="button blue little">Annuler réservation</a>
-                        </a>
+                        <div class="reservedItem">
+                            <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
+                                <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
+                                <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
+                                <span class="statut-objet"><?= htmlspecialchars($product["statut"]); ?></span>
+                            </a>
+                            <a href="/products/reserve.php?p=<?= htmlspecialchars($product["id_objet"]) ?>&action=cancel" class="button orange little closeabsolute">X</a>
+                        </div>
                     <?php endforeach; ?>
                 </div>
             <?php else: ?>

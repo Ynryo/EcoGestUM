@@ -135,3 +135,7 @@ div:has(.cards-container) {
     bottom: -20px;
     right: -20px;
 }
+
+.reservedItem {
+    position: relative;
+}
