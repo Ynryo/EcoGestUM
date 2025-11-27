@@ -1,6 +1,6 @@
 <?php
-include(dirname(__FILE__, 2) . '/assets/src/files_header.php');
-include(dirname(__FILE__, 2) . '/assets/src/conn.php');
+include_once(dirname(__FILE__, 2) . '/assets/src/files_header.php');
+include_once(dirname(__FILE__, 2) . '/assets/src/conn.php');
 
 if (isset($_GET['id']) && $_GET['id'] != null) {
     if (isset($_GET['action']) && $_GET['action'] != null) {
