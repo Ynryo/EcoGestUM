@@ -56,7 +56,7 @@
         <?php endif; ?>
 
         <?php
-        $stmt = $pdo->prepare("SELECT * FROM objet LIMIT 8;");
+        $stmt = $pdo->prepare("SELECT * FROM objet ORDER BY id_objet DESC LIMIT 8;");
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         ?>
@@ -70,7 +70,7 @@
                     </span>
                 </a>
             </div>
-            <div class="cards-container-grid">
+            <div class="cards-container wrap">
                 <?php foreach ($results as $product):
                     $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
                     $files = glob($pattern); ?>

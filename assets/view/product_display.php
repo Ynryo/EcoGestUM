@@ -1,10 +1,11 @@
 <?php
-include(dirname(__FILE__, 3) . '/assets/src/files_header.php');
-include(dirname(__FILE__, 3) . '/assets/src/conn.php');
+include_once(dirname(__FILE__, 3) . '/assets/src/files_header.php');
+include_once(dirname(__FILE__, 3) . '/assets/src/conn.php');
 require_once dirname(__FILE__, 3) . '/assets/src/date.php';
 
-$stmt = $pdo->prepare("SELECT o.nom_objet, o.desc_objet, o.etat, o.color, o.size, o.quantity, o.date_ajout, o.statut, c.id_composante, c.coords_composante, cat.id_categorie, cat.titre_categorie FROM `objet` o JOIN agencer a ON o.id_objet = a.id_objet JOIN inventaire i ON a.id_inventaire = i.id_inventaire JOIN departement d ON d.id_inventaire = i.id_inventaire JOIN composante c on d.id_composante = c.id_composante JOIN categorie cat ON cat.id_categorie = o.id_categorie WHERE o.id_objet = :p;");
+$stmt = $pdo->prepare("SELECT o.nom_objet, o.desc_objet, o.etat, o.color, o.size, o.quantity, o.date_ajout, o.statut, c.id_composante, c.coords_composante, i.id_inventaire, i.nom_inventaire, cat.id_categorie, cat.titre_categorie FROM `objet` o JOIN agencer a ON o.id_objet = a.id_objet JOIN inventaire i ON a.id_inventaire = i.id_inventaire JOIN departement d ON d.id_inventaire = i.id_inventaire JOIN composante c on d.id_composante = c.id_composante JOIN categorie cat ON cat.id_categorie = o.id_categorie WHERE o.id_objet = :p;");
 $stmt->bindParam(':p', $_GET["p"]);
+
 $stmt->execute();
 $objet = $stmt->fetch(PDO::FETCH_ASSOC);
 
@@ -59,7 +60,7 @@ if ($objet == null) {
                     finfo_close($finfo);
                     ?>
                 </div>
-                <a href="#" class="link love" id="love-button">
+                <a class="link love" id="love-button">
                     <span class="material-symbols-outlined">
                         favorite
                     </span>
@@ -69,17 +70,25 @@ if ($objet == null) {
                 <h3><?= htmlspecialchars($objet["nom_objet"]) ?></h3>
                 <h4 class="poppins"><?= htmlspecialchars($objet["size"]) ?> | <?= htmlspecialchars($objet["etat"]) ?></h4>
                 <p>Ajouté il y a <?= getDuration($objet["date_ajout"]) ?></p>
+                <span class="statut-objet"><?= htmlspecialchars($objet["statut"]) ?></span>
                 <hr>
                 <p>Couleur : <?= htmlspecialchars($objet["color"]) ?></p>
                 <p>Etat : <?= htmlspecialchars($objet["etat"]) ?></p>
                 <p>Taille : <?= htmlspecialchars($objet["size"]) ?></p>
                 <p>Quantité : <?= htmlspecialchars($objet["quantity"]) ?></p>
                 <p>Localisation : <span class="composante c<?= htmlspecialchars($objet["id_composante"]) ?>"></span></p>
+                <p>Publié par : <a class="link" href="/inventory/people/?id=<?= htmlspecialchars($objet["id_inventaire"]) ?>"><?= htmlspecialchars($objet["nom_inventaire"]) ?></a></p>
                 <hr>
                 <p><?= htmlspecialchars($objet["desc_objet"]) ?><br>Brewen was here</p>
                 <hr>
-                <a href="/reserve/?p=<?= $_GET["p"] ?>" class="button blue full">Réserver</a>
-                <a href="/messages/?to=<!--publisher-->" class="button blue secondary full">Envoyer un message</a>
+                <?php
+                if ($objet["statut"] == "Réservé") {
+                    echo "<a class=\"button blue full disabled\">Déjà réservé</a>";
+                } else {
+                    echo "<a href=\"/products/reserve.php?p=" . $_GET["p"] . "&action=new\" class=\"button blue full\">Réserver</a>";
+                }
+                ?>
+                <a href="/messages/?to=<?= htmlspecialchars($objet["id_inventaire"]) ?>" class="button blue secondary full">Envoyer un message</a>
                 <a href="https://www.google.fr/maps/@<?= htmlspecialchars($objet["coords_composante"]) ?>,555m" class="button blue secondary full">Voir sur la carte</a>
             </div>
         </div>

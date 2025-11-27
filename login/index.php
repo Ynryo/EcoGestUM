@@ -3,8 +3,8 @@ include(dirname(__FILE__, 2) . '/assets/src/files_header.php');
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include dirname(__FILE__, 2) . '/assets/src/conn.php';
-    $username = $_POST['identifiant'];
-    $password = $_POST['password'];
+    $username = strip_tags($_POST['identifiant']);
+    $password = strip_tags($_POST['password']);
 
 
     $stmt = $pdo->prepare("SELECT id_utilisateur, mdp_univ, prenom_utilisateur, id_role FROM utilisateur WHERE identifiant = ?");

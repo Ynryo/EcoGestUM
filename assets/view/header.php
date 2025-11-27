@@ -20,11 +20,12 @@
         <div class="modal" id="profile-modal" style="display: none">
             <a href="/profile/" class="link">Profil</a>
             <a href="/profile/loved/" class="link">Coups de coeur</a>
+            <a href="/reservations/" class="link">Réservations</a>
             <a href="/event/" class="link">Événements</a>
             <a href="/press-releases/" class="link">Communiqués de presse</a>
             <a href="/messaging/" class="link">Messages</a>
-            <?php if (str_contains(json_encode([1, 2, 3, 4, 5, 6]), $_SESSION["id_role"])): ?>
-                <a href="/panel/index" class="link">Panneau de Configuration</a>
+            <?php if (in_array($_SESSION["id_role"], array(1, 2, 3, 4, 5))): ?>
+                <a href="/panel/" class="link">Panneau de configuration</a>
             <?php endif; ?>
             <?php if ($_SESSION["id_role"] == 6): ?>
                 <a href="/inventory/" class="link">Inventaire</a>

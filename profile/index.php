@@ -39,7 +39,7 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
         <div class="nav-container">
             <?php if (in_array($_SESSION["id_role"], array(1, 2, 3, 4, 5))): ?>
                 <a href="/panel/" class="content">
-                    <h4>Panneau de gestion</h4>
+                    <h4>Panneau de configuration</h4>
                     <span class="material-symbols-outlined">
                         discover_tune
                     </span>
@@ -55,6 +55,12 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
                 <h4>Coups de coeur</h4>
                 <span class="material-symbols-outlined">
                     favorite
+                </span>
+            </a>
+            <a href="/reservations/" class="content">
+                <h4>Réservations</h4>
+                <span class="material-symbols-outlined">
+                    lock_clock
                 </span>
             </a>
             <a href="/messaging/" class="content">

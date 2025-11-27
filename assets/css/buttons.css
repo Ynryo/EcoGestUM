@@ -20,13 +20,19 @@
     transition: ease-in-out 0.2s;
 }
 
+.button.little {
+    padding: 5px 10px;
+    font-size: 14px;
+    border-radius: 10px;
+}
+
 .button:hover,
 .button.orange:hover {
     background-color: var(--hovered-orange);
 }
 
 .button.disabled {
-    background-color: var(--medium);
+    background-color: var(--medium) !important;
 }
 
 .button.secondary,
