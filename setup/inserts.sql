@@ -31,16 +31,16 @@ INSERT INTO CATEGORIE (titre_categorie, desc_categorie, id_odd) VALUES
 ('Caoutchouc','Pneus, butoir de porte', 5);
 
 INSERT INTO INVENTAIRE (nom_inventaire) VALUES
-('Inventaire Dépt Droit Public'),
-('Inventaire Dépt Anglais'),
-('Inventaire Dépt Espagnol'),
-('Inventaire Dépt Allemand'),
-('Inventaire Dépt Histoire'),
-('Inventaire Dépt Informatique'),
-('Inventaire Dépt Physique'),
-('Inventaire Dépt Génie Industriel'),
-('Inventaire Dépt GEA Laval'),
-('Inventaire Dépt Acoustique'),
+('Inventaire Département Informatique'),
+('Inventaire Département Génie Biologique'),
+('Inventaire Département Techniques de Commercialisation'),
+('Inventaire Département Métier du Multimédia et de l''Internet'),
+('Inventaire Département Histoire'),
+('Inventaire Département Informatique'),
+('Inventaire Département Physique'),
+('Inventaire Département Génie Industriel'),
+('Inventaire Département GEA Laval'),
+('Inventaire Département Acoustique'),
 ('Inventaire Service Sec Droit'),
 ('Inventaire Service Mtnc Droit'),
 ('Inventaire Service Sec Lettres'),
@@ -52,26 +52,6 @@ INSERT INTO INVENTAIRE (nom_inventaire) VALUES
 ('Inventaire Service Sec IUT Laval'),
 ('Inventaire Service Mtnc IUT Laval');
 
-INSERT INTO COMPOSANTE (nom_composante, coords_composante, ville) VALUES
-('Faculté de Droit, Sciences économiques & de Gestion', '48.016, 0.160', 'Le Mans'),
-('Faculté des Lettres, Langues & Sciences humaines', '48.018, 0.162', 'Le Mans'),
-('Faculté des Sciences et Techniques', '48.019, 0.165', 'Le Mans'),
-('IUT du Mans', '48.020, 0.170', 'Le Mans'),
-('IUT de Laval', '48.085, -0.762', 'Laval'),
-('ENSIM', '48.021, 0.164', 'Le Mans');
-
-INSERT INTO DEPARTEMENT (nom_departement, coords_departement, id_composante, id_inventaire) VALUES
-('Département du Droit Public', '48.016, 0.160', 1, 1),
-('Département d''Anglais', '48.018, 0.162', 2, 2),
-('Département d''Espagnol', '48.019, 0.165', 2, 3),
-('Département d''Allemand', '48.010, 0.162', 2, 4),
-('Département d''histoire', '48.018, 0.162', 2, 5),
-('Département d''Informatique', '48.019, 0.165', 3, 6),
-('Département d''Physique', '48.019, 0.165', 3, 7),
-('Département de Génie Industriel', '48.020, 0.170', 4, 8),
-('GEA', '48.085, -0.762', 5, 9),
-('Acoustique', '48.021, 0.164', 6, 10);
-
 INSERT INTO UTILISATEUR (identifiant, nom_utilisateur, prenom_utilisateur, mail_univ, mdp_univ, id_role) VALUES
 ('i2400001', 'Bertrand', 'Marc', 'marc.bertrand@univ-lemans.fr', 'fhd586scv', 1),
 ('i2400002', 'Gaëtan', 'Vincent', 'vincent.gaetan@univ-lemans.fr', 'yun913daw', 2),
@@ -82,19 +62,45 @@ INSERT INTO UTILISATEUR (identifiant, nom_utilisateur, prenom_utilisateur, mail_
 ('i2400007', 'Christian', 'Thomas', 'thomas.christian.etu@univ-lemans.fr', 'bla555bla', 7),
 ('i2400008', 'Léon', 'Julie', 'julie.leon.etu@univ-lemans.fr', 'iop753aze', 8),
 ('i2400009', 'Bosco', 'Lucas', 'lucas.bosco.etu@univ-lemans.fr', 'nzi654cqq', 8),
-('i2400010', 'Maël', 'Éva', 'eva.mael.etu@univ-lemans.fr', 'xls855daz', 8);
+('i2400010', 'Maël', 'Éva', 'eva.mael.etu@univ-lemans.fr', 'xls855daz', 8),
+('i2400011', 'Roulin', 'Olivier', 'olivier.roulin@univ-lemans.fr', 'rgd248pfh', '3'),
+('i2400012', 'Faure-Ferlet', 'Axelle', 'axelle.faure-ferlet@univ-lemans.fr', 'fhd952vdf', '3');
 
-INSERT INTO SERVICE (nom_service, coords_service, id_inventaire, id_composante) VALUES
-('Secrétariat de la faculté de droit', '48.017, 0.161', 11, 1),
-('Maintenance de la faculté de droit', '48.020, 0.170', 12, 1),
-('Secrétariat de la faculté des lettres', '48.018, 0.162', 13, 2),
-('Maintenance de la faculté des lettres', '48.021, 0.164', 14, 2),
-('Secrétariat de la faculté des sciences', '48.085, -0.762', 15, 3),
-('Maintenance de la faculté des sciences', '48.020, 0.170', 16, 3),
-('Secrétariat de l''IUT du Mans', '48.018, 0.162', 17, 4),
-('Maintenance de l''IUT du Mans', '48.021, 0.164', 18, 4),
-('Secrétariat de l''IUT de Laval', '48.018, 0.162', 19, 5),
-('Maintenance de l''IUT de Laval', '48.021, 0.164', 20, 5);
+INSERT INTO COMPOSANTE (nom_composante, coords_composante, ville) VALUES
+('Faculté de Droit, Sciences économiques & de Gestion', '48.016, 0.160', 'Le Mans'),
+('Faculté des Lettres, Langues & Sciences humaines', '48.018, 0.162', 'Le Mans'),
+('Faculté des Sciences et Techniques', '48.019, 0.165', 'Le Mans'),
+('IUT du Mans', '48.020, 0.170', 'Le Mans'),
+('IUT de Laval', '48.085, -0.762', 'Laval'),
+('ENSIM', '48.021, 0.164', 'Le Mans');
+
+INSERT INTO DEPARTEMENT (nom_departement, id_utilisateur, id_composante, id_inventaire) VALUES
+('Département du Droit Public', NULL, 1, 1),
+('Département d\'Anglais', NULL, 2, 2),
+('Département d\'Espagnol', NULL, 2, 15),
+('Département d\'Allemand', NULL, 2, 4),
+('Département d\'histoire', NULL, 2, 5),
+('Département d\'Informatique', NULL, 3, 6),
+('Département d\'Physique', NULL, 3, 7),
+('Département Informatique', 11, 5, 8),
+('Département Génie Biologique', NULL, 5, 8),
+('Département Métier du Multimédia et de l\'Internet', NULL, 5, 8),
+('Département Technique de Commercialisation', 12, 5, 3),
+('Département de Génie Industriel', NULL, 4, 8),
+('GEA', NULL, 5, 9),
+('Acoustique', NULL, 6, 10);
+
+INSERT INTO SERVICE (nom_service, id_inventaire, id_composante) VALUES
+('Secrétariat de la faculté de droit', 11, 1),
+('Maintenance de la faculté de droit', 12, 1),
+('Secrétariat de la faculté des lettres', 13, 2),
+('Maintenance de la faculté des lettres', 14, 2),
+('Secrétariat de la faculté des sciences', 15, 3),
+('Maintenance de la faculté des sciences', 16, 3),
+('Secrétariat de l''IUT du Mans', 17, 4),
+('Maintenance de l''IUT du Mans', 18, 4),
+('Secrétariat de l''IUT de Laval', 19, 5),
+('Maintenance de l''IUT de Laval', 20, 5);
 
 INSERT INTO STATISTIQUE (titre_statistique, nb_recyclages, id_categorie) VALUES
 ('Tonnage de Papier - Octobre', 120, 1),
@@ -157,8 +163,8 @@ INSERT INTO NOTIFICATION (titre_notification, date_envoi, id_emetteur, id_recept
 ('Lucas Bosco veut emprunter l''objet "Journal Le Monde".', '2025-10-11', 9, 7);
 
 INSERT INTO AGENCER (id_objet, id_inventaire) VALUES
-(1, 2),
-(2, 3),
+(1, 3),
+(2, 2),
 (3, 8),
 (4, 5),
 (5, 6),
