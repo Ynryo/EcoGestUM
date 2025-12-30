@@ -365,7 +365,7 @@ a {
 
 /* ERRORS */
 .error,
-.positive {
+.success {
     font-family: Poppins, sans-serif;
     font-weight: 400;
     font-size: 16px;
@@ -381,8 +381,8 @@ a {
 }
 
 .success {
-    background-color: rgba(0, 255, 0, 0.40);
-    color: rgb(0, 255, 0);
+    background-color: rgba(67, 182, 67, 0.25);
+    color: rgba(67, 182, 67);
 }
 
 /* BOXS */
@@ -392,4 +392,13 @@ a {
     align-items: flex-start;
     margin: 20px 50px;
     gap: 20px;
+}
+
+.main.panel {
+    flex-direction: row;
+}
+
+.main.panel .container {
+    display: flex;
+    flex-direction: column;
 }
