@@ -30,10 +30,12 @@ CREATE TABLE
 CREATE TABLE
    odd (
       id_odd INT AUTO_INCREMENT,
+      num_odd VARCHAR(50) NOT NULL,
       titre_odd VARCHAR(255) NOT NULL,
-      desc_odd VARCHAR(255),
-      image_odd VARCHAR(255) NOT NULL,
+      desc_odd MEDIUMTEXT,
+      link_odd VARCHAR(255) NOT NULL,
       PRIMARY KEY (id_odd),
+      UNIQUE (num_odd),
       UNIQUE (titre_odd)
    );
 
