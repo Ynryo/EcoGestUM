@@ -57,7 +57,7 @@
 }
 
 /* Status badges */
-.status {
+.status::before {
     font-family: Poppins, sans-serif;
     font-size: 14px;
     font-weight: 500;
@@ -67,22 +67,24 @@
     border-radius: 10px;
 }
 
-.status.non {
+.status.non::before {
+    content: "Non";
     background-color: #f4433650;
     color: #f44336;
 }
 
-.status.en-cours {
+.status.en-cours::before {
+    content: "En cours";
     background-color: #ffc10750;
     color: #ffc107;
 }
 
-.status.oui {
+.status.oui::before {
+    content: "Oui";
     background-color: #4caf5050;
     color: #4caf50;
 }
 
-/* Expanded content */
 .odd-row-content {
     max-height: 0;
     overflow: hidden;

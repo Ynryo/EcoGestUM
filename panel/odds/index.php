@@ -44,7 +44,7 @@ $odds = $stmt_odds->fetchAll(PDO::FETCH_ASSOC);
                             <span class="col-num"><?= $odd_number ?></span>
                             <span class="col-name"><?= htmlspecialchars($odd['titre_odd']) ?></span>
                             <span class="col-status">
-                                <span class="status non">Non</span>
+                                <span class="status non"></span>
                             </span>
                             <span class="col-arrow">
                                 <span class="material-symbols-outlined arrow-icon">expand_more</span>
