@@ -1,7 +1,7 @@
 <?php
 function isActive($onglet)
 {
-    $admin_pages = ["", "server", "inventory", "communications", "settings", "odds", "history"];
+    $admin_pages = ["", "server", "inventory", "communications", "settings", "odds", "history", "add-user"];
     $current_page = str_replace("/", "", str_replace("/panel", "", $_SERVER["REQUEST_URI"]));
 
     if (in_array($onglet, $admin_pages) && $onglet === $current_page) {

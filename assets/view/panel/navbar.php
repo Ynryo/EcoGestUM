@@ -34,6 +34,11 @@
         17 ODD
     </a>
 
+    <a href="/panel/add-user" class="nav-item<?= isActive("add-user"); ?>">
+        <span class="material-symbols-outlined">person_add</span>
+        Ajouter un utilisateur
+    </a>
+
     <a href="/panel/history" class="nav-item<?= isActive("history"); ?>">
         <span class="material-symbols-outlined">history</span>
         Historique

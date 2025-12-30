@@ -372,7 +372,7 @@ a {
     padding: 10px 20px;
     border-radius: 10px;
     width: 100%;
-    text-align: center;
+    text-align: left;
 }
 
 .error {
@@ -401,4 +401,6 @@ a {
 .main.panel .container {
     display: flex;
     flex-direction: column;
+    width: 100%;
+    gap: 20px;
 }

@@ -13,17 +13,18 @@
     display: flex;
     align-items: center;
     padding: 15px 15px;
-    gap: 15px;
+    gap: 10px;
     text-decoration: none;
     border-radius: 10px;
-    margin-bottom: 10px; 
-    transition: background-color 0.2s, color 0.2s; 
+    margin-bottom: 10px;
+    transition: background-color 0.2s, color 0.2s;
 }
 
 .nav-panel a.active {
     background-color: var(--primary-orange);
     color: var(--light);
 }
+
 .nav-panel a.active:hover {
     background-color: var(--hovered-orange);
     cursor: pointer;
