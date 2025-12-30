@@ -1,0 +1,46 @@
+.nav-panel {
+    background-color: var(--primary-blue);
+    width: 250px;
+    padding: 15px;
+    border-radius: 15px;
+    font-family: Poppins, sans-serif;
+    font-weight: 500;
+    margin-left: 20px;
+    height: fit-content;
+    flex-shrink: 0;
+
+}
+
+.nav-panel a {
+    display: flex;
+    align-items: center;
+    padding: 15px 20px;
+    gap: 15px;
+    text-decoration: none;
+    border-radius: 10px;
+    margin-bottom: 10px; 
+    transition: background-color 0.2s, color 0.2s; 
+}
+
+.nav-panel a.active {
+    background-color: var(--primary-orange);
+    color: var(--light);
+}
+.nav-panel a.active:hover {
+    background-color: var(--hovered-orange);
+    cursor: pointer;
+}
+
+.nav-panel a:not(.active) {
+    background-color: var(--light);
+    color: var(--primary-blue);
+}
+
+.nav-panel a:not(.active):hover {
+    background-color: var(--hovered-light);
+    cursor: pointer;
+}
+
+.nav-panel a:last-child {
+    margin: 0;
+}

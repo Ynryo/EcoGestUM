@@ -1,0 +1,88 @@
+/* Panel Specific Styles */
+
+.dashboard-header {
+    margin-bottom: 5px;
+}
+
+.welcome-section {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 20px;
+}
+
+.welcome-title {
+    font-weight: 400;
+    font-size: 18px;
+}
+
+.card-title {
+    color: var(--medium);
+}
+
+.card-text {
+    color: var(--dark);
+    font-weight: 500;
+}
+
+.composante-container {
+    margin: 10px 0;
+}
+
+.arrow-icon-small {
+    font-size: 18px;
+}
+
+.graph-box {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px;
+}
+
+.pie-chart-container {
+    width: 250px;
+    height: 250px;
+}
+
+.legend-box {
+    margin-left: 20px;
+}
+
+.legend-title {
+    color: var(--medium);
+    margin-bottom: 10px;
+}
+
+.legend-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.legend-item-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    margin-right: 8px;
+}
+
+.line-graph-container {
+    margin-top: 20px;
+    padding: 20px;
+    user-select: none;
+}
+
+/* Table Column Widths */
+.col-name {
+    width: 50%;
+}
+
+.col-qty {
+    width: 20%;
+}
+
+.col-comp {
+    width: 30%;
+}
