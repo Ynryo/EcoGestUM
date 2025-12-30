@@ -10,22 +10,15 @@ if (empty($current_user)) {
     exit;
 }
 ?>
-<!DOCTYPE html>
-<html lang="fr">
+<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<title>EcoGestUM | <?= htmlspecialchars($pageTitle ?? 'Panel') ?></title>
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>EcoGestUM | <?= htmlspecialchars($pageTitle ?? 'Panel') ?></title>
-
-    <?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
-
-    <link rel="stylesheet" href="/assets/css/globals.css">
-    <link rel="stylesheet" href="/assets/css/panel.css">
-    <link rel="stylesheet" href="/assets/css/search.css">
-    <link rel="stylesheet" href="/assets/css/boxs.css">
-    <link rel="stylesheet" href="/assets/css/nav-panel.css">
-    <link rel="stylesheet" href="/assets/css/profile.css">
+<link rel="stylesheet" href="/assets/css/globals.css">
+<link rel="stylesheet" href="/assets/css/panel.css">
+<link rel="stylesheet" href="/assets/css/search.css">
+<link rel="stylesheet" href="/assets/css/boxs.css">
+<link rel="stylesheet" href="/assets/css/nav-panel.css">
+<link rel="stylesheet" href="/assets/css/profile.css">
 </head>
 
 <body>

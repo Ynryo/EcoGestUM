@@ -1,15 +1,9 @@
 <?php include(dirname(__FILE__, 2) . '/assets/models/files_header.php') ?>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <title>EcoGestUM - Événements</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="preload" fetchpriority="high" as="image" href="/assets/img/lmu-logo-for-titles.png" type="image/png">
-    <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
-    <link rel="stylesheet" href="/assets/css/press-releases.css">
-    <link rel="stylesheet" href="/assets/css/search.css">
+<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
+<title>EcoGestUM - Événements</title>
+<link rel="preload" fetchpriority="high" as="image" href="/assets/img/lmu-logo-for-titles.png" type="image/png">
+<link rel="stylesheet" href="/assets/css/press-releases.css">
+<link rel="stylesheet" href="/assets/css/search.css">
 </head>
 
 <body>

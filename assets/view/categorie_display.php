@@ -13,16 +13,10 @@ if (empty($cat)) {
     exit();
 }
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <title>EcoGestUM - <?= htmlspecialchars($cat[0]["titre_categorie"]) ?></title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
-    <link rel="stylesheet" href="/assets/css/search.css">
-    <link rel="stylesheet" href="/assets/css/products.css">
+<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<title>EcoGestUM - <?= htmlspecialchars($cat[0]["titre_categorie"]) ?></title>
+<link rel="stylesheet" href="/assets/css/search.css">
+<link rel="stylesheet" href="/assets/css/products.css">
 </head>
 
 <body>

@@ -2,18 +2,12 @@
 include(dirname(__FILE__, 2) . '/assets/models/files_header.php');
 include(dirname(__FILE__, 2) . '/assets/models/conn.php');
 ?>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <title>EcoGestUM</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
-    <link rel="preload" fetchpriority="high" as="image" href="/assets/img/landing-page-background.png" type="image/png">
-    <link rel="stylesheet" href="/assets/css/search.css">
-    <link rel="stylesheet" href="/assets/css/boxs.css">
-    <link rel="stylesheet" href="/assets/css/inputs.css">
+<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
+<title>EcoGestUM</title>
+<link rel="preload" fetchpriority="high" as="image" href="/assets/img/landing-page-background.png" type="image/png">
+<link rel="stylesheet" href="/assets/css/search.css">
+<link rel="stylesheet" href="/assets/css/boxs.css">
+<link rel="stylesheet" href="/assets/css/inputs.css">
 </head>
 
 <body>
@@ -65,7 +59,8 @@ include(dirname(__FILE__, 2) . '/assets/models/conn.php');
                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($results as $result): ?>
                     <option value="<?= htmlspecialchars($result["id_categorie"]) ?>">
-                        <?= htmlspecialchars($result["titre_categorie"]) ?></option>
+                        <?= htmlspecialchars($result["titre_categorie"]) ?>
+                    </option>
                 <?php endforeach; ?>
                 <option value="0">Autre</option>
             </select>
@@ -100,7 +95,8 @@ include(dirname(__FILE__, 2) . '/assets/models/conn.php');
                 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                 foreach ($results as $result): ?>
                     <option value="<?= htmlspecialchars($result["id_inventaire"]) ?>">
-                        <?= htmlspecialchars($result["nom_inventaire"]) ?></option>
+                        <?= htmlspecialchars($result["nom_inventaire"]) ?>
+                    </option>
                 <?php endforeach; ?>
             </select>
 

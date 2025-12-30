@@ -1,16 +1,10 @@
 <?php include(dirname(__FILE__, 3) . '/assets/models/conn.php') ?>
-<!DOCTYPE html>
-<html lang="fr">
-
-<head>
-    <title>EcoGestUM</title>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
-    <link rel="preload" fetchpriority="high" as="image" href="/assets/img/landing-page-background.png" type="image/png">
-    <link rel="stylesheet" href="/assets/css/search.css">
-    <link rel="stylesheet" href="/assets/css/boxs.css">
-    <link rel="stylesheet" href="/assets/css/post-ads.css">
+<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<title>EcoGestUM</title>
+<link rel="preload" fetchpriority="high" as="image" href="/assets/img/landing-page-background.png" type="image/png">
+<link rel="stylesheet" href="/assets/css/search.css">
+<link rel="stylesheet" href="/assets/css/boxs.css">
+<link rel="stylesheet" href="/assets/css/post-ads.css">
 </head>
 
 <body>
