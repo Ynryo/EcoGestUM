@@ -1,6 +1,6 @@
-USE sae;
+USE ecogestum;
 
-INSERT INTO ROLE (nom_role) VALUES
+INSERT INTO role (nom_role) VALUES
 ('Présidence de l''université'),
 ('Directeur de composante'),
 ('Chef de département'),
@@ -10,7 +10,7 @@ INSERT INTO ROLE (nom_role) VALUES
 ('Enseignant'),
 ('Etudiant');
 
-INSERT INTO ODD (titre_odd, desc_odd, image_odd) VALUES
+INSERT INTO odd (titre_odd, desc_odd, image_odd) VALUES
 ('ODD 4', 'Éducation de qualité', 'image_odd_4.png'),
 ('ODD 9', 'Industrie, innovation et infrastructure', 'image_odd_9.png'),
 ('ODD 11', 'Villes et communautés durables', 'image_odd_11.png'),
@@ -18,7 +18,7 @@ INSERT INTO ODD (titre_odd, desc_odd, image_odd) VALUES
 ('ODD 13', 'Mesures relatives à la lutte contre les changements climatiques', 'image_odd_13.png'),
 ('ODD 17', 'Partenariats pour la réalisation des objectifs', 'image_odd_17.png');
 
-INSERT INTO CATEGORIE (titre_categorie, desc_categorie, id_odd) VALUES
+INSERT INTO categorie (titre_categorie, desc_categorie, id_odd) VALUES
 ('Papier/Carton', 'Déchets de papier et carton pour recyclage', 1),
 ('Plastique PET', 'Bouteilles et contenants en plastique PET', 4),
 ('Verre', 'Bouteilles et pots en verre', 4),
@@ -30,7 +30,7 @@ INSERT INTO CATEGORIE (titre_categorie, desc_categorie, id_odd) VALUES
 ('Déchets chimiques','Déchets potentiellement toxique qui provient des départements scientifiques', 2),
 ('Caoutchouc','Pneus, butoir de porte', 5);
 
-INSERT INTO INVENTAIRE (nom_inventaire) VALUES
+INSERT INTO inventaire (nom_inventaire) VALUES
 ('Inventaire Département Informatique'),
 ('Inventaire Département Génie Biologique'),
 ('Inventaire Département Techniques de Commercialisation'),
@@ -52,7 +52,7 @@ INSERT INTO INVENTAIRE (nom_inventaire) VALUES
 ('Inventaire Service Sec IUT Laval'),
 ('Inventaire Service Mtnc IUT Laval');
 
-INSERT INTO UTILISATEUR (identifiant, nom_utilisateur, prenom_utilisateur, mail_univ, mdp_univ, id_role) VALUES
+INSERT INTO utilisateur (identifiant, nom_utilisateur, prenom_utilisateur, mail_univ, mdp_univ, id_role) VALUES
 ('i2400001', 'Bertrand', 'Marc', 'marc.bertrand@univ-lemans.fr', 'fhd586scv', 1),
 ('i2400002', 'Gaëtan', 'Vincent', 'vincent.gaetan@univ-lemans.fr', 'yun913daw', 2),
 ('i2400003', 'Sullivan', 'Violette', 'violette.sullivan@univ-lemans.fr', 'zfb568xvd', 3),
@@ -66,7 +66,7 @@ INSERT INTO UTILISATEUR (identifiant, nom_utilisateur, prenom_utilisateur, mail_
 ('i2400011', 'Roulin', 'Olivier', 'olivier.roulin@univ-lemans.fr', 'rgd248pfh', '3'),
 ('i2400012', 'Faure-Ferlet', 'Axelle', 'axelle.faure-ferlet@univ-lemans.fr', 'fhd952vdf', '3');
 
-INSERT INTO COMPOSANTE (nom_composante, coords_composante, ville) VALUES
+INSERT INTO composante (nom_composante, coords_composante, ville) VALUES
 ('Faculté de Droit, Sciences économiques & de Gestion', '48.016, 0.160', 'Le Mans'),
 ('Faculté des Lettres, Langues & Sciences humaines', '48.018, 0.162', 'Le Mans'),
 ('Faculté des Sciences et Techniques', '48.019, 0.165', 'Le Mans'),
@@ -74,7 +74,7 @@ INSERT INTO COMPOSANTE (nom_composante, coords_composante, ville) VALUES
 ('IUT de Laval', '48.085, -0.762', 'Laval'),
 ('ENSIM', '48.021, 0.164', 'Le Mans');
 
-INSERT INTO DEPARTEMENT (nom_departement, id_utilisateur, id_composante, id_inventaire) VALUES
+INSERT INTO departement (nom_departement, id_utilisateur, id_composante, id_inventaire) VALUES
 ('Département du Droit Public', NULL, 1, 1),
 ('Département d\'Anglais', NULL, 2, 2),
 ('Département d\'Espagnol', NULL, 2, 15),
@@ -90,7 +90,7 @@ INSERT INTO DEPARTEMENT (nom_departement, id_utilisateur, id_composante, id_inve
 ('GEA', NULL, 5, 9),
 ('Acoustique', NULL, 6, 10);
 
-INSERT INTO SERVICE (nom_service, id_inventaire, id_composante) VALUES
+INSERT INTO service (nom_service, id_inventaire, id_composante) VALUES
 ('Secrétariat de la faculté de droit', 11, 1),
 ('Maintenance de la faculté de droit', 12, 1),
 ('Secrétariat de la faculté des lettres', 13, 2),
@@ -102,7 +102,7 @@ INSERT INTO SERVICE (nom_service, id_inventaire, id_composante) VALUES
 ('Secrétariat de l''IUT de Laval', 19, 5),
 ('Maintenance de l''IUT de Laval', 20, 5);
 
-INSERT INTO STATISTIQUE (titre_statistique, nb_recyclages, id_categorie) VALUES
+INSERT INTO statistique (titre_statistique, nb_recyclages, id_categorie) VALUES
 ('Tonnage de Papier - Octobre', 120, 1),
 ('Volume de Plastique - Septembre', 45, 2),
 ('Collecte de Verre - Semaine 40', 80, 3),
@@ -114,7 +114,7 @@ INSERT INTO STATISTIQUE (titre_statistique, nb_recyclages, id_categorie) VALUES
 ('Produits chimiques collecté (en L) - Novembre', 9, 9),
 ('Caoutchouc collecté - Octobre', 60, 10);
 
-INSERT INTO COMMUNIQUE (id_communique, titre_communique, contenu, date_publication, cat_communique, id_utilisateur) VALUES
+INSERT INTO communique (id_communique, titre_communique, contenu, date_publication, cat_communique, id_utilisateur) VALUES
 (1, 'Ouverture de ÉcoGestUM', 'Bonjour à tous,<br><br>Nous sommes ravis d\'annoncer l\'ouverture officielle de notre plateforme de gestion environnementale, ÉcoGestUM ! Pour assurer le succès de cette initiative, nous vous prions de prendre connaissance des règles d\'utilisation et de les respecter scrupuleusement. Votre engagement est clé pour un campus plus vert.<br><br>Cordialement,<br>L\'équipe ÉcoGestUM', '2025-11-17 11:32:44', 'Information', 1),
 (2, 'Succès de la collecte DEEE', 'Bonjour,<br><br>Un immense merci à tous les participants ! Notre récente collecte de Déchets d\'Équipements Électriques et Électroniques (DEEE) a été un franc succès, permettant de récupérer 50 kg de matériel. Cela représente un pas important dans la réduction de notre empreinte numérique et le recyclage responsable. Continuons sur cette lancée !<br><br>Cordialement,<br>Le service environnement', '2025-11-17 11:32:44', 'Statistique', 1),
 (3, 'Rappel : événements à venir', 'Bonjour,<br><br>Alerte Agenda ! Nous vous rappelons l’imminence de notre prochain événement : la Journée du Réemploi. C\'est l\'occasion parfaite pour donner une seconde vie à vos objets et échanger des astuces zéro déchet. Consultez le programme détaillé sur notre site. Venez nombreux !<br><br>Cordialement,<br>L\'équipe événementielle', '2025-11-17 11:32:44', 'Événement', 1),
@@ -126,7 +126,7 @@ INSERT INTO COMMUNIQUE (id_communique, titre_communique, contenu, date_publicati
 (9, 'Rappel : événements à venir', 'Bonjour,<br><br>Encore un rappel ! Vu le succès de la dernière édition, nous réorganisons la Journée du Ré-Réemploi la semaine prochaine. Préparez vos objets à troquer ou à donner ! Plus d\'informations sur les horaires et le lieu suivront très prochainement.<br><br>Cordialement,<br>Le service événementiel', '2025-11-17 11:32:44', 'Information', 1),
 (10, 'Changement de point de collecte', 'Avis important,<br><br>Nouvelle localisation pour les déchets en Verre : Afin de mieux desservir la zone Est du campus, le point de collecte Verre a été déplacé au Rez-de-Chaussée du Bâtiment B. Veuillez noter ce changement pour vos prochains dépôts. Merci de votre coopération !<br><br>Cordialement,<br>La Direction des services techniques', '2025-11-17 11:32:44', 'Information', 1);
 
-INSERT INTO EVENEMENT (id_evenement, titre_evenement, desc_evenement, date_debut, date_fin, id_composante) VALUES
+INSERT INTO evenement (id_evenement, titre_evenement, desc_evenement, date_debut, date_fin, id_composante) VALUES
 (1, 'Journée du Réemploi (Droit)', 'C\'est la journée du Réemploi !', '2025-10-23 08:00:00', '2025-10-23 18:00:00', 1),
 (2, 'Journée du Ré-Réemploi (Droit)', 'C\'est la journée du Ré-Réemploi !', '2025-11-10 10:00:00', '2025-11-10 11:30:00', 1),
 (3, 'Journée du Réemploi (Lettres)', 'C\'est la journée du Réemploi !', '2025-10-23 08:00:00', '2025-10-23 18:00:00', 2),
@@ -138,7 +138,7 @@ INSERT INTO EVENEMENT (id_evenement, titre_evenement, desc_evenement, date_debut
 (9, 'Octobre Rose', 'C\'est la journée Rose.', '2025-12-01 08:00:00', '2025-12-01 12:00:00', 4),
 (10, 'Journée du Réemploi (ENSIM)', 'C\'est la journée du Réemploi !', '2025-10-23 08:00:00', '2025-10-23 18:00:00', 6);
 
-INSERT INTO OBJET (nom_objet, desc_objet, quantity, date_ajout, statut, id_categorie) VALUES
+INSERT INTO objet (nom_objet, desc_objet, quantity, date_ajout, statut, id_categorie) VALUES
 ('Bouteille Plastique', 'Bouteille d’eau 1.5L vide', 1, '2025-10-20', 'Disponible', 2),
 ('Journal Le Monde', 'Ancien numéro du quotidien', 1, '2025-10-21', 'Disponible', 1),
 ('Batterie AA', 'Pile usagée', 1, '2025-10-22', 'Disponible', 4),
@@ -150,7 +150,7 @@ INSERT INTO OBJET (nom_objet, desc_objet, quantity, date_ajout, statut, id_categ
 ('Clavier USB', 'Clavier inutilisé', 1, '2025-10-22', 'Indisponible', 5),
 ('Déchets de repas', 'Épluchures de fruits, restes', 1, '2025-10-22', 'En élimination', 6);
 
-INSERT INTO NOTIFICATION (titre_notification, date_envoi, id_emetteur, id_recepteur) VALUES
+INSERT INTO notification (titre_notification, date_envoi, id_emetteur, id_recepteur) VALUES
 ('Éva Maël veut emprunter l''objet "Bouteille Plastique".', '2025-10-20', 10, 3),
 ('Le départent Informatique veut collaborer sur l''objet "Bloc-notes"', '2025-09-18', 3, 2),
 ('Julie Léon veut emprunter l''objet "Boîte à pizza".', '2025-11-08', 8, 4),
@@ -162,7 +162,7 @@ INSERT INTO NOTIFICATION (titre_notification, date_envoi, id_emetteur, id_recept
 ('Rappel événement : Journée de Ré-réemploi !', '2025-10-09', 1, 2),
 ('Lucas Bosco veut emprunter l''objet "Journal Le Monde".', '2025-10-11', 9, 7);
 
-INSERT INTO AGENCER (id_objet, id_inventaire) VALUES
+INSERT INTO agencer (id_objet, id_inventaire) VALUES
 (1, 3),
 (2, 2),
 (3, 8),
