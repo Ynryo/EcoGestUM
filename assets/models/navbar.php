@@ -1,18 +1,10 @@
 <?php
-function isActive($currentPage)
+function isActive($onglet)
 {
-    $pages = [
-    "accueil" => "/panel/",
-    'statistiques' => '/panel/statistics',
-    'serveur' => '/panel/server',
-    'inventaire' => '/panel/inventory',
-    'communiques' => '/panel/communications',
-    'parametres' => '/panel/settings',
-    'odd' => '/panel/odds',
-    'historique' => '/panel/history',
-];
+    $admin_pages = ["", "server", "inventory", "communications", "settings", "odds", "history"];
+    $current_page = str_replace("/", "", str_replace("/panel", "", $_SERVER["REQUEST_URI"]));
 
-    if ($pages[$currentPage] === $_SERVER["REQUEST_URI"]) {
+    if (in_array($onglet, $admin_pages) && $onglet === $current_page) {
         return ' active';
     }
 }
