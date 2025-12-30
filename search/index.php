@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__, 2) . '/assets/models/files_header.php');
+include(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
 
 if (isset($_GET["q"])) {
     include(dirname(__FILE__, 2) . '/assets/models/conn.php');

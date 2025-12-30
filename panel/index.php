@@ -1,27 +1,23 @@
 <?php
-include_once(dirname(__FILE__, 2) . '/assets/models/files_header.php');
-include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
-include_once(dirname(__FILE__, 2) . '/assets/models/mProfile.php');
-
-$stmt = $pdo->prepare("SELECT u.nom_utilisateur, u.prenom_utilisateur, u.mail_univ, r.id_role FROM utilisateur u JOIN role r on u.id_role = r.id_role WHERE u.id_utilisateur = :u;");
-$stmt->bindParam(':u', $_SESSION["user_id"]);
-$stmt->execute();
-$results = $stmt->fetch(PDO::FETCH_ASSOC);
-?>
-<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
-    <title>EcoGestUM - Profil</title>
-    <link rel="stylesheet" href="/assets/css/search.css">
-    <link rel="stylesheet" href="/assets/css/boxs.css">
-    <link rel="stylesheet" href="/assets/css/navbar.css">
+include_once(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/assets.php'); ?>
+<title>EcoGestUM - Profil</title>
+<link rel="stylesheet" href="/assets/css/search.css">
+<link rel="stylesheet" href="/assets/css/boxs.css">
+<link rel="stylesheet" href="/assets/css/navbar.css">
 </head>
 
 <body>
     <?php include(dirname(__FILE__, 2) . '/assets/view/header.php') ?>
-    <section class="main">
+    <section class="main panel">
         <?php
         include(dirname(__FILE__, 2) . '/assets/models/navbar.php');
         include(dirname(__FILE__, 2) . '/assets/view/panel/navbar.php');
         ?>
+        <div class="container">
+            <h2>Bonjour <?= htmlspecialchars($_SESSION["user_name"]) ?> !</h2>
+            <p>Bienvenue sur votre espace de gestion</p>
+        </div>
     </section>
 
     <?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>

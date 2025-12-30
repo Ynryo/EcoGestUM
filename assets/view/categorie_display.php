@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__, 3) . '/assets/models/files_header.php');
+include(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
 include(dirname(__FILE__, 3) . '/assets/models/conn.php');
 
 $stmt = $pdo->prepare("SELECT * FROM categorie c JOIN objet o ON c.id_categorie = o.id_categorie WHERE c.id_categorie = :c");

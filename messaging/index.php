@@ -1,5 +1,5 @@
 <?php
-include_once(dirname(__FILE__, 2) . '/assets/models/files_header.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
 include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
 if (isset($_GET['id']) && $_GET['id'] != null) {

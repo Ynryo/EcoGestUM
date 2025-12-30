@@ -1,4 +1,4 @@
-<?php include(dirname(__FILE__, 2) . '/assets/models/files_header.php') ?>
+<?php include(dirname(__FILE__, 2) . '/assets/models/access_controller.php') ?>
 <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
 <title>EcoGestUM - Communiqués</title>
 <link rel="preload" fetchpriority="high" as="image" href="/assets/img/lmu-logo-for-titles.png" type="image/png">

@@ -1,5 +1,5 @@
 <?php
-include_once(dirname(__FILE__, 2) . '/assets/models/files_header.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
 include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
 $stmt = $pdo->prepare("SELECT * FROM recuperer r JOIN objet o ON r.id_objet = o.id_objet WHERE id_recepteur = :u;");
