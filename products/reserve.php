@@ -57,7 +57,7 @@ function cancelReservation($pdo, $donneur, $p)
 
 session_start();
 if (isset($_SESSION["user_id"])) {
-    require_once(dirname(__FILE__, 2) . '/assets/src/conn.php');
+    require_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
     //get id_donneur
     $p = strip_tags($_GET["p"]);

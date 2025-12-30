@@ -1,6 +1,6 @@
 <?php
-include_once(dirname(__FILE__, 2) . '/assets/src/files_header.php');
-include_once(dirname(__FILE__, 2) . '/assets/src/conn.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/files_header.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
 $stmt = $pdo->prepare("SELECT * FROM recuperer r JOIN objet o ON r.id_objet = o.id_objet WHERE id_recepteur = :u;");
 $stmt->bindParam(':u', $_SESSION["user_id"]);
@@ -14,7 +14,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>EcoGestUM - Réservations</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include(dirname(__FILE__, 2) . '/assets/src/assets.php') ?>
+    <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
     <link rel="stylesheet" href="/assets/css/search.css">
     <link rel="stylesheet" href="/assets/css/boxs.css">
 </head>
@@ -40,10 +40,12 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                         $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
                         $files = glob($pattern); ?>
                         <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
-                            <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
+                            <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>"
+                                alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
                             <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
                             <span class="statut-objet"><?= htmlspecialchars($product["statut"]); ?></span>
-                            <a href="/products/reserve.php?p=<?= htmlspecialchars($product["id_objet"]) ?>&action=cancel" class="button blue little">Annuler réservation</a>
+                            <a href="/products/reserve.php?p=<?= htmlspecialchars($product["id_objet"]) ?>&action=cancel"
+                                class="button blue little">Annuler réservation</a>
                         </a>
                     <?php endforeach; ?>
                 </div>

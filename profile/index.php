@@ -1,7 +1,7 @@
 <?php
-include_once(dirname(__FILE__, 2) . '/assets/src/files_header.php');
-include_once(dirname(__FILE__, 2) . '/assets/src/conn.php');
-include_once(dirname(__FILE__, 2) . '/assets/src/mProfile.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/files_header.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/mProfile.php');
 
 $stmt = $pdo->prepare("SELECT u.nom_utilisateur, u.prenom_utilisateur, u.mail_univ, r.id_role FROM utilisateur u JOIN role r on u.id_role = r.id_role WHERE u.id_utilisateur = :u;");
 $stmt->bindParam(':u', $_SESSION["user_id"]);
@@ -15,7 +15,7 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
 	<title>EcoGestUM - Profil</title>
 	<meta charset="UTF-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<?php include(dirname(__FILE__, 2) . '/assets/src/assets.php') ?>
+	<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
 	<link rel="stylesheet" href="/assets/css/search.css">
 	<link rel="stylesheet" href="/assets/css/boxs.css">
 	<link rel="stylesheet" href="/assets/css/profile.css">
@@ -32,7 +32,8 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
 		<div>
 			<img src="/assets/img/profile_pictures/default_profile_icon.jpg" alt="Photo de profil de l'utilisateur">
 			<div>
-				<h1><?= htmlspecialchars($results["prenom_utilisateur"]) ?> <?= htmlspecialchars($results["nom_utilisateur"]) ?></h1>
+				<h1><?= htmlspecialchars($results["prenom_utilisateur"]) ?>
+					<?= htmlspecialchars($results["nom_utilisateur"]) ?></h1>
 				<span class="role r<?= htmlspecialchars($results["id_role"]) ?>"></span>
 				<?php
 				$result_compo = getCompoFromChefCompo($pdo);
@@ -43,7 +44,8 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
 				foreach ($result_dep as $dep): ?>
 					<span><?= htmlspecialchars($dep["nom_departement"]) ?></span>
 				<?php endforeach; ?>
-				<a href="mailto:<?= htmlspecialchars($results["mail_univ"]) ?>" class="link">Email : <?= htmlspecialchars($results["mail_univ"]) ?></a>
+				<a href="mailto:<?= htmlspecialchars($results["mail_univ"]) ?>" class="link">Email :
+					<?= htmlspecialchars($results["mail_univ"]) ?></a>
 			</div>
 		</div>
 		<div class="nav-container">

@@ -1,7 +1,7 @@
 <?php
-include_once(dirname(__FILE__, 3) . '/assets/src/files_header.php');
-include_once(dirname(__FILE__, 3) . '/assets/src/conn.php');
-include_once(dirname(__FILE__, 3) . '/assets/src/mProfile.php');
+include_once(dirname(__FILE__, 3) . '/assets/models/files_header.php');
+include_once(dirname(__FILE__, 3) . '/assets/models/conn.php');
+include_once(dirname(__FILE__, 3) . '/assets/models/mProfile.php');
 
 $stmt = $pdo->prepare("SELECT * FROM INVENTAIRE i JOIN DEPARTEMENT d ON i.id_inventaire = d.id_inventaire WHERE i.id_inventaire = :inventaire;");
 $stmt->bindParam(':inventaire', $_GET["id"]);
@@ -22,7 +22,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
     <title>EcoGestUM - Inventaire</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include(dirname(__FILE__, 3) . '/assets/src/assets.php') ?>
+    <?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
     <link rel="stylesheet" href="/assets/css/search.css">
     <link rel="stylesheet" href="/assets/css/products.css">
 </head>
@@ -37,12 +37,13 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
             <?php if (isset($_GET["p"])): ?>
                 <span class="material-symbols-outlined">arrow_forward_ios</span>
-                <a href="/products/?c=<?= $objet["id_categorie"] ?>" class="link"><?= htmlspecialchars($objet["titre_categorie"]) ?></a>
+                <a href="/products/?c=<?= $objet["id_categorie"] ?>"
+                    class="link"><?= htmlspecialchars($objet["titre_categorie"]) ?></a>
                 <span class="material-symbols-outlined">arrow_forward_ios</span>
                 <?= htmlspecialchars($objet["nom_objet"]) ?>
             <?php endif; ?>
         </div>
-        <?php 
+        <?php
         // foreach($result)
         var_dump($result);
         ?>

@@ -1,6 +1,6 @@
 <?php
-include(dirname(__FILE__, 3) . '/assets/src/files_header.php');
-include(dirname(__FILE__, 3) . '/assets/src/conn.php');
+include(dirname(__FILE__, 3) . '/assets/models/files_header.php');
+include(dirname(__FILE__, 3) . '/assets/models/conn.php');
 
 $stmt = $pdo->prepare("SELECT * FROM categorie c JOIN objet o ON c.id_categorie = o.id_categorie WHERE c.id_categorie = :c");
 $stmt->bindParam(':c', $_GET["c"]);
@@ -20,7 +20,7 @@ if (empty($cat)) {
     <title>EcoGestUM - <?= htmlspecialchars($cat[0]["titre_categorie"]) ?></title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include(dirname(__FILE__, 3) . '/assets/src/assets.php') ?>
+    <?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
     <link rel="stylesheet" href="/assets/css/search.css">
     <link rel="stylesheet" href="/assets/css/products.css">
 </head>
@@ -45,15 +45,16 @@ if (empty($cat)) {
                     $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
                     $files = glob($pattern); ?>
                     <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
-                        <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
+                        <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>"
+                            alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
                         <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
                         <p>(<?= htmlspecialchars($product["titre_categorie"]); ?>)</p>
                     </a>
                 <?php endforeach; ?>
-        </div>
-    <?php else: ?>
-        <p>Aucun objet dans cette catégorie.</p>
-    <?php endif; ?>
+            </div>
+        <?php else: ?>
+            <p>Aucun objet dans cette catégorie.</p>
+        <?php endif; ?>
     </section>
     <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
 </body>

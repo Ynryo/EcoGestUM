@@ -66,7 +66,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
         mkdir($target_dir, 0755, true);
     }
 
-    include(dirname(__FILE__, 2) . '/assets/src/conn.php');
+    include(dirname(__FILE__, 2) . '/assets/models/conn.php');
     $stmt = $pdo->prepare("SELECT id_objet FROM objet ORDER BY id_objet DESC LIMIT 1");
     try {
         $stmt->execute();

@@ -18,7 +18,7 @@ if (empty($current_user)) {
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>EcoGestUM | <?= htmlspecialchars($pageTitle ?? 'Panel') ?></title>
 
-    <?php include(dirname(__FILE__, 3) . '/assets/src/assets.php') ?>
+    <?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
 
     <link rel="stylesheet" href="/assets/css/globals.css">
     <link rel="stylesheet" href="/assets/css/panel.css">
@@ -234,7 +234,7 @@ if (empty($current_user)) {
                                             </span>
                                         </td>
                                     </tr>
-                                <?php
+                                    <?php
                                 endforeach;
                             }
                             ?>

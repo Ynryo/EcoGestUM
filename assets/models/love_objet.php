@@ -2,7 +2,7 @@
 session_start();
 
 if (isset($_GET["request"])) {
-    include(dirname(__FILE__, 3) . '/assets/src/conn.php');
+    include(dirname(__FILE__, 3) . '/assets/models/conn.php');
     if ($_GET["request"] == "load") {
         $stmt = $pdo->prepare("SELECT a.id_objet, a.id_utilisateur FROM aimer a JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur JOIN objet o ON o.id_objet = a.id_objet WHERE u.id_utilisateur = :u AND o.id_objet = :p;");
         $stmt->bindParam(':u', $_SESSION["user_id"]);

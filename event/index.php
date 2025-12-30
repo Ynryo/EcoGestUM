@@ -1,4 +1,4 @@
-<?php include(dirname(__FILE__, 2) . '/assets/src/files_header.php') ?>
+<?php include(dirname(__FILE__, 2) . '/assets/models/files_header.php') ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -7,7 +7,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" fetchpriority="high" as="image" href="/assets/img/lmu-logo-for-titles.png" type="image/png">
-    <?php include(dirname(__FILE__, 2) . '/assets/src/assets.php') ?>
+    <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
     <link rel="stylesheet" href="/assets/css/press-releases.css">
     <link rel="stylesheet" href="/assets/css/search.css">
 </head>
@@ -26,7 +26,7 @@
             Événements
         </div>
         <?php
-        include(dirname(__FILE__, 2) . '/assets/src/conn.php');
+        include(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
         $stmt = $pdo->prepare("SELECT * FROM evenement ORDER BY date_debut ASC");
         $stmt->execute();
@@ -35,7 +35,7 @@
             <div class="pr-container">
                 <div class="top-content">
                     <div class="publisher">
-                        <h3><?= htmlspecialchars($result["titre_evenement"])?></h3>
+                        <h3><?= htmlspecialchars($result["titre_evenement"]) ?></h3>
                     </div>
                     <div class="timedate">
                         <span><?= htmlspecialchars(date_format(date_create($result["date_debut"]), "d/m/Y H:i")) ?></span>

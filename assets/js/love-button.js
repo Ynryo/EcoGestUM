@@ -27,7 +27,7 @@ window.addEventListener("load", function isInLoveList() {
         }
     }
 
-    getState.open("GET", "/assets/src/love_objet.php?request=load&p=" + encodeURIComponent(pageId), true);
+    getState.open("GET", "/assets/models/love_objet.php?request=load&p=" + encodeURIComponent(pageId), true);
     getState.send();
 })
 
@@ -36,7 +36,7 @@ function insertObject() {
     const pageId = urlParams.get('p');
     let insertState = new XMLHttpRequest();
 
-    insertState.open("POST", "/assets/src/love_objet.php?request=add&p=" + encodeURIComponent(pageId), true);
+    insertState.open("POST", "/assets/models/love_objet.php?request=add&p=" + encodeURIComponent(pageId), true);
     insertState.send();
 }
 
@@ -45,6 +45,6 @@ function deleteObject() {
     const pageId = urlParams.get('p');
     let deleteState = new XMLHttpRequest();
 
-    deleteState.open("POST", "/assets/src/love_objet.php?request=remove&p=" + encodeURIComponent(pageId), true);
+    deleteState.open("POST", "/assets/models/love_objet.php?request=remove&p=" + encodeURIComponent(pageId), true);
     deleteState.send();
 }

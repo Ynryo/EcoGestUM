@@ -1,6 +1,6 @@
 <?php
-include_once(dirname(__FILE__, 2) . '/assets/src/files_header.php');
-include_once(dirname(__FILE__, 2) . '/assets/src/conn.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/files_header.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
 if (isset($_GET['id']) && $_GET['id'] != null) {
     if (isset($_GET['action']) && $_GET['action'] != null) {
@@ -23,7 +23,7 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
                     $stmt->execute();
                     break;
                 default:
-                    // Erreur peut-être?
+                // Erreur peut-être?
             }
         }
     }
@@ -38,7 +38,7 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="preload" fetchpriority="high" as="image" href="/assets/img/lmu-logo-for-titles.png" type="image/png">
-    <?php include(dirname(__FILE__, 2) . '/assets/src/assets.php') ?>
+    <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
     <link rel="stylesheet" href="/assets/css/messaging.css">
     <link rel="stylesheet" href="/assets/css/search.css">
 </head>
@@ -74,8 +74,10 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
                             </div>
                         </div>
                         <div class="messageButtons">
-                            <a class="button blue" href="/messaging/?id=<?php echo $result["id_notification"] ?>&action=accept">Accepter</a>
-                            <a class="button orange secondary" href="/messaging/?id=<?php echo $result["id_notification"] ?>&action=refuse">Refuser</a>
+                            <a class="button blue"
+                                href="/messaging/?id=<?php echo $result["id_notification"] ?>&action=accept">Accepter</a>
+                            <a class="button orange secondary"
+                                href="/messaging/?id=<?php echo $result["id_notification"] ?>&action=refuse">Refuser</a>
                         </div>
                     </div>
                 <?php endforeach;

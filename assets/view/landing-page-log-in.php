@@ -1,4 +1,4 @@
-<?php include(dirname(__FILE__, 3) . '/assets/src/conn.php') ?>
+<?php include(dirname(__FILE__, 3) . '/assets/models/conn.php') ?>
 <!DOCTYPE html>
 <html lang="fr">
 
@@ -6,7 +6,7 @@
     <title>EcoGestUM</title>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <?php include(dirname(__FILE__, 3) . '/assets/src/assets.php') ?>
+    <?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
     <link rel="preload" fetchpriority="high" as="image" href="/assets/img/landing-page-background.png" type="image/png">
     <link rel="stylesheet" href="/assets/css/search.css">
     <link rel="stylesheet" href="/assets/css/boxs.css">
@@ -47,7 +47,8 @@
                         $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
                         $files = glob($pattern); ?>
                         <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
-                            <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
+                            <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>"
+                                alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
                             <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
                         </a>
                     <?php endforeach; ?>
@@ -75,7 +76,8 @@
                     $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
                     $files = glob($pattern); ?>
                     <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
-                        <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>" alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
+                        <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>"
+                            alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
                         <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
                     </a>
                 <?php endforeach; ?>
