@@ -12,20 +12,25 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
 <html lang="fr">
 
 <head>
-	<title>EcoGestUM - Profil</title>
-	<meta charset="UTF-8">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
-	<link rel="stylesheet" href="/assets/css/search.css">
-	<link rel="stylesheet" href="/assets/css/boxs.css">
-	<link rel="stylesheet" href="/assets/css/navbar.css">
+    <title>EcoGestUM - Profil</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
+    <link rel="stylesheet" href="/assets/css/search.css">
+    <link rel="stylesheet" href="/assets/css/boxs.css">
+    <link rel="stylesheet" href="/assets/css/navbar.css">
 </head>
 
 <body>
-	<?php include(dirname(__FILE__, 2) . '/assets/view/header.php') ?>
-	<?php include(dirname(__FILE__, 2) . '/assets/view/panel/navbar.php') ?>
+    <?php include(dirname(__FILE__, 2) . '/assets/view/header.php') ?>
+    <section class="main">
+        <?php 
+        include(dirname(__FILE__, 2) . '/assets/models/navbar.php');
+        include(dirname(__FILE__, 2) . '/assets/view/panel/navbar.php');
+        ?>
+    </section>
 
-	<?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
+    <?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
 </body>
 
 </html>
