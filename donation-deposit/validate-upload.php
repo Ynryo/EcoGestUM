@@ -95,7 +95,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bindValue(":size", $size);
     $stmt->bindValue(":quantity", $quantity);
     $stmt->bindValue(":date_ajout", date('Y-m-d'));
-    $stmt->bindValue(":statut", "En attente");
+    $stmt->bindValue(":statut", "disponible");
     $stmt->bindValue(":categorie", $categorie);
     $stmt->execute();
 

@@ -2,7 +2,6 @@
 include_once(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
 include_once(dirname(__FILE__, 2) . '/assets/models/assets.php'); ?>
 <title>EcoGestUM - Profil</title>
-<link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/boxs.css">
 <link rel="stylesheet" href="/assets/css/navbar.css">
 </head>

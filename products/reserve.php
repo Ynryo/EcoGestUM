@@ -19,7 +19,7 @@ function newReservation($pdo, $donneur, $p)
         $stmt->execute();
 
         //change objet's statuts
-        $stmt = $pdo->prepare("UPDATE objet SET statut = 'Réservé' WHERE objet.id_objet = :p;");
+        $stmt = $pdo->prepare("UPDATE objet SET statut = 'réservé' WHERE objet.id_objet = :p;");
         $stmt->bindParam(":p", $p);
         $stmt->execute();
         header("Location: /reservations/");
@@ -47,7 +47,7 @@ function cancelReservation($pdo, $donneur, $p)
         $stmt->execute();
 
         //change object status
-        $stmt = $pdo->prepare("UPDATE objet SET statut = 'Disponible' WHERE objet.id_objet = :p;");
+        $stmt = $pdo->prepare("UPDATE objet SET statut = 'disponible' WHERE objet.id_objet = :p;");
         $stmt->bindParam(":p", $p);
         $stmt->execute();
         header("Location: /reservations/");

@@ -139,17 +139,17 @@ INSERT INTO evenement (id_evenement, titre_evenement, desc_evenement, date_debut
 (9, 'Octobre Rose', 'C\'est la journée Rose.', '2025-12-01 08:00:00', '2025-12-01 12:00:00', 4),
 (10, 'Journée du Réemploi (ENSIM)', 'C\'est la journée du Réemploi !', '2025-10-23 08:00:00', '2025-10-23 18:00:00', 6);
 
-INSERT INTO objet (nom_objet, desc_objet, quantity, date_ajout, statut, id_categorie) VALUES
-('Bouteille Plastique', 'Bouteille d’eau 1.5L vide', 1, '2025-10-20', 'Disponible', 2),
-('Journal Le Monde', 'Ancien numéro du quotidien', 1, '2025-10-21', 'Disponible', 1),
-('Batterie AA', 'Pile usagée', 1, '2025-10-22', 'Disponible', 4),
-('Écran PC 24"', 'Vieux écran de bureau, HS', 1, '2025-10-22', 'Indisponible', 5),
-('Canette de Soda', 'Canette vide en aluminium', 1, '2025-10-20', 'Disponible', 7),
-('Boîte à pizza', 'Carton de pizza, peu sale', 1, '2025-10-21', 'Disponible', 1),
-('Bloc-notes', 'Cahier brouillon', 1, '2025-10-22', 'Disponible', 1),
-('Pot de Yaourt en Verre', 'Vide', 1, '2025-10-22', 'Disponible', 3),
-('Clavier USB', 'Clavier inutilisé', 1, '2025-10-22', 'Indisponible', 5),
-('Déchets de repas', 'Épluchures de fruits, restes', 1, '2025-10-22', 'En élimination', 6);
+INSERT INTO objet (id_objet, nom_objet, desc_objet, color, etat, size, quantity, date_ajout, statut, id_categorie) VALUES
+(1, 'Bouteille Plastique', 'Bouteille d’eau 1.5L vide', 'Transparent', 'Très bon', 'Taille unique', 1, '2025-10-20', 'disponible', 2),
+(2, 'Journal Le Monde', 'Ancien numéro du quotidien', NULL, 'Très bon', 'Taille unique', 1, '2025-10-21', 'disponible', 1),
+(3, 'Batterie AA', 'Pile usagée', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'disponible', 4),
+(4, 'Écran PC 24\"', 'Vieux écran de bureau, HS', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'indisponible', 5),
+(5, 'Canette de Soda', 'Canette vide en aluminium', NULL, 'Très bon', 'Taille unique', 1, '2025-10-20', 'disponible', 7),
+(6, 'Boîte à pizza', 'Carton de pizza, peu sale', NULL, 'Très bon', 'Taille unique', 1, '2025-10-21', 'réservé', 1),
+(7, 'Bloc-notes', 'Cahier brouillon', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'disponible', 1),
+(8, 'Pot de Yaourt en Verre', 'Vide', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'disponible', 3),
+(9, 'Clavier USB', 'Clavier inutilisé', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'indisponible', 5),
+(10, 'Déchets de repas', 'Épluchures de fruits, restes', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'en_élimination', 6);
 
 INSERT INTO notification (titre_notification, date_envoi, id_emetteur, id_recepteur) VALUES
 ('Éva Maël veut emprunter l''objet "Bouteille Plastique".', '2025-10-20', 10, 3),

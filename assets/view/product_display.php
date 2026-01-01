@@ -66,7 +66,7 @@ if ($objet == null) {
                 <h4 class="poppins"><?= htmlspecialchars($objet["size"]) ?> | <?= htmlspecialchars($objet["etat"]) ?>
                 </h4>
                 <p>Ajouté il y a <?= getDuration($objet["date_ajout"]) ?></p>
-                <span class="statut-objet"><?= htmlspecialchars($objet["statut"]) ?></span>
+                <span class="status <?= htmlspecialchars($objet["statut"]) ?>"></span>
                 <hr>
                 <p>Couleur : <?= htmlspecialchars($objet["color"]) ?></p>
                 <p>Etat : <?= htmlspecialchars($objet["etat"]) ?></p>

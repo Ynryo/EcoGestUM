@@ -351,16 +351,56 @@ a {
 }
 
 /* STATUTS OBJETS */
-.statut-objet {
+.status::before {
     font-family: Poppins, sans-serif;
     font-size: 14px;
     font-weight: 500;
     display: inline-block;
     width: fit-content;
-    background-color: rgba(171, 171, 171, 0.40);
-    color: rgb(128, 128, 128);
     padding: 5px 10px;
     border-radius: 10px;
+}
+
+.status.non::before {
+    content: "Non";
+    background-color: #f4433650;
+    color: #f44336;
+}
+
+.status.en-cours::before {
+    content: "En cours";
+    background-color: #ffc10750;
+    color: #ffc107;
+}
+
+.status.oui::before {
+    content: "Oui";
+    background-color: #4caf5050;
+    color: #4caf50;
+}
+
+.status.disponible::before {
+    content: "Disponible";
+    background-color: #4caf5050;
+    color: #4caf50;
+}
+
+.status.indisponible::before {
+    content: "Indisponible";
+    background-color: #f4433650;
+    color: #f44336;
+}
+
+.status.réservé::before {
+    content: "Réservé";
+    background-color: #ff930750;
+    color: #ff9307;
+}
+
+.status.en_élimination::before {
+    content: "En élimination";
+    background-color: #a57c0050;
+    color: #a57c00;
 }
 
 /* ERRORS */

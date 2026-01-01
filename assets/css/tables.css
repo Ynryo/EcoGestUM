@@ -1,0 +1,210 @@
+/* Table container */
+.data-table {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 20px;
+}
+
+/* Table header */
+.data-table-header {
+    display: grid;
+    background-color: var(--primary-blue);
+    color: var(--light);
+    padding: 15px 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+}
+
+/* Table row */
+.data-row {
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.data-row:hover {
+    background-color: #f5f5f5;
+}
+
+/* Row header */
+.data-row-header {
+    display: grid;
+    padding: 15px 20px;
+    align-items: center;
+}
+
+.data-row .col-name {
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.data-row .col-arrow {
+    display: flex;
+    justify-content: center;
+}
+
+/* Arrow animation */
+.arrow-icon {
+    transition: transform 0.3s ease;
+}
+
+.data-row.expanded .arrow-icon {
+    transform: rotate(180deg);
+}
+
+/* Expanded content */
+.data-row-content {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease;
+    background-color: #fafafa;
+    border-top: 1px dashed #ccc;
+}
+
+.data-row.expanded .data-row-content {
+    padding: 20px;
+}
+
+/* Detail section */
+.data-detail {
+    display: flex;
+    gap: 25px;
+    align-items: flex-start;
+}
+
+.data-image {
+    flex-shrink: 0;
+}
+
+.data-image img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.data-info {
+    flex: 1;
+}
+
+.data-info h3 {
+    font-size: 1rem;
+    font-weight: 600;
+    color: var(--dark);
+    margin-bottom: 10px;
+    line-height: 1.4;
+}
+
+.data-info p {
+    font-size: 0.9rem;
+    color: #555;
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+
+/* "Voir plus" link */
+.link-voir-plus {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+    color: var(--dark);
+    font-size: 0.9rem;
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.link-voir-plus:hover {
+    color: var(--primary-blue);
+    text-decoration: underline;
+}
+
+.link-voir-plus .material-symbols-outlined {
+    font-size: 1rem;
+}
+
+/* Pagination */
+.pagination-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.pagination-label {
+    color: #666;
+}
+
+.pagination-option {
+    padding: 5px 10px;
+    text-decoration: none;
+    color: var(--dark);
+    border-radius: 5px;
+    transition: background-color 0.2s;
+}
+
+.pagination-option:hover {
+    background-color: #e0e0e0;
+}
+
+.pagination-option.active {
+    background-color: var(--primary-blue);
+    color: var(--light);
+}
+
+/* History Timeline */
+.timeline {
+    margin-top: 10px;
+    padding-left: 10px;
+}
+
+.timeline-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    position: relative;
+    padding-bottom: 15px;
+}
+
+.timeline-item:not(:last-child)::before {
+    content: '';
+    position: absolute;
+    left: 6px;
+    top: 18px;
+    width: 3px;
+    height: calc(100% - 6px);
+    background-color: var(--primary-blue);
+}
+
+.timeline-dot {
+    width: 15px;
+    height: 15px;
+    border-radius: 50%;
+    background-color: var(--primary-blue);
+    flex-shrink: 0;
+}
+
+.timeline-content {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.timeline-date {
+    color: #666;
+    font-size: 0.9rem;
+}
+
+/* Responsive base */
+@media (max-width: 768px) {
+    .data-detail {
+        flex-direction: column;
+    }
+
+    .data-image img {
+        width: 100px;
+        height: 100px;
+    }
+}

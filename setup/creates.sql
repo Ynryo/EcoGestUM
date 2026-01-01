@@ -165,7 +165,7 @@ CREATE TABLE
       desc_objet VARCHAR(255),
       color VARCHAR(20),
       etat VARCHAR(20),
-      size VARCHAR(20),
+      size VARCHAR(20) DEFAULT "Taille unique",
       quantity SMALLINT NOT NULL,
       date_ajout DATE NOT NULL,
       statut VARCHAR(30) NOT NULL,
@@ -174,11 +174,11 @@ CREATE TABLE
       FOREIGN KEY (id_categorie) REFERENCES categorie (id_categorie) ON DELETE CASCADE ON UPDATE CASCADE,
       CONSTRAINT statut_contrainte CHECK (
          statut IN (
-            'Disponible',
-            'Réservé',
-            'Indisponible',
-            'En élimination',
-            'Supprimé'
+            'disponible',
+            'réservé',
+            'indisponible',
+            'en_élimination',
+            'supprimé'
          )
       )
    );

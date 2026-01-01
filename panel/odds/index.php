@@ -9,9 +9,9 @@ $stmt_odds->execute();
 $odds = $stmt_odds->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <title>EcoGestUM - 17 ODD</title>
-<link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/boxs.css">
 <link rel="stylesheet" href="/assets/css/navbar.css">
+<link rel="stylesheet" href="/assets/css/tables.css">
 <link rel="stylesheet" href="/assets/css/odds.css">
 </head>
 

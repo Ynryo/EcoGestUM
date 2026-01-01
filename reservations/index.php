@@ -37,7 +37,7 @@ $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
                             <img src="<?= str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]) ?>"
                                 alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
                             <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
-                            <span class="statut-objet"><?= htmlspecialchars($product["statut"]); ?></span>
+                            <span class="status <?= htmlspecialchars($product["statut"]) ?>"></span>
                             <a href="/products/reserve.php?p=<?= htmlspecialchars($product["id_objet"]) ?>&action=cancel"
                                 class="button blue little">Annuler réservation</a>
                         </a>

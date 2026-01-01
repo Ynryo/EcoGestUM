@@ -61,7 +61,6 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 }
 ?>
 <title>EcoGestUM - Ajouter un utilisateur</title>
-<link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/boxs.css">
 <link rel="stylesheet" href="/assets/css/navbar.css">
 <link rel="stylesheet" href="/assets/css/inputs.css">
