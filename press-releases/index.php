@@ -22,7 +22,7 @@
         <?php
         include(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
-        $stmt = $pdo->prepare("SELECT c.titre_communique, c.contenu, c.cat_communique, c.date_publication, u.prenom_utilisateur, u.nom_utilisateur, u.id_role FROM communique c JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur ORDER BY c.date_publication ASC");
+        $stmt = $pdo->prepare("SELECT c.titre_communique, c.contenu, c.cat_communique, c.date_publication, u.prenom_utilisateur, u.nom_utilisateur, u.id_role FROM communique c JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur ORDER BY c.date_publication DESC");
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($results as $result): ?>
