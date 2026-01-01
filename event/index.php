@@ -38,7 +38,7 @@
                     </div>
                 </div>
                 <div class="content">
-                    <p>Lieu : <span class="composante c<?= htmlspecialchars($result["id_composante"]) ?>"></span></p>
+                    <p>Lieu : <span class="composante c<?= htmlspecialchars($result["id_composante"]) ?>"></span><br></p>
                     <?= strip_tags($result["desc_evenement"], "<br>") ?>
                 </div>
             </div>
