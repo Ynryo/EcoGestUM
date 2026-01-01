@@ -45,7 +45,7 @@ if (isset($_GET["q"])) {
                             alt="<?= htmlspecialchars($product["desc_objet"]); ?>">
                         <h4><?= htmlspecialchars($product["nom_objet"]); ?></h4>
                         <p>(<?= htmlspecialchars($product["titre_categorie"]); ?>)</p>
-                        <span class="statut-objet"><?= htmlspecialchars($product["statut"]); ?></span>
+                        <span class="status <?= htmlspecialchars($product["statut"]) ?>"></span>
                     </a>
                 <?php endforeach; ?>
             </div>

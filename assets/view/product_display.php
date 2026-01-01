@@ -80,8 +80,10 @@ if ($objet == null) {
                 <p><?= htmlspecialchars($objet["desc_objet"]) ?><br>Brewen was here</p>
                 <hr>
                 <?php
-                if ($objet["statut"] == "Réservé") {
+                if ($objet["statut"] == "réservé") {
                     echo "<a class=\"button blue full disabled\">Déjà réservé</a>";
+                } elseif ($objet["statut"] == "indisponible") {
+                    echo "<a class=\"button blue full disabled\">Indisponible</a>";
                 } else {
                     echo "<a href=\"/products/reserve.php?p=" . $_GET["p"] . "&action=new\" class=\"button blue full\">Réserver</a>";
                 }

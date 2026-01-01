@@ -2,120 +2,25 @@
 include_once(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
 include_once(dirname(__FILE__, 3) . '/assets/models/conn.php');
 include_once(dirname(__FILE__, 3) . '/assets/models/assets.php');
+include_once(dirname(__FILE__, 3) . '/assets/models/mInventory.php');
 
 $user_id = $_SESSION["user_id"];
 $user_role = $_SESSION["id_role"];
+
+// Traitement des actions POST
+$action_result = handleInventoryAction($pdo);
+$success_message = $action_result['success'];
+$error_message = $action_result['error'];
 
 // Pagination
 $items_per_page = isset($_GET['limit']) ? intval($_GET['limit']) : 10;
 $page = isset($_GET['page']) ? max(1, intval($_GET['page'])) : 1;
 $offset = ($page - 1) * $items_per_page;
 
-// Build query based on user role
-$base_query = "
-    SELECT DISTINCT 
-        o.id_objet, o.nom_objet, o.desc_objet, o.quantity, o.etat, o.statut,
-        c.id_composante, cat.titre_categorie
-    FROM objet o
-    JOIN agencer a ON o.id_objet = a.id_objet
-    JOIN inventaire i ON a.id_inventaire = i.id_inventaire
-    LEFT JOIN departement d ON i.id_inventaire = d.id_inventaire
-    LEFT JOIN service s ON i.id_inventaire = s.id_inventaire
-    LEFT JOIN composante c ON d.id_composante = c.id_composante OR s.id_composante = c.id_composante
-    LEFT JOIN categorie cat ON o.id_categorie = cat.id_categorie
-";
-
-$count_query = "
-    SELECT COUNT(DISTINCT o.id_objet) as total
-    FROM objet o
-    JOIN agencer a ON o.id_objet = a.id_objet
-    JOIN inventaire i ON a.id_inventaire = i.id_inventaire
-    LEFT JOIN departement d ON i.id_inventaire = d.id_inventaire
-    LEFT JOIN service s ON i.id_inventaire = s.id_inventaire
-    LEFT JOIN composante c ON d.id_composante = c.id_composante OR s.id_composante = c.id_composante
-";
-
-$where_clause = "";
-$params = [];
-
-switch ($user_role) {
-    case 1: // Président - voit tout
-        // Pas de filtre
-        break;
-    case 2: // Chef de composante - voit les objets de sa composante
-        $where_clause = " WHERE c.id_utilisateur = :user_id";
-        $params[':user_id'] = $user_id;
-        break;
-    case 3: // Chef de département - voit les objets de son département
-        $where_clause = " WHERE d.id_utilisateur = :user_id";
-        $params[':user_id'] = $user_id;
-        break;
-    case 4: // Responsable de service - voit les objets de son service
-        $where_clause = " WHERE s.id_utilisateur = :user_id";
-        $params[':user_id'] = $user_id;
-        break;
-    default:
-        // Autres rôles - ne voient rien
-        $where_clause = " WHERE 1=0";
-        break;
-}
-
-// Count total items
-$stmt_count = $pdo->prepare($count_query . $where_clause);
-foreach ($params as $key => $value) {
-    $stmt_count->bindValue($key, $value);
-}
-$stmt_count->execute();
-$total_items = $stmt_count->fetch(PDO::FETCH_ASSOC)['total'];
+// Récupération des données
+$total_items = countInventoryItems($pdo, $user_role, $user_id);
 $total_pages = ceil($total_items / $items_per_page);
-
-// Fetch objects
-$final_query = $base_query . $where_clause . " ORDER BY o.id_objet LIMIT :limit OFFSET :offset";
-$stmt = $pdo->prepare($final_query);
-foreach ($params as $key => $value) {
-    $stmt->bindValue($key, $value);
-}
-$stmt->bindValue(':limit', $items_per_page, PDO::PARAM_INT);
-$stmt->bindValue(':offset', $offset, PDO::PARAM_INT);
-$stmt->execute();
-$objects = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-// Function to get movement history for an object
-function getObjectHistory($pdo, $id_objet)
-{
-    $stmt = $pdo->prepare("
-        SELECT r.date_ajout, r.date_fin, i.nom_inventaire, c.nom_composante
-        FROM recuperer r
-        JOIN inventaire i ON r.id_donneur = i.id_inventaire
-        LEFT JOIN departement d ON i.id_inventaire = d.id_inventaire
-        LEFT JOIN service s ON i.id_inventaire = s.id_inventaire
-        LEFT JOIN composante c ON d.id_composante = c.id_composante OR s.id_composante = c.id_composante
-        WHERE r.id_objet = :id_objet
-        ORDER BY r.date_ajout DESC
-    ");
-    $stmt->bindParam(':id_objet', $id_objet);
-    $stmt->execute();
-    return $stmt->fetchAll(PDO::FETCH_ASSOC);
-}
-
-// Status badge class mapping
-function getStatusClass($statut)
-{
-    switch ($statut) {
-        case 'Disponible':
-            return 'oui';
-        case 'Réservé':
-            return 'en-cours';
-        case 'Indisponible':
-            return 'non';
-        case 'En élimination':
-            return 'non';
-        case 'Supprimé':
-            return 'non';
-        default:
-            return 'non';
-    }
-}
+$objects = getInventoryItems($pdo, $user_role, $user_id, $items_per_page, $offset);
 ?>
 <title>EcoGestUM - Inventaire</title>
 <link rel="stylesheet" href="/assets/css/boxs.css">
@@ -133,6 +38,14 @@ function getStatusClass($statut)
         ?>
         <div class="container">
             <h2>Inventaire</h2>
+            <?php if ($success_message): ?>
+                <p class="success"><?= htmlspecialchars($success_message) ?></p>
+            <?php endif; ?>
+
+            <?php if ($error_message): ?>
+                <p class="error"><?= htmlspecialchars($error_message) ?></p>
+            <?php endif; ?>
+
             <p class="inventory-count">Affichage de <?= $offset + 1 ?> à
                 <?= min($offset + $items_per_page, $total_items) ?> sur <?= $total_items ?> lignes
             </p>
@@ -144,13 +57,13 @@ function getStatusClass($statut)
                     <span class="col-composante">Composante</span>
                     <span class="col-category">Catégorie</span>
                     <span class="col-etat">État</span>
-                    <span class="col-status">Statut</span>
+                    <span class="col-status">Statut public</span>
                     <span class="col-arrow"></span>
                 </div>
 
                 <?php foreach ($objects as $obj):
                     $history = getObjectHistory($pdo, $obj['id_objet']);
-                ?>
+                    ?>
                     <div class="inventory-row" onclick="toggleRow(this)">
                         <div class="inventory-row-header">
                             <span class="col-name"><?= htmlspecialchars($obj['nom_objet']) ?></span>
@@ -169,7 +82,8 @@ function getStatusClass($statut)
                         </div>
                         <div class="inventory-row-content">
                             <div class="inventory-detail">
-                                <img class="inventory-image" src="/assets/img/products/<?= htmlspecialchars($obj['id_objet']) ?>_1.png" alt="">
+                                <img class="inventory-image"
+                                    src="/assets/img/products/<?= htmlspecialchars($obj['id_objet']) ?>_1.png" alt="">
                                 <div class="inventory-info">
                                     <h3><?= htmlspecialchars($obj['nom_objet']) ?></h3>
                                     <div class="info-row">
@@ -188,7 +102,7 @@ function getStatusClass($statut)
                                                         <div class="timeline-dot"></div>
                                                         <div class="timeline-content">
                                                             <span
-                                                                class="composante c<?= htmlspecialchars($obj['id_composante']) ?>"></span>
+                                                                class="composante c<?= htmlspecialchars($h['id_composante'] ?? $obj['id_composante']) ?>"></span>
                                                             <span
                                                                 class="timeline-date"><?= date('d/m/Y', strtotime($h['date_ajout'])) ?></span>
                                                         </div>
@@ -197,7 +111,24 @@ function getStatusClass($statut)
                                             <?php endif; ?>
                                         </div>
                                     </div>
-                                    <button class="button orange recycle-btn">Proposer l'objet au recyclage</button>
+                                    <?php if ($obj["statut"] == "indisponible" && $_SESSION["id_role"] !== 1): ?>
+                                        <form method="POST" action="" style="display: inline;"
+                                            onclick="event.stopPropagation();">
+                                            <input type="hidden" name="action" value="recycle">
+                                            <input type="hidden" name="id_objet" value="<?= $obj['id_objet'] ?>">
+                                            <button type="submit" class="button orange recycle-btn">Proposer l'objet au
+                                                recyclage</button>
+                                        </form>
+                                    <?php endif; ?>
+                                    <?php if ($obj["statut"] == "disponible"): ?>
+                                        <!-- le button s'affiche pour le président car il peut retirer un objet du recyclage -->
+                                        <form method="POST" action="" style="display: inline;"
+                                            onclick="event.stopPropagation();">
+                                            <input type="hidden" name="action" value="unrecycle">
+                                            <input type="hidden" name="id_objet" value="<?= $obj['id_objet'] ?>">
+                                            <button type="submit" class="button blue recycle-btn">Retirer du recyclage</button>
+                                        </form>
+                                    <?php endif; ?>
                                 </div>
                             </div>
                         </div>
