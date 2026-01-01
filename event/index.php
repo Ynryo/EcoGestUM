@@ -22,7 +22,7 @@
         <?php
         include(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
-        $stmt = $pdo->prepare("SELECT * FROM evenement ORDER BY date_debut ASC");
+        $stmt = $pdo->prepare("SELECT * FROM evenement ORDER BY date_debut DESC");
         $stmt->execute();
         $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
         foreach ($results as $result): ?>
