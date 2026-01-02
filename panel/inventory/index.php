@@ -111,7 +111,7 @@ $objects = getInventoryItems($pdo, $user_role, $user_id, $items_per_page, $offse
                                             <?php endif; ?>
                                         </div>
                                     </div>
-                                    <?php if ($obj["statut"] == "indisponible" && $_SESSION["id_role"] !== 1): ?>
+                                    <?php if ($obj["statut"] == "indisponible" && !in_array($_SESSION["id_role"], [1, 2])): ?>
                                         <form method="POST" action="" style="display: inline;"
                                             onclick="event.stopPropagation();">
                                             <input type="hidden" name="action" value="recycle">

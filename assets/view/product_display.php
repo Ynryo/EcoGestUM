@@ -84,6 +84,8 @@ if ($objet == null) {
                     echo "<a class=\"button blue full disabled\">Déjà réservé</a>";
                 } elseif ($objet["statut"] == "indisponible") {
                     echo "<a class=\"button blue full disabled\">Indisponible</a>";
+                } elseif (!in_array($_SESSION["id_role"], [1, 2])) {
+                    echo "<a class=\"button blue full disabled\" title=\"Réservation impossible dû à votre statut\">Réservation impossible</a>";
                 } else {
                     echo "<a href=\"/products/reserve.php?p=" . $_GET["p"] . "&action=new\" class=\"button blue full\">Réserver</a>";
                 }
