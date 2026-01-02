@@ -1,15 +1,19 @@
 <?php
-function isActive($onglet)
+function isActive($button)
 {
-    $admin_pages = ["", "statistics", "server", "inventory", "communications", "settings", "odds", "history", "add-user"];
-    $current_page = str_replace("/", "", str_replace("/panel", "", $_SERVER["REQUEST_URI"]));
+    $current_page = $_SERVER["REQUEST_URI"];
 
-    if (in_array($onglet, $admin_pages) && $onglet === $current_page) {
+    // cas spécial pour la page d'accueil
+    if ($button === "" && ($current_page === "/panel/" || $current_page === "/panel")) {
+        return ' active';
+    }
+
+    if (str_contains($current_page, $button) && $button !== "") {
         return ' active';
     }
 }
 
-function hasPermission($onglet)
+function hasPermission($button)
 {
     $user_role = $_SESSION["id_role"];
     $permissions = [
@@ -20,5 +24,5 @@ function hasPermission($onglet)
         5 => ["server", "inventory", "communications", "settings", "add-user"]
     ];
 
-    return in_array($onglet, $permissions[$user_role] ?? []);
+    return in_array($button, $permissions[$user_role] ?? []);
 }
