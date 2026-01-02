@@ -161,3 +161,14 @@ function handleInventoryAction($pdo)
     }
     return ['success' => $success_message, 'error' => $error_message];
 }
+
+function getImage($id_objet)
+{
+    $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $id_objet . '_1*';
+    $files = glob($pattern);
+    if (count($files) > 0) {
+        return str_replace($_SERVER["DOCUMENT_ROOT"], "", $files[0]);
+    } else {
+        return 'y\'a po';
+    }
+}

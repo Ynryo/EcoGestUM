@@ -83,7 +83,7 @@ $objects = getInventoryItems($pdo, $user_role, $user_id, $items_per_page, $offse
                         <div class="inventory-row-content">
                             <div class="inventory-detail">
                                 <img class="inventory-image"
-                                    src="/assets/img/products/<?= htmlspecialchars($obj['id_objet']) ?>_1.png" alt="">
+                                    src="<?= htmlspecialchars(getImage($obj['id_objet'])) ?>" alt="">
                                 <div class="inventory-info">
                                     <h3><?= htmlspecialchars($obj['nom_objet']) ?></h3>
                                     <div class="info-row">
