@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/assets/css/header.css">
     <link rel="stylesheet" href="/assets/css/globals.css">
+    <link rel="stylesheet" href="/assets/css/badges.css">
     <link rel="stylesheet" href="/assets/css/buttons.css">
     <link rel="stylesheet" href="/assets/css/ariane-link.css">
     <link rel="stylesheet" href="/assets/css/boxs.css">

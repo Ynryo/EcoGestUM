@@ -1,0 +1,191 @@
+/* ROLE */
+.role {
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.role::before {
+    display: inline-block;
+    content: "No role defined";
+    background-color: var(--dark);
+    color: var(--medium);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.role.r1::before {
+    content: "Présidence de l'université";
+    background-color: #D4451B40;
+    color: #D4451B;
+}
+
+.role.r5::before {
+    content: "Administrateur";
+    background-color: #201CA640;
+    color: #201CA6;
+}
+
+.role.r4::before {
+    content: "Responsable de service";
+    background-color: #1CB49B40;
+    color: #1CB49B;
+}
+
+.role.r3::before {
+    content: "Chef de département";
+    background-color: #F7C00B40;
+    color: #F7C00B;
+}
+
+.role.r7::before {
+    content: "Enseignant";
+    background-color: #CE0E6A40;
+    color: #CE0E6A;
+}
+
+.role.r6::before {
+    content: "Bureau des étudiants";
+    background-color: #1A912240;
+    color: #1A9122;
+}
+
+.role.r8::before {
+    content: "Étudiant";
+    background-color: #9122B540;
+    color: #9122B5;
+}
+
+.role.r2::before {
+    content: "Directeur de composante";
+    background-color: #FF000440;
+    color: #FF0004;
+}
+
+/* LIEU COMPO */
+.composante {
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+}
+
+.composante::before {
+    display: inline-block;
+    content: "No composante defined";
+    background-color: var(--dark);
+    color: var(--medium);
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.composante.c1::before {
+    content: "Faculté de Droit, Sciences économiques & de Gestion";
+    background-color: #E3004740;
+    color: var(--components-droit-fac);
+}
+
+.composante.c2::before {
+    content: "Faculté des Lettres, Langues & Sciences humaines";
+    background-color: #485BA640;
+    color: var(--components-lettres-fac);
+}
+
+.composante.c3::before {
+    content: "Faculté des Sciences et Techniques";
+    background-color: #00778140;
+    color: var(--components-sciences-fac);
+}
+
+.composante.c4::before {
+    content: "IUT du Mans";
+    background-color: #F7A70B40;
+    color: var(--components-lm-iut);
+}
+
+.composante.c5::before {
+    content: "IUT de Laval";
+    background-color: #CE0E6A40;
+    color: var(--components-laval-iut);
+}
+
+.composante.c6::before {
+    content: "ENSIM";
+    background-color: #077FA540;
+    color: var(--components-ensim);
+}
+
+/* STATUTS OBJETS */
+.status::before {
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.status.non::before {
+    content: "Non";
+    background-color: #f4433650;
+    color: #f44336;
+}
+
+.status.en-cours::before {
+    content: "En cours";
+    background-color: #ffc10750;
+    color: #ffc107;
+}
+
+.status.oui::before {
+    content: "Oui";
+    background-color: #4caf5050;
+    color: #4caf50;
+}
+
+.status.disponible::before {
+    content: "Disponible";
+    background-color: #4caf5050;
+    color: #4caf50;
+}
+
+.status.indisponible::before {
+    content: "Indisponible";
+    background-color: #f4433650;
+    color: #f44336;
+}
+
+.status.réservé::before {
+    content: "Réservé";
+    background-color: #ff930750;
+    color: #ff9307;
+}
+
+.status.en_élimination::before {
+    content: "En élimination";
+    background-color: #a57c0050;
+    color: #a57c00;
+}
+
+/* Sortie badges */
+.sortie-badge::before {
+    font-family: Poppins, sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+    display: inline-block;
+    width: fit-content;
+    padding: 5px 10px;
+    border-radius: 10px;
+}
+
+.sortie-badge.interne::before {
+    content: "Interne";
+    background-color: #4caf5050;
+    color: #4caf50;
+}
+
+.sortie-badge.externe::before {
+    content: "Externe";
+    background-color: #ff980050;
+    color: #ff9800;
+}
