@@ -19,6 +19,7 @@
     padding: 15px 20px;
     font-weight: 500;
     font-size: 0.9rem;
+    column-gap: 10px;
 }
 
 .inventory-row {
@@ -37,6 +38,7 @@
     grid-template-columns: 2fr 0.5fr 2fr 1fr 1fr 1fr 50px;
     padding: 15px 20px;
     align-items: center;
+    column-gap: 10px;
 }
 
 .inventory-row .col-name {

@@ -20,6 +20,7 @@
     padding: 15px 20px;
     font-weight: 500;
     font-size: 0.9rem;
+    column-gap: 10px;
 }
 
 .history-row {
@@ -30,6 +31,7 @@
     padding: 15px 20px;
     align-items: center;
     background-color: var(--light);
+    column-gap: 10px;
 }
 
 .history-row:hover {
