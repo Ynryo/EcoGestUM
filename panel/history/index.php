@@ -60,7 +60,7 @@ $transactions = getHistoryItems($pdo, $user_role, $user_id, $items_per_page, $of
                         <div class="history-row">
                             <span class="col-name"><?= htmlspecialchars($trans['nom_objet']) ?></span>
                             <span class="col-qty"><?= htmlspecialchars($trans['quantity']) ?></span>
-                            <span class="col-date"><?= date('d/m/Y', strtotime($trans['date_ajout'])) ?></span>
+                            <span class="col-date"><?= date('d/m/Y', strtotime($trans['date_fin'])) ?></span>
                             <span class="col-recycleur">
                                 <span class="composante c<?= htmlspecialchars($trans['id_composante']) ?>"></span>
                             </span>

@@ -6,17 +6,18 @@ function buildHistoryWhereClause($user_role, $user_id)
 
     switch ($user_role) {
         case 1: // président voit tout
+            $where_clause = " WHERE r.date_fin IS NOT NULL";
             break;
         case 2: // chef de composante voit les transactions de sa composante
-            $where_clause = " WHERE c.id_utilisateur = :user_id";
+            $where_clause = " WHERE c.id_utilisateur = :user_id AND r.date_fin IS NOT NULL";
             $params[':user_id'] = $user_id;
             break;
         case 3: // chef de département vois les transactions de son département
-            $where_clause = " WHERE d.id_utilisateur = :user_id";
+            $where_clause = " WHERE d.id_utilisateur = :user_id AND r.date_fin IS NOT NULL";
             $params[':user_id'] = $user_id;
             break;
         case 4: // responsable de service voit les transactions de son service
-            $where_clause = " WHERE s.id_utilisateur = :user_id";
+            $where_clause = " WHERE s.id_utilisateur = :user_id AND r.date_fin IS NOT NULL";
             $params[':user_id'] = $user_id;
             break;
         default: // autres rôles ne voient rien (cheeeeeeh)
@@ -56,7 +57,7 @@ function getHistoryItems($pdo, $user_role, $user_id, $limit, $offset)
     $base_query = "
         SELECT 
             o.id_objet, o.nom_objet, o.quantity,
-            r.date_ajout,
+            r.date_fin,
             c.id_composante, c.nom_composante,
             u.id_utilisateur, u.nom_utilisateur, u.prenom_utilisateur,
             u.id_role,
@@ -85,6 +86,7 @@ function getHistoryItems($pdo, $user_role, $user_id, $limit, $offset)
     $stmt->execute();
     return $stmt->fetchAll(PDO::FETCH_ASSOC);
 }
+
 function getSortieType($id_role)
 {
     $external_roles = [6, 7, 8];
