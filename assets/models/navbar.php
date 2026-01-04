@@ -19,8 +19,8 @@ function hasPermission($button)
     $permissions = [
         1 => ["inventory", "communications", "odds", "history", "add-user"],
         2 => ["inventory", "communications", "history"],
-        3 => ["inventory", "communications", "history"],
-        4 => ["inventory", "communications", "history"],
+        3 => ["inventory", "communications", "history", "takeover"],
+        4 => ["inventory", "communications", "history", "takeover"],
         5 => ["server", "inventory", "communications", "settings", "add-user"]
     ];
 

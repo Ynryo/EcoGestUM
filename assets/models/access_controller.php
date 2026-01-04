@@ -7,7 +7,7 @@ if (!isset($_SESSION["user_id"]) && $_SERVER["REQUEST_URI"] !== "/" && $_SERVER[
 }
 
 //for block access to non admin users to admin pages
-$admin_pages = ["", "statistics", "server", "inventory", "communications", "settings", "odds", "history", "add-user"];
+$admin_pages = ["", "statistics", "server", "inventory", "communications", "settings", "odds", "history", "add-user", "takeover"];
 $current_page = str_replace("/", "", str_replace("/panel", "", $_SERVER["REQUEST_URI"]));
 
 if (isset($_SESSION["id_role"]) && in_array($current_page, $admin_pages) && str_contains($_SERVER["REQUEST_URI"], "/panel")) {

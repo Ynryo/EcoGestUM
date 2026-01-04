@@ -1,0 +1,105 @@
+/* TAKEOVER TABLE */
+.takeover-subtitle {
+    color: #666;
+    margin-bottom: 20px;
+}
+
+.takeover-table {
+    width: 100%;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-top: 10px;
+}
+
+.takeover-table-header {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 1fr 2fr 1fr 1.5fr;
+    background-color: var(--primary-blue);
+    color: var(--light);
+    padding: 15px 20px;
+    font-weight: 500;
+    font-size: 0.9rem;
+    column-gap: 10px;
+}
+
+.takeover-row {
+    display: grid;
+    grid-template-columns: 2fr 0.5fr 1fr 2fr 1fr 1.5fr;
+    border: 1px solid #e0e0e0;
+    border-top: none;
+    padding: 15px 20px;
+    align-items: center;
+    background-color: var(--light);
+    column-gap: 10px;
+}
+
+.takeover-row:hover {
+    background-color: #f5f5f5;
+}
+
+.takeover-row .col-name {
+    font-weight: 500;
+    color: var(--dark);
+}
+
+.takeover-row.no-data {
+    display: flex;
+    justify-content: center;
+    color: #999;
+    font-style: italic;
+    padding: 40px 20px;
+}
+
+.col-actions {
+    display: flex;
+    gap: 10px;
+}
+
+.button.small {
+    padding: 5px 15px;
+    font-size: 0.85rem;
+}
+
+.button.green {
+    background-color: #4caf50;
+    color: white;
+}
+
+.button.green:hover {
+    background-color: #45a049;
+}
+
+.button.red {
+    background-color: #f44336;
+    color: white;
+}
+
+.button.red:hover {
+    background-color: #da190b;
+}
+
+/* Responsive */
+@media (max-width: 1024px) {
+
+    .takeover-table-header,
+    .takeover-row {
+        grid-template-columns: 1.5fr 0.5fr 1fr 1.5fr 1.5fr;
+    }
+
+    .col-sortie {
+        display: none;
+    }
+}
+
+@media (max-width: 768px) {
+
+    .takeover-table-header,
+    .takeover-row {
+        grid-template-columns: 1fr 1fr 1.5fr;
+    }
+
+    .col-qty,
+    .col-date {
+        display: none;
+    }
+}
