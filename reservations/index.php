@@ -2,7 +2,7 @@
 include_once(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
 include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
-$stmt = $pdo->prepare("SELECT * FROM recuperer r JOIN objet o ON r.id_objet = o.id_objet WHERE id_recepteur = :u;");
+$stmt = $pdo->prepare("SELECT * FROM recuperer r JOIN objet o ON r.id_objet = o.id_objet WHERE id_recepteur = :u AND date_fin IS NULL;");
 $stmt->bindParam(':u', $_SESSION["user_id"]);
 $stmt->execute();
 $results = $stmt->fetchAll(PDO::FETCH_ASSOC);

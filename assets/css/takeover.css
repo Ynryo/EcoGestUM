@@ -55,11 +55,6 @@
     gap: 10px;
 }
 
-.button.small {
-    padding: 5px 15px;
-    font-size: 0.85rem;
-}
-
 .button.green {
     background-color: #4caf50;
     color: white;

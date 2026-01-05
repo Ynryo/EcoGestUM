@@ -116,13 +116,13 @@ function getInventoryItems($pdo, $user_role, $user_id, $limit, $offset)
 function getObjectHistory($pdo, $id_objet)
 {
     $stmt = $pdo->prepare("
-        SELECT r.date_ajout, r.date_fin, i.nom_inventaire, c.nom_composante, c.id_composante
+        SELECT r.date_ajout, r.date_fin, i.nom_inventaire, c.nom_composante, c.id_composante, d.nom_departement, s.nom_service
         FROM recuperer r
         JOIN inventaire i ON r.id_donneur = i.id_inventaire
         LEFT JOIN departement d ON i.id_inventaire = d.id_inventaire
         LEFT JOIN service s ON i.id_inventaire = s.id_inventaire
         LEFT JOIN composante c ON d.id_composante = c.id_composante OR s.id_composante = c.id_composante
-        WHERE r.id_objet = :id_objet
+        WHERE r.id_objet = :id_objet AND r.date_fin IS NOT NULL
         ORDER BY r.date_ajout DESC
     ");
     $stmt->bindParam(':id_objet', $id_objet);

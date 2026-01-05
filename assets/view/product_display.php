@@ -61,7 +61,7 @@ if ($objet == null) {
                     </span>
                 </a>
             </div>
-            <div class="column">
+            <div class="column product-info">
                 <h3><?= htmlspecialchars($objet["nom_objet"]) ?></h3>
                 <h4 class="poppins"><?= htmlspecialchars($objet["size"]) ?> | <?= htmlspecialchars($objet["etat"]) ?>
                 </h4>

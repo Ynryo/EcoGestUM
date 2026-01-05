@@ -1,21 +1,23 @@
 <?php
 function newReservation($pdo, $donneur, $p)
 {
+    echo "1";
     //check if objects is not already reserved by curent user
     $stmt = $pdo->prepare("SELECT * FROM recuperer WHERE id_objet = :p AND id_donneur = :donneur AND date_fin IS NULL;");
     $stmt->bindParam(":p", $p);
     $stmt->bindParam(":donneur", $donneur);
     $stmt->execute();
     $reserved = $stmt->fetch(PDO::FETCH_ASSOC);
-
+    echo "2";
     if (!$reserved) {
+        echo "3";
         //add to user's resrvations
         $stmt = $pdo->prepare("INSERT INTO recuperer (id_donneur, id_recepteur, id_objet, date_ajout) VALUES (:id_donneur, :id_recepteur, :p, NOW());");
         $stmt->bindParam(":p", $p);
         $stmt->bindParam(":id_donneur", $donneur);
         $stmt->bindParam(":id_recepteur", $_SESSION["user_id"]);
         $stmt->execute();
-
+        echo "4";
         //change objet's statuts
         $stmt = $pdo->prepare("UPDATE objet SET statut = 'réservé' WHERE objet.id_objet = :p;");
         $stmt->bindParam(":p", $p);

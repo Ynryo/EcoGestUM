@@ -103,6 +103,7 @@ $objects = getInventoryItems($pdo, $user_role, $user_id, $items_per_page, $offse
                                                         <div class="timeline-content">
                                                             <span
                                                                 class="composante c<?= htmlspecialchars($h['id_composante'] ?? $obj['id_composante']) ?>"></span>
+                                                            <span><?= htmlspecialchars($h['nom_departement'] ?? $h['nom_service']) ?></span>
                                                             <span
                                                                 class="timeline-date"><?= date('d/m/Y', strtotime($h['date_ajout'])) ?></span>
                                                         </div>
