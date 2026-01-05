@@ -190,7 +190,6 @@ CREATE TABLE
       id_objet INT,
       date_ajout DATETIME NOT NULL,
       date_fin DATETIME,
-      PRIMARY KEY (id_recepteur, id_objet, id_donneur),
       FOREIGN KEY (id_donneur) REFERENCES inventaire (id_inventaire) ON DELETE CASCADE ON UPDATE CASCADE,
       FOREIGN KEY (id_recepteur) REFERENCES utilisateur (id_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE,
       FOREIGN KEY (id_objet) REFERENCES objet (id_objet) ON DELETE CASCADE ON UPDATE CASCADE

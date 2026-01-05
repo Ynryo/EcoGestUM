@@ -31,29 +31,38 @@ INSERT INTO categorie (titre_categorie, desc_categorie, id_odd) VALUES
 ('Déchets chimiques','Déchets potentiellement toxique qui provient des départements scientifiques', 2),
 ('Caoutchouc','Pneus, butoir de porte', 5);
 
-INSERT INTO inventaire (nom_inventaire) VALUES
-('Inventaire Département Informatique'),
-('Inventaire Département Génie Biologique'),
-('Inventaire Département Techniques de Commercialisation'),
-('Inventaire Département Métier du Multimédia et de l''Internet'),
-('Inventaire Département Histoire'),
-('Inventaire Département Informatique'),
-('Inventaire Département Physique'),
-('Inventaire Département Génie Industriel'),
-('Inventaire Département GEA Laval'),
-('Inventaire Département Acoustique'),
-('Inventaire Service Sec Droit'),
-('Inventaire Service Mtnc Droit'),
-('Inventaire Service Sec Lettres'),
-('Inventaire Service Mtnc Lettres'),
-('Inventaire Service Sec Sciences'),
-('Inventaire Service Mtnc Sciences'),
-('Inventaire Service Sec IUT Le Mans'),
-('Inventaire Service Mtnc IUT Le Mans'),
-('Inventaire Service Sec IUT Laval'),
-('Inventaire Service Mtnc IUT Laval');
+INSERT INTO inventaire (nom_inventaire) VALUES 
+('Inventaire Informatique (Laval)'),
+('Inventaire Génie Biologique'),
+('Inventaire Métiers du Multimédia et de l''Internet'),
+('Inventaire Techniques de Commercialisation'),
+('Inventaire Chimie (IUT)'),
+('Inventaire Génie Mécanique et Productique'),
+('Inventaire Gestion des Entreprises et des Administrations'),
+('Inventaire Mesures Physiques'),
+('Inventaire Acoustique'),
+('Inventaire Biologie'),
+('Inventaire Chimie (Fac)'),
+('Inventaire Géosciences'),
+('Inventaire Informatique (Fac)'),
+('Inventaire Mathématiques'),
+('Inventaire Physique'),
+('Inventaire STAPS'),
+('Inventaire Anglais'),
+('Inventaire Allemand'),
+('Inventaire Espagnol'),
+('Inventaire Lettres'),
+('Inventaire Langues Étrangères Appliquées (LEA)'),
+('Inventaire Géographie'),
+('Inventaire Histoire'),
+('Inventaire Didactique des Langues'),
+('Inventaire Droit'),
+('Inventaire Sciences Économiques'),
+('Inventaire Sciences de Gestion'),
+('Inventaire Vibrations, Acoustique, Capteurs'),
+('Inventaire Informatique (ENSIM)');
 
-INSERT INTO utilisateur (identifiant, nom_utilisateur, prenom_utilisateur, mail_univ, mdp_univ, id_role) VALUES
+INSERT INTO utilisateur (identifiant, nom_utilisateur, prenom_utilisateur, mail_univ, mdp_univ, id_role) VALUES 
 ('i2400001', 'Bertrand', 'Marc', 'marc.bertrand@univ-lemans.fr', 'fhd586scv', 1),
 ('i2400002', 'Gaëtan', 'Vincent', 'vincent.gaetan@univ-lemans.fr', 'yun913daw', 2),
 ('i2400003', 'Sullivan', 'Violette', 'violette.sullivan@univ-lemans.fr', 'zfb568xvd', 3),
@@ -64,8 +73,18 @@ INSERT INTO utilisateur (identifiant, nom_utilisateur, prenom_utilisateur, mail_
 ('i2400008', 'Léon', 'Julie', 'julie.leon.etu@univ-lemans.fr', 'iop753aze', 8),
 ('i2400009', 'Bosco', 'Lucas', 'lucas.bosco.etu@univ-lemans.fr', 'nzi654cqq', 8),
 ('i2400010', 'Maël', 'Éva', 'eva.mael.etu@univ-lemans.fr', 'xls855daz', 8),
-('i2400011', 'Roulin', 'Olivier', 'olivier.roulin@univ-lemans.fr', 'rgd248pfh', '3'),
-('i2400012', 'Faure-Ferlet', 'Axelle', 'axelle.faure-ferlet@univ-lemans.fr', 'fhd952vdf', '3');
+('i2400011', 'Roulin', 'Olivier', 'olivier.roulin@univ-lemans.fr', 'password123', 3), -- Info Laval
+('i2400012', 'Faure-Ferlet', 'Axelle', 'axelle.faure-ferlet@univ-lemans.fr', 'password123', 3), -- TC Laval
+('i2400013', 'Corbière', 'Pascal', 'pascal.corbiere@univ-lemans.fr', 'password123', 3), -- Bio Laval
+('i2400014', 'Leduc', 'Cédric', 'cedric.leduc@univ-lemans.fr', 'password123', 3), -- MMI Laval
+('i2400015', 'Gautier', 'François', 'francois.gautier@univ-lemans.fr', 'password123', 3), -- Acoustique
+('i2400016', 'Pichelin', 'Murielle', 'murielle.pichelin@univ-lemans.fr', 'password123', 3), -- Biologie
+('i2400017', 'Leriche', 'Philippe', 'philippe.leriche@univ-lemans.fr', 'password123', 3), -- Chimie
+('i2400018', 'Reynaud', 'Pascal', 'pascal.reynaud@univ-lemans.fr', 'password123', 3), -- Géo/Phys
+('i2400019', 'Guillais', 'Flavie', 'flavie.guillais@univ-lemans.fr', 'password123', 3), -- Math
+('i2400020', 'Hollebecq', 'Sylvain', 'sylvain.hollebecq@univ-lemans.fr', 'password123', 3), -- STAPS
+('i2400021', 'Palanque', 'Pascal', 'pascal.palanque@univ-lemans.fr', 'password123', 3); -- ENSIM
+
 
 INSERT INTO composante (nom_composante, coords_composante, ville) VALUES
 ('Faculté de Droit, Sciences économiques & de Gestion', '48.016, 0.160', 'Le Mans'),
@@ -75,21 +94,34 @@ INSERT INTO composante (nom_composante, coords_composante, ville) VALUES
 ('IUT de Laval', '48.085, -0.762', 'Laval'),
 ('ENSIM', '48.021, 0.164', 'Le Mans');
 
-INSERT INTO departement (nom_departement, id_utilisateur, id_composante, id_inventaire) VALUES
-('Département du Droit Public', NULL, 1, 1),
-('Département d\'Anglais', NULL, 2, 2),
-('Département d\'Espagnol', NULL, 2, 15),
-('Département d\'Allemand', NULL, 2, 4),
-('Département d\'histoire', NULL, 2, 5),
-('Département d\'Informatique', NULL, 3, 6),
-('Département d\'Physique', NULL, 3, 7),
-('Département Informatique', 11, 5, 8),
-('Département Génie Biologique', NULL, 5, 8),
-('Département Métier du Multimédia et de l\'Internet', NULL, 5, 8),
-('Département Technique de Commercialisation', 12, 5, 3),
-('Département de Génie Industriel', NULL, 4, 8),
-('GEA', NULL, 5, 9),
-('Acoustique', NULL, 6, 10);
+INSERT INTO departement (nom_departement, id_composante, id_inventaire, id_utilisateur) VALUES 
+('Informatique', 5, 1, 11),
+('Génie Biologique', 5, 2, 13),
+('Métiers du Multimédia et de l''Internet', 5, 3, 14),
+('Techniques de Commercialisation', 5, 4, 12),
+('Chimie', 4, 5, NULL),
+('Génie Mécanique et Productique', 4, 6, NULL),
+('Gestion des Entreprises et des Administrations', 4, 7, NULL),
+('Mesures Physiques', 4, 8, NULL),
+('Acoustique', 3, 9, 15),
+('Biologie', 3, 10, 16),
+('Chimie', 3, 11, 17),
+('Géosciences', 3, 12, 18),
+('Informatique', 3, 13, NULL),
+('Mathématiques', 3, 14, 19),
+('Physique', 3, 15, NULL),
+('STAPS', 3, 16, 20),
+('Anglais', 2, 17, NULL),
+('Allemand', 2, 18, NULL),
+('Espagnol', 2, 19, NULL),
+('Lettres', 2, 20, NULL),
+('Géographie', 2, 22, NULL),
+('Histoire', 2, 23, NULL),
+('Droit', 1, 25, NULL),
+('Sciences Économiques', 1, 26, NULL),
+('Sciences de Gestion', 1, 27, NULL),
+('Vibrations, Acoustique, Capteurs', 6, 28, 21),
+('Informatique', 6, 29, NULL);
 
 INSERT INTO service (nom_service, id_inventaire, id_composante) VALUES
 ('Secrétariat de la faculté de droit', 11, 1),
@@ -145,11 +177,11 @@ INSERT INTO objet (id_objet, nom_objet, desc_objet, color, etat, size, quantity,
 (3, 'Batterie AA', 'Pile usagée', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'disponible', 4),
 (4, 'Écran PC 24\"', 'Vieux écran de bureau, HS', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'indisponible', 5),
 (5, 'Canette de Soda', 'Canette vide en aluminium', NULL, 'Très bon', 'Taille unique', 1, '2025-10-20', 'disponible', 7),
-(6, 'Boîte à pizza', 'Carton de pizza, peu sale', NULL, 'Très bon', 'Taille unique', 1, '2025-10-21', 'réservé', 1),
+(6, 'Boîte à pizza', 'Carton de pizza, peu sale', NULL, 'Très bon', 'Taille unique', 1, '2025-10-21', 'disponible', 1),
 (7, 'Bloc-notes', 'Cahier brouillon', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'disponible', 1),
 (8, 'Pot de Yaourt en Verre', 'Vide', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'disponible', 3),
 (9, 'Clavier USB', 'Clavier inutilisé', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'indisponible', 5),
-(10, 'Déchets de repas', 'Épluchures de fruits, restes', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'en_élimination', 6);
+(10, 'Déchets de repas', 'Épluchures de fruits, restes', NULL, 'Très bon', 'Taille unique', 1, '2025-10-22', 'disponible', 6);
 
 INSERT INTO notification (titre_notification, date_envoi, id_emetteur, id_recepteur) VALUES
 ('Éva Maël veut emprunter l''objet "Bouteille Plastique".', '2025-10-20', 10, 3),
