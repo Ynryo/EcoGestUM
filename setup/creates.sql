@@ -185,11 +185,13 @@ CREATE TABLE
 
 CREATE TABLE
    recuperer (
+      id_transaction INT AUTO_INCREMENT,
       id_donneur INT,
       id_recepteur INT,
       id_objet INT,
       date_ajout DATETIME NOT NULL,
       date_fin DATETIME,
+      PRIMARY KEY (id_transaction),
       FOREIGN KEY (id_donneur) REFERENCES inventaire (id_inventaire) ON DELETE CASCADE ON UPDATE CASCADE,
       FOREIGN KEY (id_recepteur) REFERENCES utilisateur (id_utilisateur) ON DELETE CASCADE ON UPDATE CASCADE,
       FOREIGN KEY (id_objet) REFERENCES objet (id_objet) ON DELETE CASCADE ON UPDATE CASCADE

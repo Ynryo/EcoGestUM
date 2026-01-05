@@ -3,7 +3,6 @@ include_once(dirname(__FILE__, 3) . "/assets/models/access_controller.php");
 include_once(dirname(__FILE__, 3) . "/assets/models/assets.php");
 include_once(dirname(__FILE__, 3) . "/assets/models/conn.php");
 
-// Récupération des ODDs depuis la BDD
 $stmt_odds = $pdo->prepare("SELECT id_odd, num_odd, titre_odd, desc_odd, link_odd FROM odd ORDER BY id_odd");
 $stmt_odds->execute();
 $odds = $stmt_odds->fetchAll(PDO::FETCH_ASSOC);
@@ -34,7 +33,7 @@ $odds = $stmt_odds->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <?php foreach ($odds as $odd):
-                    // Extraire le numéro de l'ODD depuis num_odd (ex: "ODD 4" -> 4)
+                    // odd 4 to 4 extract number
                     preg_match('/\d+/', $odd['num_odd'], $matches);
                     $odd_number = intval($matches[0] ?? 0);
                     $odd_image_url = "https://www.agenda-2030.fr/IMG/svg/odd" . $odd_number . ".svg";

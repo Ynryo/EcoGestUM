@@ -7,18 +7,14 @@ include_once(dirname(__FILE__, 3) . '/assets/models/mTakeover.php');
 $user_id = $_SESSION["user_id"];
 $user_role = $_SESSION["id_role"];
 
-// Vérifier que l'utilisateur a accès (role 3 ou 4)
 if (!in_array($user_role, [3, 4])) {
     header("Location: /panel/");
     exit;
 }
 
-// Traitement des actions
 $action_result = handleTakeoverAction($pdo);
 $success_message = $action_result['success'];
 $error_message = $action_result['error'];
-
-// Récupération des demandes
 $requests = getTakeoverRequests($pdo, $user_role, $user_id);
 ?>
 <title>EcoGestUM - Demandes de reprise</title>
