@@ -19,9 +19,9 @@ Créez un fichier .env à la racine du projet en suivant le modèle ci-dessous :
 DB_CONNECTION="mysql"
 DB_HOST="127.0.0.1"
 DB_PORT="3306"
-# DB_DATABASE_SSH="ecogestum"
-# DB_USERNAME_SSH="ecogestum_user"
-# DB_PASSWORD_SSH="password123"
+DB_DATABASE_SSH="ecogestum"
+DB_USERNAME_SSH="ecogestum_user"
+DB_PASSWORD_SSH="password123"
 ```
 
 Testez la connexion à la base de données avec http://127.0.0.1:8000/setup/testConnexion.php<br>
