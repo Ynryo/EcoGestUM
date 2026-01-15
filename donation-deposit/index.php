@@ -1,6 +1,10 @@
 <?php
 include(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
 include(dirname(__FILE__, 2) . '/assets/models/conn.php');
+include(dirname(__FILE__, 2) . '/assets/models/mDonation.php');
+
+$categories = getAllCategories($pdo);
+$inventaires = getAllInventories($pdo);
 ?>
 <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
 <title>EcoGestUM</title>
@@ -53,13 +57,9 @@ include(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
             <h4>Choissiez une catégorie</h4>
             <select name="categorie" id="categorie">
-                <?php
-                $stmt = $pdo->prepare("SELECT * FROM categorie");
-                $stmt->execute();
-                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($results as $result): ?>
-                    <option value="<?= htmlspecialchars($result["id_categorie"]) ?>">
-                        <?= htmlspecialchars($result["titre_categorie"]) ?>
+                <?php foreach ($categories as $cat): ?>
+                    <option value="<?= htmlspecialchars($cat["id_categorie"]) ?>">
+                        <?= htmlspecialchars($cat["titre_categorie"]) ?>
                     </option>
                 <?php endforeach; ?>
                 <option value="0">Autre</option>
@@ -89,13 +89,9 @@ include(dirname(__FILE__, 2) . '/assets/models/conn.php');
 
             <h4>Localisation</h4>
             <select name="inventaire" id="localisation">
-                <?php
-                $stmt = $pdo->prepare("SELECT * FROM inventaire");
-                $stmt->execute();
-                $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-                foreach ($results as $result): ?>
-                    <option value="<?= htmlspecialchars($result["id_inventaire"]) ?>">
-                        <?= htmlspecialchars($result["nom_inventaire"]) ?>
+                <?php foreach ($inventaires as $inv): ?>
+                    <option value="<?= htmlspecialchars($inv["id_inventaire"]) ?>">
+                        <?= htmlspecialchars($inv["nom_inventaire"]) ?>
                     </option>
                 <?php endforeach; ?>
             </select>

@@ -1,34 +1,14 @@
 <?php
 include_once(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
 include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
+include_once(dirname(__FILE__, 2) . '/assets/models/mMessaging.php');
 
-if (isset($_GET['id']) && $_GET['id'] != null) {
-    if (isset($_GET['action']) && $_GET['action'] != null) {
-        $stmt = $pdo->prepare("SELECT * FROM NOTIFICATION WHERE id_recepteur = :u AND id_notification = :n");
-        $stmt->bindParam(':u', $_SESSION["user_id"]);
-        $stmt->bindParam(':n', $_GET['id']);
-        $stmt->execute();
-        $results = $stmt->fetch(PDO::FETCH_ASSOC);
-
-        if (!empty($results)) {
-            switch ($_GET['action']) {
-                case "refuse": // Effacer la notif
-                    $stmt = $pdo->prepare("DELETE FROM notification WHERE id_notification = :n");
-                    $stmt->bindParam(':n', $_GET['id']);
-                    $stmt->execute();
-                    break;
-                case "accept": // Effacer la notif puis envoyer un (faux) mail
-                    $stmt = $pdo->prepare("DELETE FROM notification WHERE id_notification = :n");
-                    $stmt->bindParam(':n', $_GET['id']);
-                    $stmt->execute();
-                    break;
-                default:
-                // Erreur peut-être?
-            }
-        }
-    }
+// Traitement des actions sur les notifications
+if (isset($_GET['id']) && $_GET['id'] != null && isset($_GET['action']) && $_GET['action'] != null) {
+    handleNotificationAction($pdo, $_SESSION["user_id"], $_GET['id'], $_GET['action']);
 }
 
+$results = getUserNotifications($pdo, $_SESSION["user_id"]);
 ?>
 <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
 <title>EcoGestUM - Messagerie</title>
@@ -48,13 +28,7 @@ if (isset($_GET['id']) && $_GET['id'] != null) {
             Messagerie
         </div>
         <div class="messaging-container">
-            <?php
-            $stmt = $pdo->prepare("SELECT id_notification, titre_notification, date_envoi, id_emetteur, u1.nom_utilisateur as 'nom_emetteur', u1.prenom_utilisateur as 'prenom_emetteur', id_recepteur, u2.nom_utilisateur as 'nom_recepteur', u2.prenom_utilisateur as 'prenom_recepteur' FROM notification JOIN utilisateur u1 ON notification.id_emetteur = u1.id_utilisateur JOIN utilisateur u2 ON notification.id_recepteur = u2.id_utilisateur WHERE id_recepteur = :u;");
-            $stmt->bindParam(':u', $_SESSION["user_id"]);
-            $stmt->execute();
-            $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-            if (!empty($results)) {
+            <?php if (!empty($results)) {
                 foreach ($results as $result): ?>
                     <div class="msg-container">
                         <div class="top-content">

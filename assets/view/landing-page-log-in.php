@@ -12,7 +12,7 @@
     include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
     <section class="main">
         <h2>Bonjour <?= htmlspecialchars($_SESSION["user_name"]) ?> !</h2>
-        <p>Votre role: <span class="role r<?= htmlspecialchars($_SESSION["id_role"]) ?>"></span></p>
+        <p>Votre rôle: <span class="role r<?= htmlspecialchars($_SESSION["id_role"]) ?>"></span></p>
 
         <div class="invit-to-post">
             <div class="box blue">
@@ -58,7 +58,7 @@
         <div>
             <div class="cards-container-title">
                 <h3>Tous les produits</h3>
-                <a href="/search/?q=" class="link icon">
+                <a href="/products/" class="link icon">
                     voir plus
                     <span class="material-symbols-outlined">
                         arrow_right_alt

@@ -21,6 +21,7 @@
 
 .cards-container.wrap {
     flex-wrap: wrap;
+    justify-content: space-evenly;
 }
 
 .cards-container::-webkit-scrollbar {

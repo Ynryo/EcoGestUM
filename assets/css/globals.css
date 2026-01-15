@@ -273,5 +273,5 @@ a {
     display: flex;
     flex-direction: column;
     width: 100%;
-    /* gap: 20px; */
+    gap: 20px;
 }

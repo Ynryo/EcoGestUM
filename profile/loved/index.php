@@ -1,11 +1,9 @@
 <?php
 include(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
 include(dirname(__FILE__, 3) . '/assets/models/conn.php');
+include(dirname(__FILE__, 3) . '/assets/models/mLoved.php');
 
-$stmt = $pdo->prepare("SELECT * FROM aimer a JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur JOIN objet o ON o.id_objet = a.id_objet WHERE u.id_utilisateur = :u;");
-$stmt->bindParam(':u', $_SESSION["user_id"]);
-$stmt->execute();
-$results = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$results = getUserLovedObjects($pdo, $_SESSION["user_id"]);
 ?>
 <?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
 <title>EcoGestUM - Coups de coeur</title>

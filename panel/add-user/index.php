@@ -2,61 +2,32 @@
 include_once(dirname(__FILE__, 3) . "/assets/models/access_controller.php");
 include_once(dirname(__FILE__, 3) . "/assets/models/assets.php");
 include_once(dirname(__FILE__, 3) . "/assets/models/conn.php");
+include_once(dirname(__FILE__, 3) . "/assets/models/mAuth.php");
 
 // Récupération des rôles depuis la BDD
-$stmt_roles = $pdo->prepare("SELECT id_role, nom_role FROM role ORDER BY id_role");
-$stmt_roles->execute();
-$roles = $stmt_roles->fetchAll(PDO::FETCH_ASSOC);
+$roles = getAllRoles($pdo);
 
 // Traitement du formulaire
 $success_message = "";
 $error_message = "";
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
-    $identifiant = trim($_POST["identifiant"] ?? "");
-    $nom = trim($_POST["nom"] ?? "");
-    $prenom = trim($_POST["prenom"] ?? "");
-    $email = trim($_POST["email"] ?? "");
-    $password = $_POST["password"] ?? "";
-    $confirm_password = $_POST["confirm_password"] ?? "";
-    $id_role = intval($_POST["id_role"] ?? 0);
+    $data = [
+        'identifiant' => trim($_POST["identifiant"] ?? ""),
+        'nom' => trim($_POST["nom"] ?? ""),
+        'prenom' => trim($_POST["prenom"] ?? ""),
+        'email' => trim($_POST["email"] ?? ""),
+        'password' => $_POST["password"] ?? "",
+        'confirm_password' => $_POST["confirm_password"] ?? "",
+        'id_role' => intval($_POST["id_role"] ?? 0)
+    ];
 
-    // Validation des champs
-    if (empty($identifiant) || empty($nom) || empty($prenom) || empty($email) || empty($password) || empty($id_role)) {
-        $error_message = "<p class=\"error\">Veuillez remplir tous les champs obligatoires.</p>";
-    } elseif ($password !== $confirm_password) {
-        $error_message = "<p class=\"error\">Les mots de passe ne correspondent pas.</p>";
-    } elseif (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
-        $error_message = "<p class=\"error\">L'adresse email n'est pas valide.</p>";
+    $result = createUser($pdo, $data);
+
+    if ($result['success']) {
+        $success_message = "<p class=\"success\">" . htmlspecialchars($result['message']) . "</p>";
     } else {
-        try {
-            // Vérifier si l'utilisateur existe déjà (identifiant ou email)
-            $stmt_check = $pdo->prepare("SELECT id_utilisateur FROM utilisateur WHERE identifiant = :identifiant OR mail_univ = :email");
-            $stmt_check->bindParam(":identifiant", $identifiant);
-            $stmt_check->bindParam(":email", $email);
-            $stmt_check->execute();
-
-            if ($stmt_check->fetch()) {
-                $error_message = "<p class=\"error\">Un utilisateur avec cet identifiant ou cette adresse email existe déjà.</p>";
-            } else {
-                // Hasher le mot de passe
-                $hashed_password = password_hash($password, PASSWORD_DEFAULT);
-
-                // Insertion de l'utilisateur
-                $stmt = $pdo->prepare("INSERT INTO utilisateur (identifiant, nom_utilisateur, prenom_utilisateur, mail_univ, mdp_univ, id_role) VALUES (:identifiant, :nom, :prenom, :email, :password, :id_role)");
-                $stmt->bindParam(":identifiant", $identifiant);
-                $stmt->bindParam(":nom", $nom);
-                $stmt->bindParam(":prenom", $prenom);
-                $stmt->bindParam(":email", $email);
-                $stmt->bindParam(":password", $hashed_password);
-                $stmt->bindParam(":id_role", $id_role);
-                $stmt->execute();
-
-                $success_message = "<p class=\"success\">Utilisateur créé avec succès !</p>";
-            }
-        } catch (PDOException $e) {
-            $error_message = "<p class=\"error\">Erreur lors de la création : " . $e->getMessage() . "</p>";
-        }
+        $error_message = "<p class=\"error\">" . htmlspecialchars($result['message']) . "</p>";
     }
 }
 ?>

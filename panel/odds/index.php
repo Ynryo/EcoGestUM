@@ -2,10 +2,9 @@
 include_once(dirname(__FILE__, 3) . "/assets/models/access_controller.php");
 include_once(dirname(__FILE__, 3) . "/assets/models/assets.php");
 include_once(dirname(__FILE__, 3) . "/assets/models/conn.php");
+include_once(dirname(__FILE__, 3) . "/assets/models/mOdds.php");
 
-$stmt_odds = $pdo->prepare("SELECT id_odd, num_odd, titre_odd, desc_odd, link_odd FROM odd ORDER BY id_odd");
-$stmt_odds->execute();
-$odds = $stmt_odds->fetchAll(PDO::FETCH_ASSOC);
+$odds = getAllOdds($pdo);
 ?>
 <title>EcoGestUM - 17 ODD</title>
 <link rel="stylesheet" href="/assets/css/boxs.css">
@@ -33,10 +32,8 @@ $odds = $stmt_odds->fetchAll(PDO::FETCH_ASSOC);
                 </div>
 
                 <?php foreach ($odds as $odd):
-                    // odd 4 to 4 extract number
-                    preg_match('/\d+/', $odd['num_odd'], $matches);
-                    $odd_number = intval($matches[0] ?? 0);
-                    $odd_image_url = "https://www.agenda-2030.fr/IMG/svg/odd" . $odd_number . ".svg";
+                    $odd_number = extractOddNumber($odd['num_odd']);
+                    $odd_image_url = getOddImageUrl($odd_number);
                     ?>
                     <div class="odd-row" onclick="toggleRow(this)">
                         <div class="odd-row-header">

@@ -2,6 +2,7 @@
 include_once(dirname(__FILE__, 3) . "/assets/models/access_controller.php");
 include_once(dirname(__FILE__, 3) . "/assets/models/assets.php");
 include_once(dirname(__FILE__, 3) . "/assets/models/conn.php");
+include_once(dirname(__FILE__, 3) . "/assets/models/mCommunications.php");
 
 // Traitement du formulaire
 $success_message = "";
@@ -11,21 +12,12 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
     $titre = trim($_POST["titre"] ?? "");
     $contenu = trim($_POST["contenu"] ?? "");
 
-    if (empty($titre) || empty($contenu)) {
-        $error_message = "<p class=\"error\">Veuillez remplir tous les champs obligatoires.</p>";
+    $result = createCommunique($pdo, $titre, $contenu, $_SESSION["user_id"]);
+
+    if ($result['success']) {
+        $success_message = "<p class=\"success\">" . htmlspecialchars($result['message']) . "</p>";
     } else {
-        try {
-            $stmt = $pdo->prepare("INSERT INTO communique (titre_communique, contenu, cat_communique, date_publication, id_utilisateur) VALUES (:titre, :contenu, :categorie, NOW(), :id_utilisateur)");
-            $stmt->bindParam(":titre", $titre);
-            $stmt->bindParam(":contenu", $contenu);
-            $categorie = "Général";
-            $stmt->bindParam(":categorie", $categorie);
-            $stmt->bindParam(":id_utilisateur", $_SESSION["user_id"]);
-            $stmt->execute();
-            $success_message = "<p class=\"success\">Communiqué publié avec succès !</p>";
-        } catch (PDOException $e) {
-            $error_message = "<p class=\"error\">Erreur lors de la publication : " . $e->getMessage() . "</p>";
-        }
+        $error_message = "<p class=\"error\">" . htmlspecialchars($result['message']) . "</p>";
     }
 }
 ?>

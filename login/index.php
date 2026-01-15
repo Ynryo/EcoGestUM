@@ -1,32 +1,25 @@
 <?php
 include(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
 
+$error_message = "";
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     include dirname(__FILE__, 2) . '/assets/models/conn.php';
+    include dirname(__FILE__, 2) . '/assets/models/mAuth.php';
+
     $username = strip_tags($_POST['identifiant']);
     $password = strip_tags($_POST['password']);
 
+    $result = authenticateUser($pdo, $username, $password);
 
-    $stmt = $pdo->prepare("SELECT id_utilisateur, mdp_univ, prenom_utilisateur, id_role FROM utilisateur WHERE identifiant = ?");
-    try {
-        $stmt->execute([$username]);
-    } catch (PDOException $e) {
-        die("<p class=\"error\">Erreur SQL : " . $e->getMessage() . "</p>");
-    }
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
-
-    if ($user) {
-        if (password_verify($password, $user['mdp_univ'])) {
-            $_SESSION['user_id'] = $user['id_utilisateur'];
-            $_SESSION["user_name"] = $user["prenom_utilisateur"];
-            $_SESSION["id_role"] = $user["id_role"];
-            header("Location: /");
-            exit();
-        } else {
-            $error_message = "Mot de passe invalide.";
-        }
+    if ($result['success']) {
+        $_SESSION['user_id'] = $result['user']['id'];
+        $_SESSION["user_name"] = $result['user']['prenom'];
+        $_SESSION["id_role"] = $result['user']['id_role'];
+        header("Location: /");
+        exit();
     } else {
-        $error_message = "No user found with that username.";
+        $error_message = $result['message'];
     }
 } ?>
 
@@ -40,8 +33,8 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <section class="login-container">
         <div class="login-box">
             <img src="/assets/img/lmu-logo.png" alt="Logo de Le Mans Université">
-            <?php if (isset($error_message)) {
-                echo "<p class=\"error\">" . $error_message . "</p>";
+            <?php if (!empty($error_message)) {
+                echo "<p class=\"error\">" . htmlspecialchars($error_message) . "</p>";
             }
             ?>
             <form action="" method="POST">
@@ -58,7 +51,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                 <a href="https://activation.univ-lemans.fr/cgi-bin/activation/mdp-perdu.pl" class="link blue">Mot de
                     passe oublié ?</a>
                 <p>Pour des raisons de sécurité, veuillez vous <a href="/logout/" class="link blue">déconnecter</a> et
-                    fermer votre navigateur lorsque vous avez fini d’accéder aux services authentifiés.</p>
+                    fermer votre navigateur lorsque vous avez fini d'accéder aux services authentifiés.</p>
             </form>
         </div>
     </section>

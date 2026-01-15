@@ -87,12 +87,12 @@ INSERT INTO utilisateur (identifiant, nom_utilisateur, prenom_utilisateur, mail_
 
 
 INSERT INTO composante (nom_composante, coords_composante, ville) VALUES
-('Faculté de Droit, Sciences économiques & de Gestion', '48.016, 0.160', 'Le Mans'),
-('Faculté des Lettres, Langues & Sciences humaines', '48.018, 0.162', 'Le Mans'),
-('Faculté des Sciences et Techniques', '48.019, 0.165', 'Le Mans'),
-('IUT du Mans', '48.020, 0.170', 'Le Mans'),
-('IUT de Laval', '48.085, -0.762', 'Laval'),
-('ENSIM', '48.021, 0.164', 'Le Mans');
+('Faculté de Droit, Sciences économiques & de Gestion', '48.016,0.160', 'Le Mans'),
+('Faculté des Lettres, Langues & Sciences humaines', '48.018,0.162', 'Le Mans'),
+('Faculté des Sciences et Techniques', '48.019,0.165', 'Le Mans'),
+('IUT du Mans', '48.020,0.170', 'Le Mans'),
+('IUT de Laval', '48.085,-0.762', 'Laval'),
+('ENSIM', '48.021,0.164', 'Le Mans');
 
 INSERT INTO departement (nom_departement, id_composante, id_inventaire, id_utilisateur) VALUES 
 ('Informatique', 5, 1, 11),

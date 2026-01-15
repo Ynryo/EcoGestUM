@@ -1,38 +1,35 @@
 <?php
-include(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
+include(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
+include(dirname(__FILE__, 3) . '/assets/models/conn.php');
 
-$results = [];
-if (isset($_GET["q"])) {
-    include(dirname(__FILE__, 2) . '/assets/models/conn.php');
-    include(dirname(__FILE__, 2) . '/assets/models/mSearch.php');
+$stmt = $pdo->prepare("SELECT o.id_objet, o.nom_objet, o.desc_objet, c.titre_categorie, o.statut FROM objet AS o JOIN categorie AS c ON o.id_categorie = c.id_categorie ORDER BY o.id_objet DESC LIMIT 50");
+$stmt->execute();
+$cat = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-    $q = strip_tags($_GET["q"]);
-    $results = searchObjects($pdo, $q);
+if (empty($cat)) {
+    header('HTTP/1.0 404 Not Found');
+    header('Location: /errors/404');
+    exit();
 }
 ?>
-<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
-<title>EcoGestUM - Rechercher</title>
+<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<title>EcoGestUM - Produits</title>
 <link rel="stylesheet" href="/assets/css/search.css">
-<link rel="stylesheet" href="/assets/css/boxs.css">
+<link rel="stylesheet" href="/assets/css/products.css">
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 2) . '/assets/view/header.php') ?>
+    <?php include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
     <section class="main">
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
             <span class="material-symbols-outlined">arrow_forward_ios</span>
-            <a href="/products/" class="link">Produits</a>
-
-            <?php if (isset($_GET["q"])): ?>
-                <span class="material-symbols-outlined">arrow_forward_ios</span>
-                Recherche : <?= htmlspecialchars($_GET["q"]) ?>
-            <?php endif; ?>
+            Produits
         </div>
 
-        <div class="cards-container">
-            <?php if (!empty($results)):
-                foreach ($results as $product):
+        <div class="cards-container wrap">
+            <?php if (!empty($cat)):
+                foreach ($cat as $product):
                     $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $product["id_objet"] . '_*';
                     $files = glob($pattern); ?>
                     <a href="/products/?p=<?= htmlspecialchars($product["id_objet"]) ?>" class="card little">
@@ -45,10 +42,10 @@ if (isset($_GET["q"])) {
                 <?php endforeach; ?>
             </div>
         <?php else: ?>
-            <p>Aucun résultat trouvé.</p>
+            <p>Aucun objet dans cette catégorie.</p>
         <?php endif; ?>
     </section>
-    <?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
+    <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
 </body>
 
 </html>

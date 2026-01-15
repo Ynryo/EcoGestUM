@@ -1,4 +1,10 @@
 <?php include(dirname(__FILE__, 2) . '/assets/models/access_controller.php') ?>
+<?php
+include(dirname(__FILE__, 2) . '/assets/models/conn.php');
+include(dirname(__FILE__, 2) . '/assets/models/mEvent.php');
+
+$results = getAllEvents($pdo);
+?>
 <?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
 <title>EcoGestUM - Événements</title>
 <link rel="preload" fetchpriority="high" as="image" href="/assets/img/lmu-logo-for-titles.png" type="image/png">
@@ -19,13 +25,7 @@
             <span class="material-symbols-outlined">arrow_forward_ios</span>
             Événements
         </div>
-        <?php
-        include(dirname(__FILE__, 2) . '/assets/models/conn.php');
-
-        $stmt = $pdo->prepare("SELECT * FROM evenement ORDER BY date_debut DESC");
-        $stmt->execute();
-        $results = $stmt->fetchAll(PDO::FETCH_ASSOC);
-        foreach ($results as $result): ?>
+        <?php foreach ($results as $result): ?>
             <div class="pr-container">
                 <div class="top-content">
                     <div class="publisher">
