@@ -1,14 +1,14 @@
 <?php
-include_once(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
-include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
-include_once(dirname(__FILE__, 2) . '/assets/models/mProfile.php');
+include_once dirname(__FILE__, 2) . '/assets/models/access_controller.php';
+include_once dirname(__FILE__, 2) . '/assets/models/conn.php';
+include_once dirname(__FILE__, 2) . '/assets/models/mProfile.php';
 
 $stmt = $pdo->prepare("SELECT u.nom_utilisateur, u.prenom_utilisateur, u.mail_univ, r.id_role FROM utilisateur u JOIN role r on u.id_role = r.id_role WHERE u.id_utilisateur = :u;");
 $stmt->bindParam(':u', $_SESSION["user_id"]);
 $stmt->execute();
 $results = $stmt->fetch(PDO::FETCH_ASSOC);
 ?>
-<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 2) . '/assets/models/assets.php' ?>
 <title>EcoGestUM - Profil</title>
 <link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/boxs.css">
@@ -16,7 +16,7 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
 </head>
 
 <body>
-	<?php include(dirname(__FILE__, 2) . '/assets/view/header.php') ?>
+	<?php include_once dirname(__FILE__, 2) . '/assets/view/header.php' ?>
 	<section class="main profile">
 		<div class="ariane-link">
 			<a href="/" class="link">Accueil</a>
@@ -24,7 +24,7 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
 			Profil
 		</div>
 		<div>
-			<img src="/assets/img/profile_pictures/default_profile_icon.jpg" alt="Photo de profil de l'utilisateur">
+			<img src="/assets/img/profile_pictures/default_profile_icon.jpg" alt="Profil de l'utilisateur">
 			<div>
 				<h1><?= htmlspecialchars($results["prenom_utilisateur"]) ?>
 					<?= htmlspecialchars($results["nom_utilisateur"]) ?>
@@ -86,7 +86,7 @@ $results = $stmt->fetch(PDO::FETCH_ASSOC);
 			<?php endif; ?>
 		</div>
 	</section>
-	<?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
+	<?php include_once dirname(__FILE__, 2) . '/assets/view/footer.php' ?>
 </body>
 
 </html>

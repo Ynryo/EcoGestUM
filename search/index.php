@@ -1,23 +1,23 @@
 <?php
-include(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
+include_once dirname(__FILE__, 2) . '/assets/models/access_controller.php';
 
 $results = [];
 if (isset($_GET["q"])) {
-    include(dirname(__FILE__, 2) . '/assets/models/conn.php');
-    include(dirname(__FILE__, 2) . '/assets/models/mSearch.php');
+    include_once dirname(__FILE__, 2) . '/assets/models/conn.php';
+    include_once dirname(__FILE__, 2) . '/assets/models/mSearch.php';
 
     $q = strip_tags($_GET["q"]);
     $results = searchObjects($pdo, $q);
 }
 ?>
-<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 2) . '/assets/models/assets.php' ?>
 <title>EcoGestUM - Rechercher</title>
 <link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/boxs.css">
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 2) . '/assets/view/header.php') ?>
+    <?php include_once dirname(__FILE__, 2) . '/assets/view/header.php' ?>
     <section class="main">
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
@@ -48,7 +48,7 @@ if (isset($_GET["q"])) {
             <p>Aucun résultat trouvé.</p>
         <?php endif; ?>
     </section>
-    <?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
+    <?php include_once dirname(__FILE__, 2) . '/assets/view/footer.php' ?>
 </body>
 
 </html>

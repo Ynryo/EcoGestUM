@@ -40,51 +40,44 @@ function getNextObjectId($pdo)
  */
 function handleSingleUpload($file_info, $max_size, $target_dir, $id, $i)
 {
-    // Vérifier la taille
-    if ($file_info["size"] > $max_size) {
-        $max_size_mb = number_format($max_size / (1024 * 1024), 1);
-        return [
-            'success' => false,
-            'message' => "Le fichier '{$file_info["name"]}' dépasse la taille maximale autorisée de {$max_size_mb} MB."
-        ];
-    }
-
     $tmp_file = $file_info["tmp_name"];
     $original_file_name = basename($file_info["name"]);
     $allowed_extensions = ["png", "jpeg", "jpg", "webp"];
-
     $imageFileType = strtolower(pathinfo($original_file_name, PATHINFO_EXTENSION));
-    if (!in_array($imageFileType, $allowed_extensions)) {
-        return [
+
+    // Vérifier la taille
+    if ($file_info["size"] > $max_size) {
+        $max_size_mb = number_format($max_size / (1024 * 1024), 1);
+        $result = [
+            'success' => false,
+            'message' => "Le fichier '{$file_info["name"]}' dépasse la taille maximale autorisée de {$max_size_mb} MB."
+        ];
+    } elseif (!in_array($imageFileType, $allowed_extensions) || getimagesize($tmp_file) === false) {
+        // Extension non autorisée ou fichier n'est pas une vraie image
+        $result = [
             'success' => false,
             'message' => "Le fichier '{$file_info["name"]}' n'est pas une image valide."
-        ];
-    }
-
-    // Vérifier que c'est une vraie image
-    $check = getimagesize($tmp_file);
-    if ($check === false) {
-        return [
-            'success' => false,
-            'message' => "Le fichier '{$file_info["name"]}' n'est pas une image valide."
-        ];
-    }
-
-    $new_file_name = $id . "_" . ($i + 1) . "." . $imageFileType;
-    $target_file = $target_dir . $new_file_name;
-
-    if (move_uploaded_file($tmp_file, $target_file)) {
-        return [
-            'success' => true,
-            'message' => 'Fichier uploadé avec succès',
-            'path' => $target_file
         ];
     } else {
-        return [
-            'success' => false,
-            'message' => "Impossible de déplacer le fichier '{$file_info["name"]}'."
-        ];
+        // Tentative d'upload
+        $new_file_name = $id . "_" . ($i + 1) . "." . $imageFileType;
+        $target_file = $target_dir . $new_file_name;
+
+        if (move_uploaded_file($tmp_file, $target_file)) {
+            $result = [
+                'success' => true,
+                'message' => 'Fichier uploadé avec succès',
+                'path' => $target_file
+            ];
+        } else {
+            $result = [
+                'success' => false,
+                'message' => "Impossible de déplacer le fichier '{$file_info["name"]}'."
+            ];
+        }
     }
+
+    return $result;
 }
 
 /**
@@ -95,7 +88,7 @@ function createObject($pdo, $data)
 {
     try {
         $stmt = $pdo->prepare("
-            INSERT INTO `objet` (`nom_objet`, `desc_objet`, `etat`, `color`, `size`, `quantity`, `date_ajout`, `statut`, `id_categorie`) 
+            INSERT INTO `objet` (`nom_objet`, `desc_objet`, `etat`, `color`, `size`, `quantity`, `date_ajout`, `statut`, `id_categorie`)
             VALUES (:nom_objet, :desc_objet, :etat, :color, :size, :quantity, :date_ajout, :statut, :categorie)
         ");
         $stmt->bindValue(":nom_objet", $data['name']);

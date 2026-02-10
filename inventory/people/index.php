@@ -1,7 +1,7 @@
 <?php
-include_once(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
-include_once(dirname(__FILE__, 3) . '/assets/models/conn.php');
-include_once(dirname(__FILE__, 3) . '/assets/models/mProfile.php');
+include_once dirname(__FILE__, 3) . '/assets/models/access_controller.php';
+include_once dirname(__FILE__, 3) . '/assets/models/conn.php';
+include_once dirname(__FILE__, 3) . '/assets/models/mProfile.php';
 
 $stmt = $pdo->prepare("SELECT * FROM INVENTAIRE i JOIN DEPARTEMENT d ON i.id_inventaire = d.id_inventaire WHERE i.id_inventaire = :inventaire;");
 $stmt->bindParam(':inventaire', $_GET["id"]);
@@ -15,14 +15,14 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
 //     exit();
 // }
 ?>
-<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 3) . '/assets/models/assets.php' ?>
 <title>EcoGestUM - Inventaire</title>
 <link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/products.css">
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/header.php' ?>
     <section class="main">
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
@@ -42,7 +42,7 @@ $result = $stmt->fetchAll(PDO::FETCH_ASSOC);
         var_dump($result);
         ?>
     </section>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/footer.php' ?>
     <script src="/assets/js/love-button.js"></script>
 </body>
 

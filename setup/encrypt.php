@@ -1,5 +1,5 @@
 <?php
-include(dirname(__FILE__, 2) . '/assets/models/conn.php');
+include_once dirname(__FILE__, 2) . '/assets/models/conn.php';
 
 $stmt = $pdo->prepare("SELECT * FROM utilisateur;");
 $stmt->execute();

@@ -9,43 +9,31 @@
  */
 function authenticateUser($pdo, $username, $password)
 {
+    $result = ['success' => false, 'message' => '', 'user' => null];
+
     try {
         $stmt = $pdo->prepare("SELECT id_utilisateur, mdp_univ, prenom_utilisateur, id_role FROM utilisateur WHERE identifiant = ?");
         $stmt->execute([$username]);
         $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
         if (!$user) {
-            return [
-                'success' => false,
-                'message' => 'Aucun utilisateur trouvé avec cet identifiant.',
-                'user' => null
-            ];
-        }
-
-        if (!password_verify($password, $user['mdp_univ'])) {
-            return [
-                'success' => false,
-                'message' => 'Mot de passe invalide.',
-                'user' => null
-            ];
-        }
-
-        return [
-            'success' => true,
-            'message' => 'Connexion réussie',
-            'user' => [
+            $result['message'] = 'Aucun utilisateur trouvé avec cet identifiant.';
+        } elseif (!password_verify($password, $user['mdp_univ'])) {
+            $result['message'] = 'Mot de passe invalide.';
+        } else {
+            $result['success'] = true;
+            $result['message'] = 'Connexion réussie';
+            $result['user'] = [
                 'id' => $user['id_utilisateur'],
                 'prenom' => $user['prenom_utilisateur'],
                 'id_role' => $user['id_role']
-            ]
-        ];
+            ];
+        }
     } catch (PDOException $e) {
-        return [
-            'success' => false,
-            'message' => 'Erreur SQL: ' . $e->getMessage(),
-            'user' => null
-        ];
+        $result['message'] = 'Erreur SQL: ' . $e->getMessage();
     }
+
+    return $result;
 }
 
 /**
@@ -76,46 +64,41 @@ function checkUserExists($pdo, $identifiant, $email)
  */
 function createUser($pdo, $data)
 {
-    // Validation des champs obligatoires
+    $result = ['success' => false, 'message' => ''];
+
     if (
         empty($data['identifiant']) || empty($data['nom']) || empty($data['prenom']) ||
         empty($data['email']) || empty($data['password']) || empty($data['id_role'])
     ) {
-        return ['success' => false, 'message' => 'Veuillez remplir tous les champs obligatoires.'];
+        $result['message'] = 'Veuillez remplir tous les champs obligatoires.';
+    } elseif (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
+        $result['message'] = "L'adresse email n'est pas valide.";
+    } elseif (isset($data['confirm_password']) && $data['password'] !== $data['confirm_password']) {
+        $result['message'] = 'Les mots de passe ne correspondent pas.';
+    } elseif (checkUserExists($pdo, $data['identifiant'], $data['email'])) {
+        $result['message'] = 'Un utilisateur avec cet identifiant ou cette adresse email existe déjà.';
+    } else {
+        try {
+            $hashed_password = password_hash($data['password'], PASSWORD_DEFAULT);
+
+            $stmt = $pdo->prepare("
+                INSERT INTO utilisateur (identifiant, nom_utilisateur, prenom_utilisateur, mail_univ, mdp_univ, id_role)
+                VALUES (:identifiant, :nom, :prenom, :email, :password, :id_role)
+            ");
+            $stmt->bindParam(":identifiant", $data['identifiant']);
+            $stmt->bindParam(":nom", $data['nom']);
+            $stmt->bindParam(":prenom", $data['prenom']);
+            $stmt->bindParam(":email", $data['email']);
+            $stmt->bindParam(":password", $hashed_password);
+            $stmt->bindParam(":id_role", $data['id_role']);
+            $stmt->execute();
+
+            $result['success'] = true;
+            $result['message'] = 'Utilisateur créé avec succès !';
+        } catch (PDOException $e) {
+            $result['message'] = 'Erreur lors de la création: ' . $e->getMessage();
+        }
     }
 
-    // Validation de l'email
-    if (!filter_var($data['email'], FILTER_VALIDATE_EMAIL)) {
-        return ['success' => false, 'message' => "L'adresse email n'est pas valide."];
-    }
-
-    // Vérification des mots de passe
-    if (isset($data['confirm_password']) && $data['password'] !== $data['confirm_password']) {
-        return ['success' => false, 'message' => 'Les mots de passe ne correspondent pas.'];
-    }
-
-    // Vérifier si l'utilisateur existe déjà
-    if (checkUserExists($pdo, $data['identifiant'], $data['email'])) {
-        return ['success' => false, 'message' => 'Un utilisateur avec cet identifiant ou cette adresse email existe déjà.'];
-    }
-
-    try {
-        $hashed_password = password_hash($data['password'], PASSWORD_DEFAULT);
-
-        $stmt = $pdo->prepare("
-            INSERT INTO utilisateur (identifiant, nom_utilisateur, prenom_utilisateur, mail_univ, mdp_univ, id_role) 
-            VALUES (:identifiant, :nom, :prenom, :email, :password, :id_role)
-        ");
-        $stmt->bindParam(":identifiant", $data['identifiant']);
-        $stmt->bindParam(":nom", $data['nom']);
-        $stmt->bindParam(":prenom", $data['prenom']);
-        $stmt->bindParam(":email", $data['email']);
-        $stmt->bindParam(":password", $hashed_password);
-        $stmt->bindParam(":id_role", $data['id_role']);
-        $stmt->execute();
-
-        return ['success' => true, 'message' => 'Utilisateur créé avec succès !'];
-    } catch (PDOException $e) {
-        return ['success' => false, 'message' => 'Erreur lors de la création: ' . $e->getMessage()];
-    }
+    return $result;
 }

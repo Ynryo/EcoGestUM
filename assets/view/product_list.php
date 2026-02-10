@@ -1,6 +1,6 @@
 <?php
-include(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
-include(dirname(__FILE__, 3) . '/assets/models/conn.php');
+include_once dirname(__FILE__, 3) . '/assets/models/access_controller.php';
+include_once dirname(__FILE__, 3) . '/assets/models/conn.php';
 
 $stmt = $pdo->prepare("SELECT o.id_objet, o.nom_objet, o.desc_objet, c.titre_categorie, o.statut FROM objet AS o JOIN categorie AS c ON o.id_categorie = c.id_categorie ORDER BY o.id_objet DESC LIMIT 50");
 $stmt->execute();
@@ -12,14 +12,14 @@ if (empty($cat)) {
     exit();
 }
 ?>
-<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 3) . '/assets/models/assets.php' ?>
 <title>EcoGestUM - Produits</title>
 <link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/products.css">
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/header.php' ?>
     <section class="main">
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
@@ -45,7 +45,7 @@ if (empty($cat)) {
             <p>Aucun objet dans cette catégorie.</p>
         <?php endif; ?>
     </section>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/footer.php' ?>
 </body>
 
 </html>

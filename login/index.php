@@ -1,11 +1,11 @@
 <?php
-include(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
+include_once dirname(__FILE__, 2) . '/assets/models/access_controller.php';
 
 $error_message = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include dirname(__FILE__, 2) . '/assets/models/conn.php';
-    include dirname(__FILE__, 2) . '/assets/models/mAuth.php';
+    include_once dirname(__FILE__, 2) . '/assets/models/conn.php';
+    include_once dirname(__FILE__, 2) . '/assets/models/mAuth.php';
 
     $username = strip_tags($_POST['identifiant']);
     $password = strip_tags($_POST['password']);
@@ -23,7 +23,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     }
 } ?>
 
-<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 2) . '/assets/models/assets.php' ?>
 <title>EcoGestUM - Connexion</title>
 <link rel="stylesheet" href="/assets/css/session.css">
 <link rel="stylesheet" href="/assets/css/inputs.css">

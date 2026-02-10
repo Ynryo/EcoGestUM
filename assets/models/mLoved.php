@@ -9,9 +9,9 @@
 function getUserLovedObjects($pdo, $user_id)
 {
     $stmt = $pdo->prepare("
-        SELECT * FROM aimer a 
-        JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur 
-        JOIN objet o ON o.id_objet = a.id_objet 
+        SELECT * FROM aimer a
+        JOIN utilisateur u ON a.id_utilisateur = u.id_utilisateur
+        JOIN objet o ON o.id_objet = a.id_objet
         WHERE u.id_utilisateur = :u;
     ");
     $stmt->bindParam(':u', $user_id);

@@ -10,7 +10,7 @@
 function getTakeoverRequests($pdo, $user_role, $user_id)
 {
     $base_query = "
-        SELECT 
+        SELECT
             r.id_donneur, r.id_recepteur, r.id_objet, r.date_ajout,
             o.nom_objet, o.quantity, o.statut,
             i.id_inventaire, i.nom_inventaire,

@@ -29,13 +29,17 @@ function handleNotificationAction($pdo, $user_id, $notification_id, $action)
                 $stmt = $pdo->prepare("DELETE FROM notification WHERE id_notification = :n");
                 $stmt->bindParam(':n', $notification_id);
                 $stmt->execute();
-                return ['success' => true, 'message' => 'Notification traitée'];
+                $result = ['success' => true, 'message' => 'Notification traitée'];
+                break;
             default:
-                return ['success' => false, 'message' => 'Action non reconnue'];
+                $result = ['success' => false, 'message' => 'Action non reconnue'];
+                break;
         }
     } catch (PDOException $e) {
-        return ['success' => false, 'message' => 'Erreur: ' . $e->getMessage()];
+        $result = ['success' => false, 'message' => 'Erreur: ' . $e->getMessage()];
     }
+
+    return $result;
 }
 
 /**
@@ -44,14 +48,14 @@ function handleNotificationAction($pdo, $user_id, $notification_id, $action)
 function getUserNotifications($pdo, $user_id)
 {
     $stmt = $pdo->prepare("
-        SELECT 
-            id_notification, titre_notification, date_envoi, id_emetteur, 
-            u1.nom_utilisateur as 'nom_emetteur', u1.prenom_utilisateur as 'prenom_emetteur', 
-            id_recepteur, 
-            u2.nom_utilisateur as 'nom_recepteur', u2.prenom_utilisateur as 'prenom_recepteur' 
-        FROM notification 
-        JOIN utilisateur u1 ON notification.id_emetteur = u1.id_utilisateur 
-        JOIN utilisateur u2 ON notification.id_recepteur = u2.id_utilisateur 
+        SELECT
+            id_notification, titre_notification, date_envoi, id_emetteur,
+            u1.nom_utilisateur as 'nom_emetteur', u1.prenom_utilisateur as 'prenom_emetteur',
+            id_recepteur,
+            u2.nom_utilisateur as 'nom_recepteur', u2.prenom_utilisateur as 'prenom_recepteur'
+        FROM notification
+        JOIN utilisateur u1 ON notification.id_emetteur = u1.id_utilisateur
+        JOIN utilisateur u2 ON notification.id_recepteur = u2.id_utilisateur
         WHERE id_recepteur = :u;
     ");
     $stmt->bindParam(':u', $user_id);

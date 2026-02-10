@@ -1,12 +1,12 @@
 <?php
-include(dirname(__FILE__, 2) . '/assets/models/access_controller.php');
-include(dirname(__FILE__, 2) . '/assets/models/conn.php');
-include(dirname(__FILE__, 2) . '/assets/models/mDonation.php');
+include_once dirname(__FILE__, 2) . '/assets/models/access_controller.php';
+include_once dirname(__FILE__, 2) . '/assets/models/conn.php';
+include_once dirname(__FILE__, 2) . '/assets/models/mDonation.php';
 
 $categories = getAllCategories($pdo);
 $inventaires = getAllInventories($pdo);
 ?>
-<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 2) . '/assets/models/assets.php' ?>
 <title>EcoGestUM</title>
 <link rel="preload" fetchpriority="high" as="image" href="/assets/img/landing-page-background.png" type="image/png">
 <link rel="stylesheet" href="/assets/css/search.css">
@@ -15,7 +15,7 @@ $inventaires = getAllInventories($pdo);
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 2) . '/assets/view/header.php') ?>
+    <?php include_once dirname(__FILE__, 2) . '/assets/view/header.php' ?>
     <section class="main">
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
@@ -100,7 +100,7 @@ $inventaires = getAllInventories($pdo);
         </form>
 
     </section>
-    <?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
+    <?php include_once dirname(__FILE__, 2) . '/assets/view/footer.php' ?>
 </body>
 
 </html>

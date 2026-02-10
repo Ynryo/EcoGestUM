@@ -4,8 +4,8 @@ $max_size = 5 * 1024 * 1024;
 $target_dir = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    include(dirname(__FILE__, 2) . '/assets/models/conn.php');
-    include(dirname(__FILE__, 2) . '/assets/models/mDonation.php');
+    include_once dirname(__FILE__, 2) . '/assets/models/conn.php';
+    include_once dirname(__FILE__, 2) . '/assets/models/mDonation.php';
 
     $name_objet = strip_tags($_POST["name_objet"]);
     $desc = strip_tags($_POST["desc"]);

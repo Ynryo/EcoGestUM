@@ -1,18 +1,18 @@
 <?php
-include(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
-include(dirname(__FILE__, 3) . '/assets/models/conn.php');
-include(dirname(__FILE__, 3) . '/assets/models/mLoved.php');
+include_once dirname(__FILE__, 3) . '/assets/models/access_controller.php';
+include_once dirname(__FILE__, 3) . '/assets/models/conn.php';
+include_once dirname(__FILE__, 3) . '/assets/models/mLoved.php';
 
 $results = getUserLovedObjects($pdo, $_SESSION["user_id"]);
 ?>
-<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 3) . '/assets/models/assets.php' ?>
 <title>EcoGestUM - Coups de coeur</title>
 <link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/boxs.css">
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/header.php' ?>
     <section class="main">
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
@@ -43,7 +43,7 @@ $results = getUserLovedObjects($pdo, $_SESSION["user_id"]);
             <?php endif; ?>
         </div>
     </section>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/footer.php' ?>
 </body>
 
 </html>

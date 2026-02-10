@@ -55,7 +55,7 @@ function countHistoryItems($pdo, $user_role, $user_id)
 function getHistoryItems($pdo, $user_role, $user_id, $limit, $offset)
 {
     $base_query = "
-        SELECT 
+        SELECT
             o.id_objet, o.nom_objet, o.quantity,
             r.date_fin,
             c.id_composante, c.nom_composante,

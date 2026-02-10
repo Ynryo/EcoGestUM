@@ -1,6 +1,6 @@
 <?php
-include(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
-include(dirname(__FILE__, 3) . '/assets/models/conn.php');
+include_once dirname(__FILE__, 3) . '/assets/models/access_controller.php';
+include_once dirname(__FILE__, 3) . '/assets/models/conn.php';
 
 $stmt = $pdo->prepare("SELECT * FROM categorie c JOIN objet o ON c.id_categorie = o.id_categorie WHERE c.id_categorie = :c");
 $stmt->bindParam(':c', $_GET["c"]);
@@ -13,14 +13,14 @@ if (empty($cat)) {
     exit();
 }
 ?>
-<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 3) . '/assets/models/assets.php' ?>
 <title>EcoGestUM - <?= htmlspecialchars($cat[0]["titre_categorie"]) ?></title>
 <link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/products.css">
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/header.php' ?>
     <section class="main">
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
@@ -50,7 +50,7 @@ if (empty($cat)) {
             <p>Aucun objet dans cette catégorie.</p>
         <?php endif; ?>
     </section>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/footer.php' ?>
 </body>
 
 </html>

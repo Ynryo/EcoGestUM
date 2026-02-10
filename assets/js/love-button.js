@@ -11,14 +11,13 @@ loveButton.addEventListener("click", function () {
 })
 
 window.addEventListener("load", function isInLoveList() {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(globalThis.location.search);
     const pageId = urlParams.get('p');
 
     let getState = new XMLHttpRequest();
 
     getState.onreadystatechange = function () {
         if (getState.readyState == 4 && getState.status == 200) {
-            // console.log(this.responseText);
             if (JSON.parse(this.responseText) == 0) {
                 loveButton.classList.remove("active");
             } else if (JSON.parse(this.responseText) == 1) {
@@ -32,7 +31,7 @@ window.addEventListener("load", function isInLoveList() {
 })
 
 function insertObject() {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(globalThis.location.search);
     const pageId = urlParams.get('p');
     let insertState = new XMLHttpRequest();
 
@@ -41,7 +40,7 @@ function insertObject() {
 }
 
 function deleteObject() {
-    const urlParams = new URLSearchParams(window.location.search);
+    const urlParams = new URLSearchParams(globalThis.location.search);
     const pageId = urlParams.get('p');
     let deleteState = new XMLHttpRequest();
 

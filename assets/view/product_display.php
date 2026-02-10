@@ -1,6 +1,6 @@
 <?php
-include_once(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
-include_once(dirname(__FILE__, 3) . '/assets/models/conn.php');
+include_once dirname(__FILE__, 3) . '/assets/models/access_controller.php';
+include_once dirname(__FILE__, 3) . '/assets/models/conn.php';
 require_once dirname(__FILE__, 3) . '/assets/models/date.php';
 $p = htmlspecialchars($_GET["p"]);
 $stmt = $pdo->prepare("SELECT o.nom_objet, o.desc_objet, o.etat, o.color, o.size, o.quantity, o.date_ajout, o.statut, c.id_composante, c.coords_composante, i.id_inventaire, i.nom_inventaire, cat.id_categorie, cat.titre_categorie FROM objet o JOIN agencer a ON o.id_objet = a.id_objet JOIN inventaire i ON a.id_inventaire = i.id_inventaire JOIN departement d ON d.id_inventaire = i.id_inventaire JOIN composante c on d.id_composante = c.id_composante JOIN categorie cat ON cat.id_categorie = o.id_categorie WHERE o.id_objet = :p;");
@@ -15,14 +15,14 @@ if ($objet == null) {
     exit();
 }
 ?>
-<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 3) . '/assets/models/assets.php' ?>
 <title>EcoGestUM - <?= htmlspecialchars($objet["nom_objet"]) ?></title>
 <link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/products.css">
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/header.php' ?>
     <section class="main">
         <div class="ariane-link">
             <a href="/" class="link">Accueil</a>
@@ -55,8 +55,8 @@ if ($objet == null) {
                     finfo_close($finfo);
                     ?>
                 </div>
-                <a class="link love" id="love-button">
-                    <span class="material-symbols-outlined">
+                <a class="link love" id="love-button" aria-label="Ajouter aux favoris">
+                    <span class="material-symbols-outlined" aria-hidden="true">
                         favorite
                     </span>
                 </a>
@@ -74,9 +74,7 @@ if ($objet == null) {
                 <p>Quantité : <?= htmlspecialchars($objet["quantity"]) ?></p>
                 <p>Localisation : <span class="composante c<?= htmlspecialchars($objet["id_composante"]) ?>"></span></p>
                 <p>Publié par :
-                    <!-- <a class="link" href="/inventory/people/?id=<?= htmlspecialchars($objet["id_inventaire"]) ?>"> -->
                     <?= htmlspecialchars($objet["nom_inventaire"]) ?>
-                    <!-- </a> -->
                 </p>
                 <hr>
                 <p><?= htmlspecialchars($objet["desc_objet"]) ?><br>Brewen was here</p>
@@ -99,7 +97,7 @@ if ($objet == null) {
             </div>
         </div>
     </section>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/footer.php' ?>
     <script src="/assets/js/love-button.js"></script>
 </body>
 

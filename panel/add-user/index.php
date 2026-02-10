@@ -1,8 +1,8 @@
 <?php
-include_once(dirname(__FILE__, 3) . "/assets/models/access_controller.php");
-include_once(dirname(__FILE__, 3) . "/assets/models/assets.php");
-include_once(dirname(__FILE__, 3) . "/assets/models/conn.php");
-include_once(dirname(__FILE__, 3) . "/assets/models/mAuth.php");
+include_once dirname(__FILE__, 3) . "/assets/models/access_controller.php";
+include_once dirname(__FILE__, 3) . "/assets/models/assets.php";
+include_once dirname(__FILE__, 3) . "/assets/models/conn.php";
+include_once dirname(__FILE__, 3) . "/assets/models/mAuth.php";
 
 // Récupération des rôles depuis la BDD
 $roles = getAllRoles($pdo);
@@ -39,11 +39,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 3) . "/assets/view/header.php") ?>
+    <?php include_once dirname(__FILE__, 3) . "/assets/view/header.php" ?>
     <section class="main panel">
         <?php
-        include(dirname(__FILE__, 3) . "/assets/models/navbar.php");
-        include(dirname(__FILE__, 3) . "/assets/view/panel/navbar.php");
+        include_once dirname(__FILE__, 3) . "/assets/models/navbar.php";
+        include_once dirname(__FILE__, 3) . "/assets/view/panel/navbar.php";
         ?>
         <div class="container">
             <h2>Ajouter un utilisateur</h2>
@@ -103,7 +103,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
         </div>
     </section>
 
-    <?php include(dirname(__FILE__, 3) . "/assets/view/footer.php") ?>
+    <?php include_once dirname(__FILE__, 3) . "/assets/view/footer.php" ?>
 </body>
 
 </html>

@@ -2,7 +2,7 @@
 echo "testConnexion.php";
 
 echo "<br>Loading Vendor...<br>";
-require dirname(__FILE__, 2) . '/vendor/autoload.php';
+require_once dirname(__FILE__, 2) . '/vendor/autoload.php';
 use Dotenv\Dotenv;
 $dotenv = Dotenv::createImmutable(dirname(__FILE__, 2));
 $dotenv->load();
@@ -20,7 +20,7 @@ echo $_ENV["DB_PASSWORD_SSH"];
 echo "<br>";
 
 echo "<br>Testing conn.php...<br>";
-include_once(dirname(__FILE__, 2) . '/assets/models/conn.php');
+include_once dirname(__FILE__, 2) . '/assets/models/conn.php';
 echo "<br>conn.php loaded !<br>";
 
 try {

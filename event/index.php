@@ -1,11 +1,11 @@
-<?php include(dirname(__FILE__, 2) . '/assets/models/access_controller.php') ?>
+<?php include_once dirname(__FILE__, 2) . '/assets/models/access_controller.php' ?>
 <?php
-include(dirname(__FILE__, 2) . '/assets/models/conn.php');
-include(dirname(__FILE__, 2) . '/assets/models/mEvent.php');
+include_once dirname(__FILE__, 2) . '/assets/models/conn.php';
+include_once dirname(__FILE__, 2) . '/assets/models/mEvent.php';
 
 $results = getAllEvents($pdo);
 ?>
-<?php include(dirname(__FILE__, 2) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 2) . '/assets/models/assets.php' ?>
 <title>EcoGestUM - Événements</title>
 <link rel="preload" fetchpriority="high" as="image" href="/assets/img/lmu-logo-for-titles.png" type="image/png">
 <link rel="stylesheet" href="/assets/css/press-releases.css">
@@ -14,7 +14,7 @@ $results = getAllEvents($pdo);
 
 <body>
     <section class="top-container">
-        <?php include(dirname(__FILE__, 2) . '/assets/view/header.php') ?>
+        <?php include_once dirname(__FILE__, 2) . '/assets/view/header.php' ?>
         <div class="main-title">
             <h1>Événements</h1>
         </div>
@@ -44,7 +44,7 @@ $results = getAllEvents($pdo);
             </div>
         <?php endforeach; ?>
     </div>
-    <?php include(dirname(__FILE__, 2) . '/assets/view/footer.php') ?>
+    <?php include_once dirname(__FILE__, 2) . '/assets/view/footer.php' ?>
 </body>
 
 </html>

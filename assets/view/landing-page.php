@@ -1,14 +1,14 @@
-<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
-    <title>EcoGestUM</title>
-    <link rel="preload" fetchpriority="high" as="image" href="/assets/img/landing-page-background.png" type="image/png">
-    <link rel="stylesheet" href="/assets/css/landing-page.css">
+<?php include_once dirname(__FILE__, 3) . '/assets/models/assets.php' ?>
+<title>EcoGestUM</title>
+<link rel="preload" fetchpriority="high" as="image" href="/assets/img/landing-page-background.png" type="image/png">
+<link rel="stylesheet" href="/assets/css/landing-page.css">
 <link rel="stylesheet" href="/assets/css/press-releases.css">
 <link rel="stylesheet" href="/assets/css/search.css">
 <link rel="stylesheet" href="/assets/css/boxs.css">
 </head>
 
 <body>
-    <?php include(dirname(__FILE__, 3) . '/assets/view/header.php'); ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/header.php' ?>
     <section class="top-container">
         <div class="top-content">
             <div>
@@ -22,7 +22,7 @@
     <section class="keynums">
         <div class="blue-bg">
             <?php
-            include(dirname(__FILE__, 3) . '/assets/models/conn.php');
+            include_once dirname(__FILE__, 3) . '/assets/models/conn.php';
             $stmt = $pdo->prepare("SELECT sum(nb_recyclages) as 'nb_recyclages' FROM statistique;");
             $stmt->execute();
             $result = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -121,7 +121,7 @@
     <section class="press-releases">
         <h2>Communiqués de la direction de l’Université</h2>
         <?php
-        include(dirname(__FILE__, 3) . '/assets/models/conn.php');
+        include_once dirname(__FILE__, 3) . '/assets/models/conn.php';
 
         $stmt = $pdo->prepare("SELECT c.titre_communique, c.contenu, c.cat_communique, c.date_publication, u.prenom_utilisateur, u.nom_utilisateur, u.id_role FROM communique c JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur ORDER BY c.date_publication ASC LIMIT 1");
         $stmt->execute();
@@ -147,7 +147,7 @@
         <a href="/press-releases/" class="button">Voir plus de communiqués</a>
     </section>
 
-    <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php'); ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/footer.php' ?>
 </body>
 
 </html>

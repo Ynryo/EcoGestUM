@@ -1,5 +1,5 @@
-<?php include(dirname(__FILE__, 3) . '/assets/models/conn.php') ?>
-<?php include(dirname(__FILE__, 3) . '/assets/models/assets.php') ?>
+<?php include_once dirname(__FILE__, 3) . '/assets/models/conn.php' ?>
+<?php include_once dirname(__FILE__, 3) . '/assets/models/assets.php' ?>
 <title>EcoGestUM</title>
 <link rel="preload" fetchpriority="high" as="image" href="/assets/img/landing-page-background.png" type="image/png">
 <link rel="stylesheet" href="/assets/css/search.css">
@@ -9,7 +9,7 @@
 
 <body>
     <?php
-    include(dirname(__FILE__, 3) . '/assets/view/header.php') ?>
+    include_once dirname(__FILE__, 3) . '/assets/view/header.php' ?>
     <section class="main">
         <h2>Bonjour <?= htmlspecialchars($_SESSION["user_name"]) ?> !</h2>
         <p>Votre rôle: <span class="role r<?= htmlspecialchars($_SESSION["id_role"]) ?>"></span></p>
@@ -79,7 +79,7 @@
         </div>
     </section>
 
-    <?php include(dirname(__FILE__, 3) . '/assets/view/footer.php') ?>
+    <?php include_once dirname(__FILE__, 3) . '/assets/view/footer.php' ?>
 </body>
 
 </html>

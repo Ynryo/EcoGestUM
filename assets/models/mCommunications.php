@@ -15,7 +15,7 @@ function createCommunique($pdo, $titre, $contenu, $user_id)
 
     try {
         $stmt = $pdo->prepare("
-            INSERT INTO communique (titre_communique, contenu, cat_communique, date_publication, id_utilisateur) 
+            INSERT INTO communique (titre_communique, contenu, cat_communique, date_publication, id_utilisateur)
             VALUES (:titre, :contenu, :categorie, NOW(), :id_utilisateur)
         ");
         $stmt->bindParam(":titre", $titre);
@@ -37,11 +37,11 @@ function createCommunique($pdo, $titre, $contenu, $user_id)
 function getAllCommuniques($pdo)
 {
     $stmt = $pdo->prepare("
-        SELECT 
-            c.titre_communique, c.contenu, c.cat_communique, c.date_publication, 
-            u.prenom_utilisateur, u.nom_utilisateur, u.id_role 
-        FROM communique c 
-        JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur 
+        SELECT
+            c.titre_communique, c.contenu, c.cat_communique, c.date_publication,
+            u.prenom_utilisateur, u.nom_utilisateur, u.id_role
+        FROM communique c
+        JOIN utilisateur u ON c.id_utilisateur = u.id_utilisateur
         ORDER BY c.date_publication DESC
     ");
     $stmt->execute();
