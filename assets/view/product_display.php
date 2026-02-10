@@ -2,9 +2,9 @@
 include_once(dirname(__FILE__, 3) . '/assets/models/access_controller.php');
 include_once(dirname(__FILE__, 3) . '/assets/models/conn.php');
 require_once dirname(__FILE__, 3) . '/assets/models/date.php';
-
+$p = htmlspecialchars($_GET["p"]);
 $stmt = $pdo->prepare("SELECT o.nom_objet, o.desc_objet, o.etat, o.color, o.size, o.quantity, o.date_ajout, o.statut, c.id_composante, c.coords_composante, i.id_inventaire, i.nom_inventaire, cat.id_categorie, cat.titre_categorie FROM objet o JOIN agencer a ON o.id_objet = a.id_objet JOIN inventaire i ON a.id_inventaire = i.id_inventaire JOIN departement d ON d.id_inventaire = i.id_inventaire JOIN composante c on d.id_composante = c.id_composante JOIN categorie cat ON cat.id_categorie = o.id_categorie WHERE o.id_objet = :p;");
-$stmt->bindParam(':p', $_GET["p"]);
+$stmt->bindParam(':p', $p);
 
 $stmt->execute();
 $objet = $stmt->fetch(PDO::FETCH_ASSOC);
@@ -29,7 +29,7 @@ if ($objet == null) {
             <span class="material-symbols-outlined">arrow_forward_ios</span>
             <a href="/products/" class="link">Produits</a>
 
-            <?php if (isset($_GET["p"])): ?>
+            <?php if (isset($p)): ?>
                 <span class="material-symbols-outlined">arrow_forward_ios</span>
                 <a href="/products/?c=<?= $objet["id_categorie"] ?>"
                     class="link"><?= htmlspecialchars($objet["titre_categorie"]) ?></a>
@@ -39,7 +39,7 @@ if ($objet == null) {
         </div>
         <div class="row">
             <?php
-            $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $_GET["p"] . '_*';
+            $pattern = $_SERVER["DOCUMENT_ROOT"] . "/assets/img/products/" . $p . '_*';
             $files = glob($pattern);
             ?>
             <div class="row">
@@ -89,7 +89,7 @@ if ($objet == null) {
                 } elseif (in_array($_SESSION["id_role"], [1, 2])) {
                     echo "<a class=\"button blue full disabled\" title=\"Réservation impossible dû à votre statut\">Réservation impossible</a>";
                 } else {
-                    echo "<a href=\"/products/reserve.php?p=" . $_GET["p"] . "&action=new\" class=\"button blue full\">Réserver</a>";
+                    echo "<a href=\"/products/reserve.php?p=" . $p . "&action=new\" class=\"button blue full\">Réserver</a>";
                 }
                 ?>
                 <a href="/messages/?to=<?= htmlspecialchars($objet["id_inventaire"]) ?>"
